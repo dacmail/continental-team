@@ -31,3 +31,18 @@ function excerpt_more() {
   return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
 }
 add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
+
+/**
+ * inline svg helper
+ */
+function ungrynerd_svg($svg) {
+  $output = '';
+  if (empty($svg)) {
+    return;
+  }
+  $svg_file_path = \get_template_directory() . "/dist/images/" . $svg . ".svg";
+  ob_start();
+  include($svg_file_path);
+  $output .= ob_get_clean();
+  return $output;
+}

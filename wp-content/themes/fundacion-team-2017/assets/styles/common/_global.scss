@@ -1,1 +1,73 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
 
+body, input, textarea {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: Overpass;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0px auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  height: auto;
+}
+
+title {
+  font-family: Overpass;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 0.93;
+  text-align: left;
+  color: $white;
+}
+
+.title-medium {
+  font-family: Overpass;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1.0;
+  letter-spacing: -1.2px;
+  text-align: left;
+  color: $black;
+}
+
+.title-small {
+  font-family: Overpass;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  text-align: left;
+  color: $black;
+}
+
+.title-section {
+  font-family: Overpass;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: 10px;
+  text-align: left;
+  color: $black;
+}
+.page-header {
+  height: 500px;
+  background-color: $black;
+}

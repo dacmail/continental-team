@@ -19,6 +19,22 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
+        $('.header__menu-toggle').on('click', function(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          $('.super-menu').toggleClass('open');
+        });
+
+        $('.super-menu__close').on('click', function(event) {
+          event.preventDefault();
+          $('.super-menu').removeClass('open');
+        });
+
+        $('body').on('click', function(event) {
+          event.preventDefault();
+          if ($('.super-menu').hasClass('open') && !$(event.target).closest('.super-menu').length)
+            $('.super-menu').removeClass('open');
+        });
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
