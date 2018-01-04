@@ -22,6 +22,6 @@
     }
   },
   "config": {
-    "devUrl": "http://polarteckometateam.dev"
+    "devUrl": "http://polarteckometateam.localhost"
   }
 }
