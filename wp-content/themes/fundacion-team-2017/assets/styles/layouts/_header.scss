@@ -59,13 +59,13 @@
 .super-menu {
   background: $primary;
   position: absolute;
-  height: 100vh;
+  min-height: 100vh;
   top: 0px;
   width: 30%;
   left: -30%;
   transition: all 0.5s ease-in;
   color: $white;
-  padding: 60px 60px 60px 210px;
+  padding: 60px 60px 60px 5%;
   &__close {
     position: absolute;
     top: 55px;
@@ -84,9 +84,13 @@
       list-style: none;
       padding: 0px;
       margin: 0px 0px 60px 0px;
-      a {
-        color: $white;
+      .menu-item {
+        margin-bottom: 11px;
+        a {
+          color: $white;
+        }
       }
+
     }
     &:first-of-type {
       .menu {
@@ -95,7 +99,7 @@
           opacity: 0.9;
           font-size: 24px;
           font-weight: 300;
-          line-height: 0.75;
+          line-height: 1;
           letter-spacing: 5px;
           margin-bottom: 21px;
           text-transform: uppercase;
@@ -104,7 +108,22 @@
 
     }
   }
-
+  &__social {
+    &__link {
+      display: inline-block;
+      position: relative;
+      width: 48px;
+      height: 48px;
+      background-color: $white;
+      margin-right: 5px;
+      svg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateY(-50%) translateX(-50%);
+      }
+    }
+  }
   &.open {
     left: 0px;
   }

@@ -32,8 +32,9 @@
 
         $('body').on('click', function(event) {
           event.preventDefault();
-          if ($('.super-menu').hasClass('open') && !$(event.target).closest('.super-menu').length)
+          if ($('.super-menu').hasClass('open') && !$(event.target).closest('.super-menu').length) {
             $('.super-menu').removeClass('open');
+          }
         });
       },
       finalize: function() {

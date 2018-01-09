@@ -9,6 +9,43 @@ use Roots\Sage\Assets;
  */
 function customize_register($wp_customize) {
   $wp_customize->get_setting('blogname')->transport = 'postMessage';
+
+  $wp_customize->add_section('ungrynerd_social', array(
+    'title' => __('Enlaces sociales', 'ungrynerd')
+  ));
+
+  $wp_customize->add_setting('ungrynerd_social_facebook');
+  $wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'ungrynerd_social_facebook', array(
+    'type' => 'text',
+    'label' => __('Facebook URL', 'ungrynerd'),
+    'section' => 'ungrynerd_social',
+    'settings' => 'ungrynerd_social_facebook'
+  )));
+
+  $wp_customize->add_setting('ungrynerd_social_twitter');
+  $wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'ungrynerd_social_twitter', array(
+    'type' => 'text',
+    'label' => __('Twitter URL', 'ungrynerd'),
+    'section' => 'ungrynerd_social',
+    'settings' => 'ungrynerd_social_twitter'
+  )));
+
+  $wp_customize->add_setting('ungrynerd_social_youtube');
+  $wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'ungrynerd_social_youtube', array(
+    'type' => 'text',
+    'label' => __('Youtube URL', 'ungrynerd'),
+    'section' => 'ungrynerd_social',
+    'settings' => 'ungrynerd_social_youtube'
+  )));
+
+  $wp_customize->add_setting('ungrynerd_social_instagram');
+  $wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'ungrynerd_social_instagram', array(
+    'type' => 'text',
+    'label' => __('Instagram URL', 'ungrynerd'),
+    'section' => 'ungrynerd_social',
+    'settings' => 'ungrynerd_social_instagram'
+  )));
+
 }
 add_action('customize_register', __NAMESPACE__ . '\\customize_register');
 
