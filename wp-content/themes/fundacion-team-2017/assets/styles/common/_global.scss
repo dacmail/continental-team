@@ -29,7 +29,7 @@ img {
   height: auto;
 }
 
-title {
+@mixin title() {
   font-family: Overpass;
   font-size: 60px;
   font-weight: 900;
@@ -38,7 +38,7 @@ title {
   color: $white;
 }
 
-.title-medium {
+@mixin title-medium() {
   font-family: Overpass;
   font-size: 40px;
   font-weight: bold;
@@ -48,7 +48,7 @@ title {
   color: $black;
 }
 
-.title-small {
+@mixin title-small() {
   font-family: Overpass;
   font-size: 24px;
   font-weight: bold;
@@ -58,7 +58,7 @@ title {
   color: $black;
 }
 
-.title-section {
+@mixin title-section() {
   font-family: Overpass;
   font-size: 24px;
   font-weight: 300;
@@ -66,6 +66,7 @@ title {
   letter-spacing: 10px;
   text-align: left;
   color: $black;
+  text-transform: uppercase;
 }
 .page-header {
   height: 500px;

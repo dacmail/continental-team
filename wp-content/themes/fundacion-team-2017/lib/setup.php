@@ -38,6 +38,8 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
   // http://codex.wordpress.org/Function_Reference/add_image_size
   add_theme_support('post-thumbnails');
+  add_image_size('slide', 1560, 800, true);
+  add_image_size('featured_medium', 555, 340, true);
 
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats

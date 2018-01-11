@@ -1,14 +1,43 @@
 .carousel {
-  margin: 0px auto;
+  margin: 0px auto 60px auto;
   width: 100%;
   max-width: 1560px;
   &__slide {
+    padding-bottom: 40px;
     &__image {
 
     }
-    &__wrap {}
-    &__post-type {}
-    &__date {}
-    &__title {}
+    &__wrap {
+      position: absolute;
+      padding: 40px;
+      width: 100%;
+      max-width: 1140px;
+      left: 50%;
+      bottom: 0px;
+      transform: translateX(-50%);
+      background-color: $black;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 0.89;
+      text-align: left;
+      color: $primary;
+    }
+    &__post-type {
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    &__date {
+      text-transform: uppercase;
+    }
+    &__title {
+      margin: 10px 0px 0px 0px;
+      font-size: 60px;
+      font-weight: 900;
+      line-height: 0.93;
+      letter-spacing: -2px;
+      a {
+        color: $white;
+      }
+    }
   }
 }

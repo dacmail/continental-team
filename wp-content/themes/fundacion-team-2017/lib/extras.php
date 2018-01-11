@@ -46,3 +46,15 @@ function ungrynerd_svg($svg) {
   $output .= ob_get_clean();
   return $output;
 }
+
+/**
+ * return post type friendly name
+ */
+function ungrynerd_post_type($type='post') {
+  $friendlys = array(
+    'post' => esc_html__('Noticia', 'ungrynerd'),
+    'runner' => esc_html__('Corredor', 'ungrynerd')
+  );
+
+  echo (isset($friendlys[$type]) ? $friendlys[$type] : $type);
+}
