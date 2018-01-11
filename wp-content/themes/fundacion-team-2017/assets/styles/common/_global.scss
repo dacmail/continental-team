@@ -17,8 +17,9 @@ body {
 }
 
 .container {
-  max-width: 1140px;
+  max-width: 1170px;
   margin: 0px auto;
+  padding: 0px 15px;
 }
 
 a {
@@ -71,4 +72,12 @@ img {
 .page-header {
   height: 500px;
   background-color: $black;
+}
+.banner {
+  max-width: 1560px;
+  margin: 0px auto 60px auto;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }

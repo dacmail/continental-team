@@ -1,0 +1,81 @@
+.svc_social_logo{
+	background-image: url("../image/round.png") !important;
+	background-repeat:no-repeat;
+	background-size:32px;
+}
+
+.sblog_setting_container p.description {
+    display: inline-block;
+    width: 100%;
+}
+.sblog_setting_container .wp-picker-container,.sblog_setting_container .sblog-font-size{ float:left;}
+
+.onoffswitch {
+	position: relative; width: 80px;
+	-webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+	display: none;
+}
+.onoffswitch-label {
+	display: block; overflow: hidden; cursor: pointer;
+	border: 2px solid #999999; border-radius: 20px;
+}
+.sa-onoffswitch-inner {
+	display: block; width: 200%; margin-left: -100%;
+	transition: margin 0.3s ease-in 0s;
+}
+.sa-onoffswitch-inner:before, .sa-onoffswitch-inner:after {
+	display: block; float: left; width: 50%; height: 25px; padding: 0; line-height: 25px;
+	font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+	box-sizing: border-box;
+}
+.sa-onoffswitch-inner:before {
+	content: "Yes";
+	padding-left: 10px;
+	background-color: #002B36; color: #FFFFFF;
+}
+.sa-onoffswitch-inner:after {
+	content: "No";
+	padding-right: 10px;
+	background-color: #EEEEEE; color: #999999;
+	text-align: right;
+}
+.onoffswitch-switch {
+	display: block; width: 15px; margin: 5px;
+	background: #FFFFFF;
+	position: absolute; top: 0; bottom: 0;
+	right: 50px;
+	border: 2px solid #999999; border-radius: 20px;
+	transition: all 0.3s ease-in 0s; 
+	height:15px;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .sa-onoffswitch-inner {
+	margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+	right: 0px; 
+}
+.onoffswitch .onoffswitch-checkbox {
+	width: 94%;
+	height: 30px;
+	position: absolute;
+	top: 6px;
+	left: 3px;
+	border-radius: 20px;
+	opacity: 0;
+	z-index: 1;
+}
+
+.ssocial-dashboard-div{ width:80px; margin:8px; float:left;line-height: 0;}
+.ssocial-dashboard-container{ width:100%; display:inline-block;padding-bottom: 5px;}
+.saragna_profile,.saragna_profile:hover{
+	position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 3px 7px;
+    background: #0085ba;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 3px 0 0 0;
+}

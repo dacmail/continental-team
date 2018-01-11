@@ -67,6 +67,14 @@ function widgets_init() {
     'before_title'  => '<h3 class="super-menu__title">',
     'after_title'   => '</h3>'
   ]);
+  register_sidebar([
+    'name'          => __('Banner home', 'ungrynerd'),
+    'id'            => 'banner-home',
+    'before_widget' => '',
+    'after_widget'  => '',
+    'before_title'  => '',
+    'after_title'   => ''
+  ]);
 
 }
 add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
