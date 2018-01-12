@@ -1,0 +1,42 @@
+.social {
+  max-width: $container;
+  margin: 0px auto 60px auto;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    align-items: center;
+    &__title {
+      @include title-section();
+    }
+  }
+  &__more {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.0;
+    text-align: right;
+    color: $primary;
+  }
+  .ff-stream {
+    padding: 0px;
+  }
+  .ff-stream-wrapper {
+    margin-top: 0px;
+  }
+  .ff-layout-grid .ff-has-overlay:hover img {
+    transform: translate(-50%, -50%) !important;
+  }
+  #ff-stream-1 .picture-item__inner, #ff-stream-1 .ff-overlay {
+    background-color: rgba($primary, 0.9);
+  }
+  #ff-stream-1 .ff-instagram .ff-overlay {
+     background-color: rgba(233, 89, 80, 0.9);
+  }
+  #ff-stream-1 .ff-twitter .ff-overlay {
+    background-color: rgba(0, 161, 223, 0.9);
+  }
+  .ff-loadmore-wrapper {
+    display: none;
+  }
+}

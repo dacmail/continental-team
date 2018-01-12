@@ -58,3 +58,37 @@ function ungrynerd_post_type($type='post') {
 
   echo (isset($friendlys[$type]) ? $friendlys[$type] : $type);
 }
+
+add_action( 'init', __NAMESPACE__ . '\ungrynerd_post_type_sponsor');
+function ungrynerd_post_type_sponsor() {
+  $labels = array(
+    'name' => __('Sponsors', 'ungrynerd'),
+    'singular_name' => __('Sponsor', 'ungrynerd'),
+    'add_new' => __('Añadir Sponsor', 'ungrynerd'),
+    'add_new_item' => __('Añadir Sponsor', 'ungrynerd'),
+    'edit_item' => __('Editar Sponsor', 'ungrynerd'),
+    'new_item' => __('Nuevo Sponsor', 'ungrynerd'),
+    'view_item' => __('Ver Sponsors', 'ungrynerd'),
+    'search_items' => __('Buscar Sponsors', 'ungrynerd'),
+    'not_found' =>  __('No se han encontrado Sponsors ', 'ungrynerd'),
+    'not_found_in_trash' => __('No hay Sponsors en la papelera', 'ungrynerd'),
+    'parent_item_colon' => ''
+  );
+
+  register_post_type('sponsor', array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => false,
+    'show_ui' => true,
+    'query_var' => true,
+    'capability_type' => 'post',
+    'show_in_nav_menus' => false,
+    'hierarchical' => false,
+    'exclude_from_search' => true,
+    'menu_position' => 5,
+    'rewrite' => array( 'slug' => 'sponsor' ),
+    'taxonomies' => array(),
+    'has_archive' => true,
+    'supports' => array('title', 'thumbnail')
+  ));
+}

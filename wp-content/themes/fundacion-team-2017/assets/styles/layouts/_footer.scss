@@ -1,0 +1,13 @@
+.footer {
+  background-color: rgba($black, 0.9);
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: lighten($black, 50%);
+    a {
+      color: lighten($black, 50%);
+    }
+  }
+}
