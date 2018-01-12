@@ -21,7 +21,7 @@
   </div>
 </header>
 <nav class="super-menu" id="menu">
-  <a class="super-menu__close"><?php esc_html_e('Cerrar', 'ungrynerd'); ?></a>
+  <a href="#" class="super-menu__close"><?php echo Extras\ungrynerd_svg('icon-close'); ?></a>
   <?php dynamic_sidebar('super-menu'); ?>
   <?php if (get_theme_mod('ungrynerd_social_facebook') ||
             get_theme_mod('ungrynerd_social_twitter') ||
