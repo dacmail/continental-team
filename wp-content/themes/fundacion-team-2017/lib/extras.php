@@ -41,10 +41,7 @@ function ungrynerd_svg($svg) {
     return;
   }
   $svg_file_path = \get_template_directory() . "/dist/images/" . $svg . ".svg";
-  ob_start();
-  include($svg_file_path);
-  $output .= ob_get_clean();
-  return $output;
+  return file_get_contents($svg_file_path);
 }
 
 /**
@@ -53,7 +50,7 @@ function ungrynerd_svg($svg) {
 function ungrynerd_post_type($type='post') {
   $friendlys = array(
     'post' => esc_html__('Noticia', 'ungrynerd'),
-    'runner' => esc_html__('Corredor', 'ungrynerd')
+    'rider' => esc_html__('Corredor', 'ungrynerd')
   );
 
   echo (isset($friendlys[$type]) ? $friendlys[$type] : $type);
@@ -91,4 +88,43 @@ function ungrynerd_post_type_sponsor() {
     'has_archive' => true,
     'supports' => array('title', 'thumbnail')
   ));
+}
+
+
+add_action( 'init', __NAMESPACE__ . '\ungrynerd_post_type_riders' );
+function ungrynerd_post_type_riders() {
+
+    $labels = array(
+        'name' => __('Corredores', 'ungrynerd'),
+        'singular_name' => __('Corredor', 'ungrynerd'),
+        'add_new' => __('Añadir nuevo', 'ungrynerd'),
+        'add_new_item' => __('Añadir nuevo Corredor', 'ungrynerd'),
+        'edit_item' => __('Editar Corredor', 'ungrynerd'),
+        'new_item' => __('Nuevo Corredor', 'ungrynerd'),
+        'view_item' => __('Ver Corredor', 'ungrynerd'),
+        'search_items' => __('Buscar Corredores', 'ungrynerd'),
+        'not_found' => __('No corredores found', 'ungrynerd'),
+        'not_found_in_trash' => __('No corredores found in Trash', 'ungrynerd'),
+        'parent_item_colon' => __('Corredor padre:', 'ungrynerd'),
+        'menu_name' => __('Corredores', 'ungrynerd'),
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'hierarchical' => true,
+        'supports' => array( 'title', 'editor', 'thumbnail'),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => array('slug' => 'rider'),
+        'capability_type' => 'post'
+    );
+
+    register_post_type( 'rider', $args );
 }

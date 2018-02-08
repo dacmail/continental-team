@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Polylang - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-08-26 18:23:43+0000\n"
+"PO-Revision-Date: 2018-01-30 10:23:53+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,28 +15,28 @@ msgstr ""
 msgid "Tibet"
 msgstr "Tibet"
 
-#. #-#-#-#-#  polylang-code.pot (Polylang 2.2.7)  #-#-#-#-#
+#. #-#-#-#-#  polylang-code.pot (Polylang 2.3)  #-#-#-#-#
 #. Plugin URI of the plugin/theme
-#. #-#-#-#-#  polylang-code.pot (Polylang 2.2.7)  #-#-#-#-#
+#. #-#-#-#-#  polylang-code.pot (Polylang 2.3)  #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "https://polylang.pro"
 msgstr "https://polylang.pro"
 
-#. translators: %s are html tags
+#. translators: %1$s is link start tag, %2$s is link end tag.
 #: settings/view-about.php:34
-msgid "Polylang is released under the same license as WordPress, the %sGPL%s."
-msgstr "Polylang se ha publicado bajo la misma licencia que WordPress, y es la %sGPL%s."
+msgid "Polylang is released under the same license as WordPress, the %1$sGPL%2$s."
+msgstr "Polylang se ha publicado bajo la misma licencia que WordPress, la %1$sGPL%2$s."
 
-#. translators: %s are html tags
+#. translators: %1$s is link start tag, %2$s is link end tag.
 #: settings/view-about.php:23
-msgid "Support and extra features are available to %sPolylang Pro%s users."
-msgstr "Hay soporte y funcionalidades adicionales disponibles para los usuarios de %sPolylang Pro%s ."
+msgid "Support and extra features are available to %1$sPolylang Pro%2$s users."
+msgstr "Hay soporte y funcionalidades adicionales disponibles para los usuarios de  %1$sPolylang Pro%2$s."
 
-#: settings/settings-module.php:238
+#: settings/settings-module.php:236
 msgid "Upgrade now."
 msgstr "Actualizar ahora."
 
-#: settings/settings-module.php:236
+#: settings/settings-module.php:234
 msgid "You need Polylang Pro to enable this feature."
 msgstr "Necesitas Polylang Pro para habilitar esta funcionalidad."
 
@@ -45,7 +45,7 @@ msgstr "Necesitas Polylang Pro para habilitar esta funcionalidad."
 msgid "Your license key expires on %s."
 msgstr "Tu clave de licencia caduca el %s."
 
-#. translators: %1$s is a date, %2$s and %3$s are html tags
+#. translators: %1$s is a date, %2$s is link start tag, %3$s is link end tag.
 #: settings/settings-licenses.php:151
 msgid "Your license key expires soon! It expires on %1$s. %2$sRenew your license key%3$s."
 msgstr "¡Tu licencia caduca pronto! Caduca el %1$s. %2$s Renueva tu licencia %3$s."
@@ -54,27 +54,28 @@ msgstr "¡Tu licencia caduca pronto! Caduca el %1$s. %2$s Renueva tu licencia %3
 msgid "The license key never expires."
 msgstr "La  clave de licencia no caduca."
 
-#. translators: %s are html tags
+#. translators: %1$s is link start tag, %2$s is link end tag
 #: settings/settings-licenses.php:134
-msgid "Your license key has reached its activation limit. %sView possible upgrades%s now."
-msgstr "Tu clave de licencia ha alcanzado el límite para la activación. %sBusca posibles actualizaciones%s ahora."
+msgid "Your license key has reached its activation limit. %1$sView possible upgrades%2$s now."
+msgstr "Tu clave de licencia ha alcanzado el límite para la activación. %1$sBusca posibles actualizaciones%2$s ahora."
 
 #. translators: %s is a product name
 #: settings/settings-licenses.php:128
 msgid "This is not a %s license key."
 msgstr "Esta no es una  %s clave de licencia."
 
-#. translators: %1$s is a product name, %2$s and %3$s are html tags
+#. translators: %1$s is a product name, %2$s is link start tag, %3$s is link
+#. end tag.
 #: settings/settings-licenses.php:119
 msgid "Your %1$s license key is not active for this URL. Please %2$svisit your account page%3$s to manage your license key URLs."
 msgstr "Tu %1$s clave de licencia no está activada para esta URL. Por favor %2$svisita tu página de cuenta de usuario%3$s para gestionar  tu clave de licencia de las URLs."
 
-#. translators: %s are html tags
+#. translators: %1$s is link start tag, %2$s is link end tag.
 #: settings/settings-licenses.php:109
-msgid "Invalid license. Please %svisit your account page%s and verify it."
-msgstr "Licencia no válida. Por favor %svisita la pàgina de tu cuenta de usuario%s y verifícala. "
+msgid "Invalid license. Please %1$svisit your account page%2$s and verify it."
+msgstr "Licencia no válida. Por favor %1$svisita la pàgina de tu cuenta de usuario%2$s y verifícala. "
 
-#. translators: %1$s is a date, %2$s and %3$s are html tags
+#. translators: %1$s is a date, %2$s is link start tag, %3$s is link end tag.
 #: settings/settings-licenses.php:99
 msgid "Your license key expired on %1$s. Please %2$srenew your license key%3$s."
 msgstr "Tu clave de licencia caduca el %1$s. Por favor %2$srenueva tu clave de licencia%3$s."
@@ -111,14 +112,14 @@ msgstr "Error"
 msgid "You do not have permission to install plugin updates"
 msgstr "No tienes privilegios para instalar actualizaciones de plugins"
 
-#. translators: %1$s plugin name, %3$s plugin version, %2$s, %4$s, %5$s and
-#. %6$s are html tags
+#. translators: %1$s plugin name, %3$s plugin version, %2$s and %5$s are link
+#. start tags, %4$s and %6$s are link end tags.
 #: install/plugin-updater.php:214
 msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s."
 msgstr "Hay una nueva versión de %1$s disponible. %2$sVer versión %3$s detalles%4$s o %5$sactualiza ahora%6$s."
 
-#. translators: %1$s plugin name, %3$s plugin version, %2$s and %4$s are html
-#. tags
+#. translators: %1$s plugin name, %3$s plugin version, %2$s is link start tag,
+#. %4$s is link end tag.
 #: install/plugin-updater.php:205
 msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s."
 msgstr "Hay una nueva versión de %1$s disponible. %2$sVer versión %3$s detalles%4$s."
@@ -132,7 +133,7 @@ msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr "F j, Y"
 
-#: settings/view-tab-lang.php:138
+#: settings/view-tab-lang.php:137
 msgid "Choose a flag for the language."
 msgstr "Elegir una bandera para el idioma."
 
@@ -233,11 +234,11 @@ msgstr "Desactivar este módulo"
 msgid "Configure this module"
 msgstr "Configurar este módulo"
 
-#: settings/settings-cpt.php:21
+#: settings/settings-cpt.php:22
 msgid "Activate the languages and translations management for the custom post types and taxonomies."
 msgstr "Activar los idiomas y la administración de traducciones para los tipos de entradas personalizados y taxonomías."
 
-#: settings/settings-cpt.php:20
+#: settings/settings-cpt.php:21
 msgid "Custom post types and Taxonomies"
 msgstr "Tipos de entradas personalizados y taxonomías"
 
@@ -1258,7 +1259,7 @@ msgstr "P&aacute;gina principal"
 msgid "Add to Menu"
 msgstr "Añadir al menu"
 
-#: admin/admin-model.php:291
+#: admin/admin-model.php:293
 msgid "The flag does not exist"
 msgstr "La bandera no existe"
 
@@ -1427,19 +1428,19 @@ msgstr "Cerrar"
 msgid "You’ve just upgraded to the latest version of Polylang! Would you like to automatically translate your website for free?"
 msgstr "¡Acabas de actualizar a la última versión de Polylang! ¿Te gustaría tener una traducción automática gratuita de tu web?"
 
-#. translators: %s are Polylang version numbers
+#. translators: %1$s and %2$s are Polylang version numbers
 #: install/upgrade.php:79
-msgid "Please upgrade first to %s before ugrading to %s."
-msgstr "Por favor, actualiza primero a %s antes de actualizar a %s."
+msgid "Please upgrade first to %1$s before ugrading to %2$s."
+msgstr "Por favor, actualiza primero a %1$s antes de actualizar a %2$s."
 
 #: install/upgrade.php:76
 msgid "Polylang has been deactivated because you upgraded from a too old version."
 msgstr "Polylang se ha desactivado porque lo has actualizado desde una versión demasiado antigua."
 
-#. translators: %s are WordPress version numbers
+#. translators: %1$s and %2$s are WordPress version numbers
 #: install/install.php:27
-msgid "You are using WordPress %s. Polylang requires at least WordPress %s."
-msgstr "Estás usando WordPress %s. Polylang necesita como mínimo WordPress %s."
+msgid "You are using WordPress %1$s. Polylang requires at least WordPress %2$s."
+msgstr "Estás usando WordPress %1$s. Polylang necesita como mínimo WordPress %2$s."
 
 #: include/widget-languages.php:90
 msgid "Title:"
@@ -1483,11 +1484,11 @@ msgstr "Muestra las banderas"
 msgid "Displays language names"
 msgstr "Muestra los nombres de los idiomas"
 
-#: modules/plugins/plugins-compat.php:108
+#: modules/plugins/plugins-compat.php:141
 msgid "Import <strong>posts, pages, comments, custom fields, categories, and tags</strong> from a WordPress export file."
 msgstr "Importa <strong>entradas, páginas, comentarios, campos personalizados, categorías y etiquetas</strong> desde un archivo de exportación de WordPress."
 
-#: include/model.php:371
+#: include/model.php:388
 msgid "Uncategorized"
 msgstr "Sin categoría"
 
@@ -1516,19 +1517,19 @@ msgstr "Las opciones de sincronización permiten mantener exactamente los mismos
 msgid "Synchronization"
 msgstr "Sincronización"
 
-#: settings/settings-cpt.php:92
+#: settings/settings-cpt.php:103
 msgid "Activate languages and translations for custom taxonomies."
 msgstr "Activar idiomas y traducciones para taxonomías personalizadas."
 
-#: settings/settings-cpt.php:76
+#: settings/settings-cpt.php:85
 msgid "Custom taxonomies"
 msgstr "Taxonomías personalizadas"
 
-#: settings/settings-cpt.php:70
+#: settings/settings-cpt.php:79
 msgid "Activate languages and translations for custom post types."
 msgstr "Activar idiomas y traducciones para tipos de entrada personalizados."
 
-#: settings/settings-cpt.php:54
+#: settings/settings-cpt.php:61
 msgid "Custom post types"
 msgstr "Tipos de entrada personalizados"
 
@@ -1548,10 +1549,11 @@ msgstr "Al visitar la página principal, se establece el idioma de acuerdo con l
 msgid "Detect browser language"
 msgstr "Detectar el idioma del navegador"
 
-#. translators: %s are urls
+#. translators: %1$s example url when the option is active. %2$s example url
+#. when the option is not active
 #: settings/settings-url.php:166
-msgid "Example: %s instead of %s"
-msgstr "por ejemplo: %s en vez de %s"
+msgid "Example: %1$s instead of %2$s"
+msgstr "Ejemplo:%1$s en vez de %2$s"
 
 #: settings/settings-url.php:155
 msgid "The front page url contains the language code instead of the page name or page id"
@@ -1607,47 +1609,47 @@ msgstr "Modificaciones de URL"
 msgid "Default language"
 msgstr "Idioma predeterminado"
 
-#: settings/view-tab-lang.php:170
+#: settings/view-tab-lang.php:169
 msgid "Update"
 msgstr "Actualizar"
 
-#: settings/view-tab-lang.php:149
+#: settings/view-tab-lang.php:148
 msgid "Position of the language in the language switcher"
 msgstr "Posición en el conmutador de idioma"
 
-#: settings/view-tab-lang.php:119
+#: settings/view-tab-lang.php:118
 msgid "Choose the text direction for the language"
 msgstr "Elige la dirección de escritura del idioma"
 
-#: settings/view-tab-lang.php:116
+#: settings/view-tab-lang.php:115
 msgid "right to left"
 msgstr "derecha a izquierda"
 
-#: settings/view-tab-lang.php:111
+#: settings/view-tab-lang.php:110
 msgid "left to right"
 msgstr "izquierda a derecha"
 
-#: settings/view-tab-lang.php:106
+#: settings/view-tab-lang.php:105
 msgid "Text direction"
 msgstr "Dirección de escritura"
 
-#: settings/view-tab-lang.php:102
+#: settings/view-tab-lang.php:101
 msgid "Language code - preferably 2-letters ISO 639-1  (for example: en)"
 msgstr "Código de idioma - preferiblemente de dos letras según la norma ISO 639-1 (por ejemplo: es)"
 
-#: settings/view-tab-lang.php:95
+#: settings/view-tab-lang.php:94
 msgid "Language code"
 msgstr "Código idiomático"
 
-#: settings/view-tab-lang.php:91
+#: settings/view-tab-lang.php:90
 msgid "WordPress Locale for the language (for example: en_US). You will need to install the .mo file for this language."
 msgstr "Región idiomática de WordPress (por ejemplo: es_ES). Deberás instalar el archivo .mo para este idioma."
 
-#: settings/view-tab-lang.php:80
+#: settings/view-tab-lang.php:79
 msgid "The name is how it is displayed on your site (for example: English)."
 msgstr "El nombre es como se muestra en tu sitio (por ejemplo: Español)."
 
-#: settings/view-tab-lang.php:69
+#: settings/view-tab-lang.php:68
 msgid "You can choose a language in the list or directly edit it below."
 msgstr "Puedes elegir un idioma de la lista o editarlo directamente abajo."
 
@@ -1655,7 +1657,7 @@ msgstr "Puedes elegir un idioma de la lista o editarlo directamente abajo."
 msgid "Choose a language"
 msgstr "Elegir un idioma"
 
-#: settings/view-tab-lang.php:31 settings/view-tab-lang.php:170
+#: settings/view-tab-lang.php:31 settings/view-tab-lang.php:169
 msgid "Add new language"
 msgstr "Añadir nuevo idioma"
 
@@ -1663,10 +1665,10 @@ msgstr "Añadir nuevo idioma"
 msgid "Edit language"
 msgstr "Editar idioma"
 
-#. translators: %s are html tags
+#. translators: %1$s is link start tag, %2$s is link end tag.
 #: settings/view-about.php:15
-msgid "Polylang is provided with an extensive %sdocumentation%s (in English only). It includes information on how to set up your multilingual site and use it on a daily basis, a FAQ, as well as a documentation for developers to adapt their plugins and themes."
-msgstr "Polylang se distribuye con una extensa %sdocumentación%s (sólo en inglés). Se incluye información de cómo crear tu sitio multiidoma y cómo usarlo en el día a día, una página de preguntas frecuentes, así como información para que los programadores puedan adaptar sus plugins y temas."
+msgid "Polylang is provided with an extensive %1$sdocumentation%2$s (in English only). It includes information on how to set up your multilingual site and use it on a daily basis, a FAQ, as well as a documentation for developers to adapt their plugins and themes."
+msgstr "Polylang se distribuye con una extensa %1$sdocumentación%2$s (sólo en inglés). Se incluye información de cómo crear tu sitio multiidoma y cómo usarlo en el día a día, una página de preguntas frecuentes, así como información para que los programadores puedan adaptar sus plugins y temas."
 
 #: settings/table-string.php:269
 msgid "Filter"
@@ -1698,11 +1700,11 @@ msgstr "Cadena"
 msgid "Posts"
 msgstr "Entradas"
 
-#: settings/table-languages.php:149 settings/view-tab-lang.php:123
+#: settings/table-languages.php:149 settings/view-tab-lang.php:122
 msgid "Flag"
 msgstr "Bandera"
 
-#: settings/table-languages.php:148 settings/view-tab-lang.php:142
+#: settings/table-languages.php:148 settings/view-tab-lang.php:141
 msgid "Order"
 msgstr "Orden"
 
@@ -1710,11 +1712,11 @@ msgstr "Orden"
 msgid "Code"
 msgstr "Código"
 
-#: settings/table-languages.php:145 settings/view-tab-lang.php:84
+#: settings/table-languages.php:145 settings/view-tab-lang.php:83
 msgid "Locale"
 msgstr "Región"
 
-#: settings/table-languages.php:144 settings/view-tab-lang.php:73
+#: settings/table-languages.php:144 settings/view-tab-lang.php:72
 msgid "Full name"
 msgstr "Nombre completo"
 
@@ -1770,7 +1772,7 @@ msgstr "Campos personalizados"
 msgid "Taxonomies"
 msgstr "Taxonomías"
 
-#: settings/settings-licenses.php:193 settings/settings-module.php:179
+#: settings/settings-licenses.php:193 settings/settings-module.php:177
 msgid "Settings saved."
 msgstr "Opciones guardadas."
 
@@ -1790,11 +1792,11 @@ msgstr "Acerca de Polylang"
 msgid "The language was created, but the WordPress language file was not downloaded. Please install it manually."
 msgstr "Se ha creado el idioma pero el archivo de este idioma de WordPress no se ha descargado. Por favor, instálalo manualmente."
 
-#: admin/admin-base.php:345 admin/admin-base.php:353
+#: admin/admin-base.php:343 admin/admin-base.php:351
 msgid "Filters content by language"
 msgstr "Filtrar el contenido por idioma"
 
-#: admin/admin-base.php:336
+#: admin/admin-base.php:334
 msgid "Show all languages"
 msgstr "Mostrar todos los idiomas"
 
@@ -1832,11 +1834,11 @@ msgstr "Título del sitio"
 msgid "Language switcher"
 msgstr "Conmutador de idioma"
 
-#: admin/admin-model.php:286
+#: admin/admin-model.php:288
 msgid "The language must have a name"
 msgstr "El dioma debe tener un nombre"
 
-#: admin/admin-model.php:280
+#: admin/admin-model.php:281
 msgid "The language code must be unique"
 msgstr "El código idiomático debe ser único"
 
@@ -1880,7 +1882,7 @@ msgstr "Opción por defecto de WordPress"
 msgid "Admin language"
 msgstr "Idioma del administrador"
 
-#: admin/admin-filters.php:68 include/translated-post.php:99
+#: admin/admin-filters.php:68 include/translated-post.php:105
 msgid "All languages"
 msgstr "Todos los idiomas"
 
@@ -1900,19 +1902,19 @@ msgstr "Establece el idioma"
 msgid "Edit"
 msgstr "Editar"
 
-#: admin/admin-filters-post.php:245
+#: admin/admin-filters-post.php:249
 msgid "(no parent)"
 msgstr "(sin padre)"
 
 #: admin/admin-base.php:69 admin/admin-base.php:91
-#: admin/admin-filters-post.php:125 include/translated-post.php:97
+#: admin/admin-filters-post.php:129 include/translated-post.php:103
 #: settings/settings.php:114
 msgid "Languages"
 msgstr "Idiomas"
 
 #: admin/admin-filters-columns.php:187 admin/admin-filters-media.php:54
-#: admin/admin-filters-post.php:152 admin/admin-filters-term.php:87
-#: admin/admin-filters-term.php:146 include/translated-post.php:98
+#: admin/admin-filters-post.php:156 admin/admin-filters-term.php:87
+#: admin/admin-filters-term.php:146 include/translated-post.php:104
 msgid "Language"
 msgstr "Idioma"
 

@@ -33,8 +33,8 @@
         });
 
         $('body').on('click', function(event) {
-          event.preventDefault();
           if ($('.super-menu').hasClass('open') && !$(event.target).closest('.super-menu').length) {
+            event.preventDefault();
             $('.super-menu').removeClass('open');
             $('body').removeClass('open-menu');
           }

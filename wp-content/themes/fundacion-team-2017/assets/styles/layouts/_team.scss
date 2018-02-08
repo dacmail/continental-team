@@ -1,0 +1,69 @@
+section.team {
+  padding-top: 140px;
+  background-color: $black;
+  margin-bottom: 112px;
+  .team__title {
+    margin: 0px;
+    @include title();
+    text-align: center;
+  }
+  .riders {
+    @extend %container;
+    @extend %flex;
+    &__rider {
+      width: 25%;
+      flex: 0 0 25%;
+      padding: 0px 15px;
+      margin-bottom: 60px;
+      &__image {
+        display: block;
+      }
+      &__name {
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1.0;
+        color: $white;
+        a {
+          color: $white;
+          svg {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+.staff {
+  @extend %container;
+  margin-bottom: 180px;
+  &__title {
+    @include title-section();
+    text-align: center;
+    margin-bottom: 68px;
+  }
+  &__wrapper {
+    @extend %flex;
+  }
+  .member {
+    flex: 0 0 calc(100%/6);
+    margin-bottom: 30px;
+    padding: 0px 15px;
+    img {
+      margin-bottom: 15px;
+    }
+    &__name {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1.33;
+      color: $black;
+      margin: 0px;
+    }
+    &__position {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.5;
+      color: $black;
+      margin: 0px;
+    }
+  }
+}

@@ -40,7 +40,10 @@ function setup() {
   add_theme_support('post-thumbnails');
   add_image_size('slide', 1560, 800, true);
   add_image_size('featured_medium', 555, 340, true);
-
+  add_image_size('staff', 330, 400, true);
+  add_image_size('rider', 524, 672, true);
+  add_image_size('rider-big', 936, 1200, true);
+  add_image_size('rider-gallery', 9999, 800, true);
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats
   add_theme_support('post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio']);

@@ -20,9 +20,7 @@ body {
 }
 
 .container {
-  max-width: 1170px;
-  margin: 0px auto;
-  padding: 0px 15px;
+  @extend %container;
 }
 
 a {
@@ -30,6 +28,7 @@ a {
 }
 
 img {
+  max-width: 100%;
   height: auto;
 }
 
@@ -71,10 +70,6 @@ img {
   text-align: left;
   color: $black;
   text-transform: uppercase;
-}
-.page-header {
-  height: 500px;
-  background-color: $black;
 }
 .banner {
   max-width: 1560px;
