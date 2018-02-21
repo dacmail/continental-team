@@ -1,11 +1,12 @@
 // Grid settings
-$lg: 1200px;
-$md: 1024px;
-$sm: 768px;
-$xs: 450px;
+$lg: rem(1200px);
+$md: rem(1024px);
+$sm: rem(768px);
+$xs: rem(450px);
 
-$container: 1170px;
-$container-full: 1560px;
+$container: rem(1170px);
+$container-full: rem(1560px);
+$container-small: rem(940px);
 
 $primary: #00a1df;
 $black: #000000;
@@ -15,8 +16,8 @@ $warm-grey: #9b9b9b;
 
 %container {
   max-width: $container;
-  margin: 0px auto;
-  padding: 0px 15px;
+  margin: rem(0px) auto;
+  padding: rem(0px) rem(15px);
 }
 %flex {
   display: flex;

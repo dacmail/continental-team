@@ -39,6 +39,29 @@
             $('body').removeClass('open-menu');
           }
         });
+
+        
+
+        if ($('.news--listing').length > 0) {
+          $(".news--listing").imagesLoaded(function () { 
+            var $grid = $('.news--listing').isotope({
+              itemSelector: '.news__item',
+              layoutMode: 'masonry',
+              percentPosition: true,
+              masonry: {
+                  gutter: 0,
+                  columnWidth: '.news__item:nth-child(2)',
+                  horizontalOrder: true
+              }
+            });
+            $('.news__filter a').on('click', function (e) {
+              e.preventDefault;
+              $('.news__filter a').removeClass('active');
+              $(this).addClass('active');
+              $grid.isotope({ filter: $(this).data('filter') });
+            });
+          });
+        }
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
@@ -58,9 +81,13 @@
       }
     },
     // About us page, note the change from about-us to about_us.
-    'about_us': {
+    'single': {
       init: function() {
-        // JavaScript to be fired on the about us page
+        $(".article__gallery").owlCarousel({
+          items: 1,
+          nav: true,
+          loop: true
+        });
       }
     }
   };

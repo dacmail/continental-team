@@ -1,14 +1,21 @@
-<?php get_template_part('templates/page', 'header'); ?>
-
-<?php if (!have_posts()) : ?>
-  <div class="alert alert-warning">
-    <?php _e('Sorry, no results were found.', 'sage'); ?>
-  </div>
-  <?php get_search_form(); ?>
+<?php use Roots\Sage\Extras; ?>
+<div class="container">
+  <h1 class="section-title"><?php esc_html_e('Actualidad', 'ungrynerd'); ?></h1>
+</div>
+<?php if (is_home()) : ?>
+<nav class="news__filter">
+  <?= Extras\ungrynerd_svg('icon-filter'); ?>
+  <ul>
+    <li><a class="active" href="#" data-filter="*"><?php esc_html_e('Todo', 'ungrynerd'); ?></a></li>
+    <li><a href="#" data-filter=".format-standard"><?php esc_html_e('Noticias', 'ungrynerd'); ?></a></li>
+    <li><a href="#" data-filter=".format-gallery"><?php esc_html_e('Galerías', 'ungrynerd'); ?></a></li>
+    <li><a href="#" data-filter=".format-video"><?php esc_html_e('Videos', 'ungrynerd'); ?></a></li>
+  </ul>
+</nav>
 <?php endif; ?>
-
-<?php while (have_posts()) : the_post(); ?>
-  <?php get_template_part('templates/content', get_post_type() != 'post' ? get_post_type() : get_post_format()); ?>
-<?php endwhile; ?>
-
-<?php the_posts_navigation(); ?>
+<section class="news news--listing">
+  <?php while (have_posts()) : the_post(); ?>
+    <?php get_template_part('templates/listing', get_post_type() != 'post' ? get_post_type() : get_post_format()); ?>
+  <?php endwhile; ?>
+</section>
+<?php Extras\ungrynerd_pagination(); ?>

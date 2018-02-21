@@ -1,26 +1,38 @@
 .carousel {
-  margin: 0px auto 60px auto;
+  margin: rem(0px) auto rem(60px) auto;
   width: 100%;
-  max-width: 1560px;
+  max-width: rem(1560px);
+  @media (max-width: $md) {
+    margin-bottom: rem(40px);
+  }
+  @media (max-width: $sm) {
+    margin-bottom: rem(20px);
+  }
   &__slide {
-    padding-bottom: 40px;
-    &__image {
-
+    padding-bottom: rem(40px);
+    @media (max-width: $md) {
+      padding-bottom: rem(0px);
     }
     &__wrap {
       position: absolute;
-      padding: 40px;
+      padding: rem(40px);
       width: 100%;
-      max-width: 1140px;
+      max-width: rem(1140px);
       left: 50%;
-      bottom: 0px;
+      bottom: rem(0px);
       transform: translateX(-50%);
       background-color: $black;
-      font-size: 18px;
+      font-size: rem(18px);
       font-weight: 300;
       line-height: 0.89;
       text-align: left;
       color: $primary;
+      @media (max-width: $md) {
+        padding: rem(15px);
+      }
+      @media (max-width: $sm) {
+        position: relative;
+      }
     }
     &__post-type {
       text-transform: uppercase;
@@ -30,11 +42,9 @@
       text-transform: uppercase;
     }
     &__title {
-      margin: 10px 0px 0px 0px;
-      font-size: 60px;
-      font-weight: 900;
-      line-height: 0.93;
-      letter-spacing: -2px;
+      @include title();
+      margin: rem(10px) rem(0px) rem(0px) rem(0px);
+      letter-spacing:rem(-2px);
       a {
         color: $white;
       }

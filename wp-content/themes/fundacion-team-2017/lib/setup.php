@@ -44,9 +44,11 @@ function setup() {
   add_image_size('rider', 524, 672, true);
   add_image_size('rider-big', 936, 1200, true);
   add_image_size('rider-gallery', 9999, 800, true);
+  add_image_size('masonry', 800, 1500, false);
+  add_image_size('featured', 1600, 1600, false);
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats
-  add_theme_support('post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio']);
+  add_theme_support('post-formats', ['gallery', 'video']);
 
   // Enable HTML5 markup support
   // http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
@@ -110,6 +112,8 @@ function assets() {
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
+  wp_enqueue_script('imagesloaded');
+  wp_enqueue_script('isotope', Assets\asset_path('scripts/isotope.js'), ['jquery'], null, true);
   wp_enqueue_script('owl.carousel', Assets\asset_path('scripts/owl.carousel.js'), ['jquery'], null, true);
   wp_enqueue_script('polarteckometateam/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
 }

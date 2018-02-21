@@ -28,7 +28,7 @@ add_filter('body_class', __NAMESPACE__ . '\\body_class');
  * Clean up the_excerpt()
  */
 function excerpt_more() {
-  return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
+  return '...';
 }
 add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
 
@@ -47,13 +47,18 @@ function ungrynerd_svg($svg) {
 /**
  * return post type friendly name
  */
-function ungrynerd_post_type($type='post') {
+function ungrynerd_post_type($type='post', $format='standard') {
+  $format = $format ? : 'standard';
   $friendlys = array(
-    'post' => esc_html__('Noticia', 'ungrynerd'),
+    'post' => array(
+      'standard' => esc_html__('Noticia', 'ungrynerd'),
+      'gallery' => esc_html__('Galería', 'ungrynerd'),
+      'video' => esc_html__('Video', 'ungrynerd')
+    ),
     'rider' => esc_html__('Corredor', 'ungrynerd')
   );
 
-  echo (isset($friendlys[$type]) ? $friendlys[$type] : $type);
+  echo (isset($friendlys[$type][$format]) ? $friendlys[$type][$format] : (isset($friendlys[$type]) ? $friendlys[$type] : $type));
 }
 
 add_action( 'init', __NAMESPACE__ . '\ungrynerd_post_type_sponsor');
@@ -127,4 +132,35 @@ function ungrynerd_post_type_riders() {
     );
 
     register_post_type( 'rider', $args );
+}
+
+function ungrynerd_pagination($query=null) {
+  global $wp_query;
+  $query = $query ? $query : $wp_query;
+  $big = 999999999;
+  $args = array();
+  $paginate = paginate_links( array(
+    'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big, false))),
+    'type' => 'array',
+    'total' => $query->max_num_pages,
+    'format' => '?paged=%#%',
+    'mid_size' => 2,
+    'end_size' => 1,
+    'current' => max( 1, get_query_var('paged') ),
+    'prev_text' => ungrynerd_svg('icon-left'),
+    'next_text' => ungrynerd_svg('icon-right'),
+    'add_args' => array($args)
+    )
+  );
+
+  if ($query->max_num_pages > 1) : ?>
+    <ul class="pagination">
+    <?php foreach ( $paginate as $page ) {
+      echo '<li>' . $page . '</li>';
+    } ?>
+  </ul>
+  <style type="text/css">
+    .pagination li .page-numbers.current { background-color: #<?php header_textcolor(); ?>;  }
+  </style>
+  <?php endif;
 }

@@ -1,0 +1,38 @@
+.pagination {
+  @extend %container;
+  list-style: none;
+  text-align: center;
+  position: relative;
+  margin: rem(200px) auto;
+  border-bottom: solid rem(2px) $gray;
+  li {
+    display: inline-block;
+    .page-numbers {
+      display: inline-block;
+      font-size: rem(16px);
+      font-weight: 300;
+      line-height: 1.0;
+      color: $black;
+      width: rem(40px);
+      margin: rem(0px) rem(5px) rem(-4px) rem(5px);
+      text-align: center;
+      padding: rem(26px) rem(0px);
+      &.current {
+        font-weight: 900;
+        border-bottom: rem(5px) solid $black;
+      }
+      &.next {
+        padding: rem(26px) rem(0px);
+        position: absolute;
+        bottom: rem(0px);
+        right: rem(0px);
+      }
+      &.prev {
+        padding: rem(26px) rem(0px);
+        position: absolute;
+        bottom: rem(0px);
+        left: rem(0px);
+      }
+    }
+  }
+}

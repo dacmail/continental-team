@@ -22,6 +22,9 @@
     },
     "owl.carousel.js": {
       "bower": ["owl.carousel"]
+    },
+    "isotope.js": {
+      "files": ["../bower_components/isotope-layout/dist/isotope.pkgd.min.js"]
     }
   },
   "config": {

@@ -36,7 +36,7 @@
         <?php the_content(); ?>
       </div>
       <div class="rider__results">
-      <h2 class="rider__title"><?php esc_html_e('Biografía', 'ungrynerd'); ?></h2>
+      <h2 class="rider__title"><?php esc_html_e('Palmarés', 'ungrynerd'); ?></h2>
         <?php if (have_rows('palmares')): ?>
           <ul class="rider__results__list">
           <?php while (have_rows('palmares')) : the_row(); ?>

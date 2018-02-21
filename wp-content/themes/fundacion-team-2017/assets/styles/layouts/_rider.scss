@@ -1,7 +1,10 @@
 .rider {
   &__header {
     background: $black;
-    margin-bottom: 80px;
+    margin-bottom: rem(80px);
+    @media (max-width: $md) {
+      margin-bottom: rem(40px);
+    }
   }
   &__wrapper {
     @extend %container;
@@ -11,6 +14,10 @@
   }
   &__photo {
     flex: 0 0 40%;
+    @media (max-width: $sm) {
+      flex: 0 0 100%;
+      margin-bottom: rem(30px);
+    }
     img {
       display: block;
     }
@@ -18,42 +25,56 @@
   &__data {
     flex: 0 0 40%;
     color: $white;
+    @media (max-width: $sm) {
+      flex: 0 0 100%;
+      text-align: center;
+    }
   }
   &__social {
     a {
-      margin-right: 10px;
+      margin-right: rem(10px);
       display: inline-block;
     }
   }
   &__name {
     @include title();
+    @media (max-width: $sm) {
+      text-align: center;
+    }
     svg {
-      margin-right: 20px;
-      margin-left: -52px;
+      margin-right: rem(20px);
+      margin-left: rem(-52px);
+      @media (max-width: $sm) {
+        margin-left: rem(0px);
+      }
     }
   }
   &__info {
     @extend %flex;
+    @media (max-width: $sm) {
+      justify-content: center;
+      margin-bottom: rem(30px);
+    }
     &__box {
-      font-size: 40px;
+      font-size: rem(40px);
       font-weight: 900;
       line-height: 1.0;
-      letter-spacing: -2px;
+      letter-spacing:rem(-2px);
       text-align: center;
       color: $white;
-      padding: 0px 27px;
-      border-right: 1px solid $warm-grey;
+      padding: rem(0px) rem(27px);
+      border-right: rem(1px) solid $warm-grey;
       &:first-of-type {
-        padding-left: 0px;
+        padding-left: rem(0px);
       }
       &:last-of-type {
-        border: 0px;
+        border: rem(0px);
       }
       span {
         font-weight: normal;
-        margin-bottom: 10px;
+        margin-bottom: rem(10px);
         display: block;
-        font-size: 16px;
+        font-size: rem(16px);
         line-height: 1.0;
         text-align: center;
         color: $warm-grey;
@@ -64,51 +85,63 @@
     @extend %container;
     @extend %flex;
     justify-content: space-between;
-    margin-bottom: 100px;
+    margin-bottom: rem(100px);
+    @media (max-width: $md) {
+      margin-bottom: rem(50px);
+    }
   }
   &__bio {
     flex: 0 0 50%;
-    font-size: 16px;
+    font-size: rem(16px);
     font-weight: 300;
     line-height: 1.5;
     text-align: justify;
+    @media (max-width: $sm) {
+      flex: 0 0 100%;
+    }
   }
   &__results {
     flex: 0 0 40%;
+    @media (max-width: $sm) {
+      flex: 0 0 100%;
+    }
     &__list {
-      margin: 0px;
-      padding: 0px;
+      margin: rem(0px);
+      padding: rem(0px);
       list-style: none;
-      height: 390px;
+      height: rem(390px);
       overflow: scroll;
+      @media (max-width: $sm) {
+        height: auto !important;
+      }
       ul {
-        margin: 0px;
-        padding: 0px;
+        margin: rem(0px);
+        padding: rem(0px);
         list-style: none;
-        margin-bottom: 60px;
+        margin-bottom: rem(60px);
       }
     }
     &__year {
-      font-size: 18px;
+      font-size: rem(18px);
       font-weight: 900;
       line-height: 1.33;
       color: $black;
-      margin-bottom: 21px;
+      margin-bottom: rem(21px);
       position: relative;
       max-width: 90%;
       overflow: hidden;
       &:after {
         content: '';
-        height: 2px;
+        height: rem(2px);
         width: 100%;
         background: $gray;
         position: absolute;
         top: 50%;
-        margin-left: 15px;
+        margin-left: rem(15px);
       }
     }
     &__result {
-      font-size: 16px;
+      font-size: rem(16px);
       line-height: 1.5;
       text-align: justify;
       color: $black;
@@ -119,56 +152,73 @@
   }
   &__title {
     @include title-section();
-    margin-bottom: 60px;
+    margin-bottom: rem(60px);
+    @media (max-width: $sm) {
+      margin-bottom: rem(30px);
+    }
   }
 
   &__gallery {
     width: 100%;
-    margin: 0px 0px 80px 0px;
-    padding:0px;
+    margin: rem(0px) rem(0px) rem(80px) rem(0px);
+    padding:rem(0px);
     display: flex;
-    height: 440px;
+    height: rem(440px);
     overflow: scroll;
     list-style: none;
+    @media (max-width: $md) {
+      margin-bottom: rem(30px);
+    }
+    @media (max-width: $sm) {
+      height: rem(200px);
+    }
     &__item {
-      margin-right: 2px;
+      margin-right: rem(2px);
       img {
-        max-height: 400px;
+        height: rem(400px);
+        max-height: rem(400px);
         width: auto;
         max-width: none;
+        @media (max-width: $sm) {
+          height: rem(200px);
+        }
       }
     }
   }
   &__news {
     @extend %container;
-    margin-bottom: 230px;
+    margin-bottom: rem(230px);
+    @media (max-width: $md) {
+      margin-bottom: rem(60px);
+    }
     &__wrapper {
       @extend %flex;
-      margin: 0px -15px;
+      margin: rem(0px) rem(-15px);
     }
     .news-item {
       flex: 0 0 33%;
-      padding: 15px;
-      img {
-
+      padding: rem(15px);
+      @media (max-width: $sm) {
+        flex: 0 0 100%;
       }
       &__meta {
-        font-size: 16px;
+        font-size: rem(16px);
         font-weight: 300;
         line-height: 1.0;
         text-align: left;
-        color: $primary;
+        color: $black;
         strong {
           text-transform: uppercase;
+          font-weight: bold;
         }
       }
       &__title {
-        font-size: 24px;
+        font-size: rem(24px);
         font-weight: bold;
         line-height: 1.08;
-        letter-spacing: -1px;
+        letter-spacing: rem(-1px);
         text-align: left;
-        margin: 0px;
+        margin: rem(0px);
         a {
           color: $black;
         }

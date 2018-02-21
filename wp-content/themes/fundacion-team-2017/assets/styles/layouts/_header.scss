@@ -1,45 +1,75 @@
 .header {
-  padding: 35px 0px;
+  padding: rem(35px) rem(0px);
+  margin-bottom: rem(130px);
+  @media (max-width: $md) {
+    padding: rem(15px) rem(0px);
+    margin-bottom: rem(80px);
+  }
+  @media (max-width: $sm) {
+    margin-bottom: rem(0px);
+  }
+  .home & {
+    margin-bottom: rem(0px);
+  }
   .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    max-height: 95px;
+    max-height: rem(95px);
     position: relative;
   }
   .custom-logo-link {
-    max-width: 150px;
+    max-width: rem(150px);
     display: block;
     position: absolute;
     z-index: 99;
     left: 50%;
-    top: -25px;
+    top: rem(-25px);
     transform: translateX(-50%);
+    @media (max-width: $md) {
+      max-width: rem(100px);
+      top: rem(0px);
+    }
+    @media (max-width: $sm) {
+      max-height: rem(50px);
+      max-width: none;
+      top: rem(-10px);
+      right: rem(15px);
+      left: auto;
+      transform: none;
+    }
     img {
       max-width: 100%;
+      @media (max-width: $sm) {
+        max-height: rem(50px);
+        width: auto;
+      }
     }
   }
   &__menu-toggle {
-    text-indent: -99999px;
-    width: 40px;
-    height: 30px;
+    text-indent: -99999rem;
+    width: rem(40px);
+    height: rem(30px);
     display: block;
-    border-top: 1px solid $black;
-    border-bottom: 1px solid $black;
+    border-top: rem(1px) solid $black;
+    border-bottom: rem(1px) solid $black;
     position: relative;
     &:after {
       content: "";
       position: absolute;
       top: 50%;
-      left: 0px;
+      left: rem(0px);
       width: 100%;
-      height: 1px;
+      height: rem(1px);
       background: $black;
       transform: tranlsateY(-50%);
     }
   }
   &__language {
+    @media (max-width: $sm) {
+      display: none;
+    }
     .menu-item {
       line-height: none;
       display: inline-block;
@@ -52,9 +82,9 @@
         font-weight: 900;
       }
       &:not(:last-of-type) {
-        padding-right: 20px;
-        margin-right: 20px;
-        border-right: 1px solid $black;
+        padding-right: rem(20px);
+        margin-right: rem(20px);
+        border-right: rem(1px) solid $black;
       }
     }
   }
@@ -67,32 +97,40 @@
   z-index: 99;
   height: 100vh;
   overflow: scroll;
-  top: 0px;
+  top: rem(0px);
   width: 30%;
   left: -30%;
   transition: all 0.5s ease-in;
   color: $white;
-  padding: 60px 60px 60px 5%;
+  padding: rem(60px) rem(60px) rem(60px) 5%;
+  @media (max-width: $md) {
+    width: 60%;
+    left: -60%;
+  }
+  @media (max-width: $sm) {
+    width: 100%;
+    left: -100%;
+  }
   &__close {
     position: absolute;
-    top: 55px;
-    right: 40px;
+    top: rem(55px);
+    right: rem(40px);
   }
   &__title {
-    font-size: 18px;
+    font-size: rem(18px);
     font-weight: 900;
     line-height: 1.0;
     color: $white;
     text-transform: uppercase;
-    margin: 0px 0px 20px 0px;
+    margin: rem(0px) rem(0px) rem(20px) rem(0px);
   }
   div {
     .menu {
       list-style: none;
-      padding: 0px;
-      margin: 0px 0px 60px 0px;
+      padding: rem(0px);
+      margin: rem(0px) rem(0px) rem(60px) rem(0px);
       .menu-item {
-        margin-bottom: 11px;
+        margin-bottom: rem(11px);
         a {
           color: $white;
         }
@@ -101,15 +139,18 @@
     }
     &:first-of-type {
       .menu {
-        margin-top: 50px;
+        margin-top: rem(50px);
         .menu-item {
           opacity: 0.9;
-          font-size: 24px;
+          font-size: rem(24px);
           font-weight: 300;
           line-height: 1;
-          letter-spacing: 5px;
-          margin-bottom: 21px;
+          letter-spacing: rem(5px);
+          margin-bottom: rem(21px);
           text-transform: uppercase;
+          @media (max-width: $sm) {
+            font-size: rem(20px);
+          }
         }
       }
 
@@ -119,10 +160,10 @@
     &__link {
       display: inline-block;
       position: relative;
-      width: 48px;
-      height: 48px;
+      width: rem(48px);
+      height: rem(48px);
       background-color: $white;
-      margin-right: 5px;
+      margin-right: rem(5px);
       svg {
         position: absolute;
         left: 50%;
@@ -132,6 +173,6 @@
     }
   }
   &.open {
-    left: 0px;
+    left: rem(0px);
   }
 }

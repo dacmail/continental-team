@@ -4,8 +4,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14px;
+    font-size: rem(14px);
     color: lighten($black, 50%);
+    @media (max-width: $sm) {
+      flex-flow: column;
+      align-items: flex-start;
+    }
     a {
       color: lighten($black, 50%);
     }

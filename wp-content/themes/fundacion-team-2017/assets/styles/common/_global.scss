@@ -34,46 +34,81 @@ img {
 
 @mixin title() {
   font-family: Overpass;
-  font-size: 60px;
+  font-size: rem(60px);
   font-weight: 900;
   line-height: 0.93;
   text-align: left;
   color: $white;
+  @media (max-width: $md) {
+    font-size: rem(40px);
+  }
+  @media (max-width: $sm) {
+    font-size: rem(35px);
+  }
 }
 
 @mixin title-medium() {
   font-family: Overpass;
-  font-size: 40px;
+  font-size: rem(40px);
   font-weight: bold;
   line-height: 1.0;
-  letter-spacing: -1.2px;
+  letter-spacing:rem(-1.2px);
   text-align: left;
   color: $black;
+  @media (max-width: $md) {
+    font-size: rem(30px);
+  }
+  @media (max-width: $sm) {
+    font-size: rem(26px);
+  }
 }
 
 @mixin title-small() {
   font-family: Overpass;
-  font-size: 24px;
+  font-size: rem(24px);
   font-weight: bold;
   line-height: 1.08;
-  letter-spacing: -1px;
+  letter-spacing: rem(-1px);
   text-align: left;
   color: $black;
+  @media (max-width: $md) {
+    font-size: rem(23px);
+  }
+  @media (max-width: $sm) {
+    font-size: rem(21px);
+  }
 }
 
 @mixin title-section() {
   font-family: Overpass;
-  font-size: 24px;
+  font-size: rem(24px);
   font-weight: 300;
   line-height: 1.0;
-  letter-spacing: 10px;
+  letter-spacing: rem(10px);
   text-align: left;
   color: $black;
   text-transform: uppercase;
+  @media (max-width: $md) {
+    font-size: rem(21px);
+  }
+  @media (max-width: $sm) {
+    font-size: rem(18px);
+  }
+}
+
+.section-title {
+  @include title();
+  color: $black;
 }
 .banner {
-  max-width: 1560px;
-  margin: 0px auto 60px auto;
+  max-width: rem(1560px);
+  margin: rem(0px) auto rem(60px) auto;
+  @media (max-width: $md) {
+    margin-bottom: rem(40px);
+  }
+  @media (max-width: $sm) {
+    margin-bottom: rem(20px);
+  }
   img {
     max-width: 100%;
     height: auto;
