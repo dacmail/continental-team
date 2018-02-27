@@ -4,9 +4,14 @@ $md: rem(1024px);
 $sm: rem(768px);
 $xs: rem(450px);
 
-$container: rem(1170px);
-$container-full: rem(1560px);
-$container-small: rem(940px);
+
+$container-px: 1170px;
+$container-full-px: 1560px;
+$container-small-px: 940px;
+
+$container: rem($container-px);
+$container-full: rem($container-full-px);
+$container-small: rem($container-small-px);
 
 $primary: #00a1df;
 $black: #000000;

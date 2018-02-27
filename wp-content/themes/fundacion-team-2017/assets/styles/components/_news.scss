@@ -163,7 +163,7 @@
     }
   }
   &--listing {
-    max-width: $container + rem(20px);
+    max-width: $container;
     margin: rem(0px) auto;
     padding: rem(0px);
     &.news .news__item {

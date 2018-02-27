@@ -84,7 +84,7 @@ function ungrynerd_post_type_sponsor() {
     'show_ui' => true,
     'query_var' => true,
     'capability_type' => 'post',
-    'show_in_nav_menus' => false,
+    'show_in_nav_menus' => true,
     'hierarchical' => false,
     'exclude_from_search' => true,
     'menu_position' => 5,

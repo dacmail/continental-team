@@ -37,7 +37,6 @@ img {
   font-size: rem(60px);
   font-weight: 900;
   line-height: 0.93;
-  text-align: left;
   color: $white;
   @media (max-width: $md) {
     font-size: rem(40px);
@@ -53,7 +52,6 @@ img {
   font-weight: bold;
   line-height: 1.0;
   letter-spacing:rem(-1.2px);
-  text-align: left;
   color: $black;
   @media (max-width: $md) {
     font-size: rem(30px);
@@ -69,7 +67,6 @@ img {
   font-weight: bold;
   line-height: 1.08;
   letter-spacing: rem(-1px);
-  text-align: left;
   color: $black;
   @media (max-width: $md) {
     font-size: rem(23px);
@@ -85,7 +82,6 @@ img {
   font-weight: 300;
   line-height: 1.0;
   letter-spacing: rem(10px);
-  text-align: left;
   color: $black;
   text-transform: uppercase;
   @media (max-width: $md) {
