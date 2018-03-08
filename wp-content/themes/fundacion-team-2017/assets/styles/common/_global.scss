@@ -44,6 +44,10 @@ img {
   @media (max-width: $sm) {
     font-size: rem(35px);
   }
+  a:hover {
+    transition: $transition-standard;
+    color: $primary;
+  }
 }
 
 @mixin title-medium() {
@@ -58,6 +62,10 @@ img {
   }
   @media (max-width: $sm) {
     font-size: rem(26px);
+  }
+  a:hover {
+    transition: $transition-standard;
+    color: $primary;
   }
 }
 
@@ -74,6 +82,10 @@ img {
   @media (max-width: $sm) {
     font-size: rem(21px);
   }
+  a:hover {
+    transition: $transition-standard;
+    color: $primary;
+  }
 }
 
 @mixin title-section() {
@@ -89,6 +101,10 @@ img {
   }
   @media (max-width: $sm) {
     font-size: rem(18px);
+  }
+  a:hover {
+    transition: $transition-standard;
+    color: $primary;
   }
 }
 
@@ -109,4 +125,17 @@ img {
     max-width: 100%;
     height: auto;
   }
+}
+
+::-webkit-input-placeholder {
+  color: #bbb;
+}
+::-moz-placeholder {
+  color: #bbb;
+}
+:-ms-input-placeholder { 
+  color: #bbb;
+}
+:-moz-placeholder {
+  color: #bbb;
 }

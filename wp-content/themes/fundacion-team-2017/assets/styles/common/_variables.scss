@@ -19,6 +19,9 @@ $white: #ffffff;
 $gray: #f2f2f2;
 $warm-grey: #9b9b9b;
 
+$transition-standard: all 0.2s ease-in-out;
+
+
 %container {
   max-width: $container;
   margin: rem(0px) auto;
@@ -27,4 +30,43 @@ $warm-grey: #9b9b9b;
 %flex {
   display: flex;
   flex-wrap: wrap;
+}
+%article-components {
+  font-size: rem(18px);
+  font-weight: 300;
+  line-height: 2.0;
+  color: $black;
+  flex: 0 0 80%;
+  width: 80%;
+  margin-right: rem(50px);
+  margin-bottom: rem(100px);
+  @media (max-width: $sm) {
+    flex: 0 0 100%;
+    width: 100%;
+    margin-right: rem(0px);
+    margin-bottom: rem(50px);
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.33;
+    margin-bottom: 0px;
+    & + p {
+      margin-top: 0px;
+    }
+  }
+  .alignleft {
+    float: left;
+    margin: rem(0px) rem(15px) rem(15px) rem(0px);
+  }
+  .alignright {
+    float: right;
+    margin: rem(0px) rem(0px) rem(15px) rem(15px);
+  }
+  .alignnone {
+    max-width: $container-small;
+    @media (max-width: $md) {
+      max-width: 100%;
+    }
+  }
 }

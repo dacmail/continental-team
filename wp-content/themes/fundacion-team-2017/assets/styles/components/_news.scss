@@ -65,8 +65,13 @@
       display: block;
       max-width: 100%;
       margin-bottom: rem(20px);
+      overflow: hidden;
       img {
         display: block;
+        transition: $transition-standard;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
     &__title {

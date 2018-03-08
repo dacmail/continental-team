@@ -39,34 +39,7 @@
     }
   }
   &__text {
-    font-size: rem(18px);
-    font-weight: 300;
-    line-height: 2.0;
-    color: $black;
-    flex: 0 0 80%;
-    width: 80%;
-    margin-right: rem(50px);
-    margin-bottom: rem(100px);
-    @media (max-width: $sm) {
-      flex: 0 0 100%;
-      width: 100%;
-      margin-right: rem(0px);
-      margin-bottom: rem(50px);
-    }
-    .alignleft {
-      float: left;
-      margin: rem(0px) rem(15px) rem(15px) rem(0px);
-    }
-    .alignright {
-      float: right;
-      margin: rem(0px) rem(0px) rem(15px) rem(15px);
-    }
-    .alignnone {
-      max-width: $container-small;
-      @media (max-width: $md) {
-        max-width: 100%;
-      }
-    }
+    @extend %article-components;
   }
   &__riders {
     flex: 0 0 15%;
