@@ -1,6 +1,7 @@
 section.team {
   padding-top: rem(140px);
-  background-color: $black;
+  background: url('../images/bg-team.jpg') center top no-repeat $black;
+  background-size: contain;
   margin-bottom: rem(112px);
   @media (max-width: $md) {
     padding-top: rem(30px);
