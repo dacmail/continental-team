@@ -16,7 +16,7 @@
           <div class="rider__info">
             <div class="rider__info__box" data-birth="<?php the_field('fecha-nacimiento') ?>">
               <span><?php esc_html_e('Edad', 'ungrynerd'); ?></span>
-              <?= floor((time() - strtotime(get_field('fecha-nacimiento'))) / (60*60*24*365)) ?>
+              <?= floor((time() - strtotime(str_replace('/', '-', get_field('fecha-nacimiento')))) / (60*60*24*365)) ?>
             </div>
             <div class="rider__info__box">
               <span><?php esc_html_e('Altura (cm)', 'ungrynerd'); ?></span>
