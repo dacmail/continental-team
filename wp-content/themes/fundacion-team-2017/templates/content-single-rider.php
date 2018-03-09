@@ -4,7 +4,7 @@
     <header class="rider__header">
       <div class="rider__wrapper">
         <div class="rider__photo">
-          <?= wp_get_attachment_image(get_field('photo'), 'rider-big'); ?>
+          <?php the_post_thumbnail('rider-big'); ?>
         </div>
         <div class="rider__data">
           <div class="rider__social">
@@ -66,7 +66,16 @@
         <?php endforeach; ?>
       </ul>
     <?php endif; ?>
-    <?php $news = new WP_Query(array('post_type' => array('post'), 'posts_per_page' => 3)) ?>
+    <?php $news = new WP_Query(array(
+      'post_type' => array('post'), 
+      'meta_query'		=> array(
+                          array(
+                            'key' => 'riders',
+                            'value' => '"' . get_the_ID() . '"',
+                            'compare' => 'LIKE'
+                            )
+                          ), 
+      'posts_per_page' => 3)) ?>
     <?php if ($news->have_posts()): ?>
       <div class="rider__news">
         <h2 class="rider__title">Noticias relacionadas</h2>

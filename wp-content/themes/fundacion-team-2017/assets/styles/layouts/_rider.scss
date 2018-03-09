@@ -67,7 +67,8 @@
       &:first-of-type {
         padding-left: rem(0px);
       }
-      &:last-of-type {
+      &:last-child {
+        padding-right: rem(0px);
         border: rem(0px);
       }
       span {
@@ -145,9 +146,7 @@
       line-height: 1.5;
       text-align: justify;
       color: $black;
-      strong {
-        display: block;
-      }
+      margin-bottom: rem(10px);
     }
   }
   &__title {

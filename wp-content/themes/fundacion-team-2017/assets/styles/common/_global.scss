@@ -101,6 +101,7 @@ img {
   }
   @media (max-width: $sm) {
     font-size: rem(18px);
+    line-height: 1.5;
   }
   a:hover {
     transition: $transition-standard;

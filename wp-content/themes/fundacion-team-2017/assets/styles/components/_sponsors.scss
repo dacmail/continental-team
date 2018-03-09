@@ -1,6 +1,9 @@
 .sponsors-prefooter {
   background-color: $black;
   padding: rem(60px) rem(0px);
+  @media (max-width: $sm) {
+    padding: rem(30px) rem(0px);
+  }
 }
 .sponsors-block {
   text-align: center;
@@ -14,13 +17,22 @@
     max-width: 100%;
   }
   &--level1 {
+    @media (max-width: $sm) {
+      margin-bottom: rem(40px);
+    }
     .sponsors-block__item {
       padding: rem(50px);
+      @media (max-width: $sm) {
+        padding: rem(15px) rem(15px);
+      }
     }
   }
   &--level2 {
     margin-bottom: rem(45px);
     justify-content: space-between;
+    @media (max-width: $sm) {
+      justify-content: center;
+    }
     .sponsors-block__item {
       padding: rem(15px);
     }

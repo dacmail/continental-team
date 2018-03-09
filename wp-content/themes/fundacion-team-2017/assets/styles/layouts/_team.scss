@@ -7,7 +7,7 @@ section.team {
     margin-bottom: rem(30px);
   }
   .team__title {
-    margin: rem(0px);
+    margin: 0rem 0rem rem(80px) 0rem;
     @include title();
     text-align: center;
   }
