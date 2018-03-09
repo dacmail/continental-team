@@ -107,8 +107,23 @@
   }
   &__results {
     flex: 0 0 40%;
+    position: relative;
     @media (max-width: $sm) {
       flex: 0 0 100%;
+    }
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      height: rem(100px);
+      width: 100%;
+      bottom: 0px;
+      left: 0px;
+      background: -webkit-linear-gradient(rgba($white, 0.1) 0%, $white);
+      background: linear-gradient(rgba($white, 0.1) 0%, $white);
+      @media (max-width: $sm) {
+        bottom: rem(40px);
+      }
     }
     &__list {
       margin: rem(0px);
@@ -117,7 +132,7 @@
       height: rem(390px);
       overflow: scroll;
       @media (max-width: $sm) {
-        height: auto !important;
+        margin-bottom: rem(40px);
       }
       ul {
         margin: rem(0px);
