@@ -45,6 +45,7 @@
     svg {
       margin-right: rem(20px);
       margin-left: rem(-52px);
+      transform: scale(2) translateY(-4px);
       @media (max-width: $sm) {
         margin-left: rem(0px);
       }
