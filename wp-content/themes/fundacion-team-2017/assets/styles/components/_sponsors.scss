@@ -47,6 +47,15 @@
       background: $black;
       padding: rem(50px) 0rem;
       margin-bottom: 0rem;
+      &.type-0 {
+        background: url('../images/bg-sponsor-1.jpg') no-repeat center center;
+        background-size: cover;
+      }
+      &.type-1 {
+        margin-top: 0rem;
+        background: url('../images/bg-sponsor-2.jpg') no-repeat center center;
+        background-size: cover;
+      }
       .container {
         @extend %flex;
         align-items: center;

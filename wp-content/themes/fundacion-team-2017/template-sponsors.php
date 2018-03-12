@@ -9,9 +9,10 @@
     <h1 class="section-title"><?php the_title(); ?></h1>
       <?php $sponsors = new WP_Query(array('post_type'=> array('sponsor'), 'meta_key' => 'sponsor_type', 'meta_value' => 0, 'posts_per_page' => -1, 'order' => 'ASC')); ?>
       <?php if ($sponsors->have_posts()) : ?>
-        <div class="sponsors-block sponsors-block--level1">
-          <div class="container">
-            <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
+        
+        <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
+          <div class="sponsors-block sponsors-block--level1 type-<?= $sponsors->current_post; ?>">
+            <div class="container">
               <div class="sponsors-block__wrapper">
                 <?php $logo = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');  ?>
                 <a class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
@@ -35,9 +36,9 @@
                   <?php endif; ?>
                 </div>
               </div>
-            <?php endwhile; ?>
+            </div>
           </div>
-        </div>
+        <?php endwhile; ?>
       <?php endif; ?>
 
       <?php $sponsors = new WP_Query(array('post_type'=> array('sponsor'), 'meta_key' => 'sponsor_type', 'meta_value' => 1, 'posts_per_page' => -1, 'order' => 'ASC')); ?>
