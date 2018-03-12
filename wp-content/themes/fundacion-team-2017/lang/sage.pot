@@ -1,40 +1,196 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_e;__;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:2
+msgid "Página no encontrada"
+msgstr ""
 
 #: 404.php:4
-msgid "Sorry, but the page you were trying to view does not exist."
+msgid "La página que buscas parece que no existe."
 msgstr ""
 
 #: base.php:14
 msgid ""
-"You are using an <strong>outdated</strong> browser. Please <a href=\"http://"
-"browsehappy.com/\">upgrade your browser</a> to improve your experience."
+"Estás usando una versión antigua del navegador. Por favor <a href=\"http://"
+"browsehappy.com/\">actualizalo</a> para mejroar la experiencia."
 msgstr ""
 
-#: functions.php:22
+#: front-page.php:14
+msgid "En la red"
+msgstr ""
+
+#: front-page.php:15
+msgid "Ir a redes sociales"
+msgstr ""
+
+#: functions.php:23
+#, php-format
 msgid "Error locating %s for inclusion"
 msgstr ""
 
-#: index.php:5 search.php:5
-msgid "Sorry, no results were found."
+#: index.php:3 templates/news-home.php:6
+msgid "Actualidad"
 msgstr ""
 
-#: lib/extras.php:31
-msgid "Continued"
+#: index.php:9
+msgid "Todo"
 msgstr ""
 
-#: lib/setup.php:30
-msgid "Primary Navigation"
+#: index.php:10
+msgid "Noticias"
 msgstr ""
 
-#: lib/setup.php:57
-msgid "Primary"
+#: index.php:11
+msgid "Galerías"
 msgstr ""
 
-#: lib/setup.php:66
-msgid "Footer"
+#: index.php:12
+msgid "Videos"
+msgstr ""
+
+#: lib/customizer.php:14
+msgid "Enlaces sociales"
+msgstr ""
+
+#: lib/customizer.php:20
+msgid "Facebook URL"
+msgstr ""
+
+#: lib/customizer.php:28
+msgid "Twitter URL"
+msgstr ""
+
+#: lib/customizer.php:36
+msgid "Youtube URL"
+msgstr ""
+
+#: lib/customizer.php:44
+msgid "Instagram URL"
+msgstr ""
+
+#: lib/extras.php:54 templates/content-single-rider.php:86
+msgid "Noticia"
+msgstr ""
+
+#: lib/extras.php:55
+msgid "Galería"
+msgstr ""
+
+#: lib/extras.php:56
+msgid "Video"
+msgstr ""
+
+#: lib/extras.php:58 lib/extras.php:104
+msgid "Corredor"
+msgstr ""
+
+#: lib/extras.php:67
+msgid "Sponsors"
+msgstr ""
+
+#: lib/extras.php:68
+msgid "Sponsor"
+msgstr ""
+
+#: lib/extras.php:69 lib/extras.php:70
+msgid "Añadir Sponsor"
+msgstr ""
+
+#: lib/extras.php:71
+msgid "Editar Sponsor"
+msgstr ""
+
+#: lib/extras.php:72
+msgid "Nuevo Sponsor"
+msgstr ""
+
+#: lib/extras.php:73
+msgid "Ver Sponsors"
+msgstr ""
+
+#: lib/extras.php:74
+msgid "Buscar Sponsors"
+msgstr ""
+
+#: lib/extras.php:75
+msgid "No se han encontrado Sponsors "
+msgstr ""
+
+#: lib/extras.php:76
+msgid "No hay Sponsors en la papelera"
+msgstr ""
+
+#: lib/extras.php:103 lib/extras.php:114
+msgid "Corredores"
+msgstr ""
+
+#: lib/extras.php:105
+msgid "Añadir nuevo"
+msgstr ""
+
+#: lib/extras.php:106
+msgid "Añadir nuevo Corredor"
+msgstr ""
+
+#: lib/extras.php:107
+msgid "Editar Corredor"
+msgstr ""
+
+#: lib/extras.php:108
+msgid "Nuevo Corredor"
+msgstr ""
+
+#: lib/extras.php:109
+msgid "Ver Corredor"
+msgstr ""
+
+#: lib/extras.php:110
+msgid "Buscar Corredores"
+msgstr ""
+
+#: lib/extras.php:111
+msgid "No corredores found"
+msgstr ""
+
+#: lib/extras.php:112
+msgid "No corredores found in Trash"
+msgstr ""
+
+#: lib/extras.php:113
+msgid "Corredor padre:"
+msgstr ""
+
+#: lib/setup.php:31
+msgid "Menú principal"
+msgstr ""
+
+#: lib/setup.php:32
+msgid "Menú secundario"
+msgstr ""
+
+#: lib/setup.php:33
+msgid "Menú idiomas"
+msgstr ""
+
+#: lib/setup.php:68
+msgid "Super Menú"
+msgstr ""
+
+#: lib/setup.php:76
+msgid "Banner home"
 msgstr ""
 
 #: lib/titles.php:13
@@ -42,6 +198,7 @@ msgid "Latest Posts"
 msgstr ""
 
 #: lib/titles.php:18
+#, php-format
 msgid "Search Results for %s"
 msgstr ""
 
@@ -49,12 +206,289 @@ msgstr ""
 msgid "Not Found"
 msgstr ""
 
-#: templates/comments.php:9
-msgctxt "comments title"
-msgid "One response to &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s responses to &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
+#: node_modules/ajv/dist/regenerator.min.js:25
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:25
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid " "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:25
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:25
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "."
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "*"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "import"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "{}"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid ", "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "this"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "super"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "null"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid ",\n"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid " = "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "\n"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "debugger;"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid ":"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "empty"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "any"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "mixed"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:174
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:241
+#: node_modules/yargs/lib/usage.js:225
+msgid "boolean"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "interface "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid " & "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:246
+#: node_modules/yargs/lib/usage.js:230
+msgid "number"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:176
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:177
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:243
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:244
+#: node_modules/yargs/lib/usage.js:227 node_modules/yargs/lib/usage.js:228
+msgid "string"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "typeof "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid " | "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
+msgid "void"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/parser.js:239
+#: node_modules/sass-graph/node_modules/yargs-parser/index.js:301
+#: node_modules/yargs-parser/index.js:301
+#, javascript-format
+msgid "Not enough arguments following: %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/parser.js:348
+#: node_modules/sass-graph/node_modules/yargs-parser/index.js:449
+#: node_modules/yargs-parser/index.js:449
+#, javascript-format
+msgid "Invalid JSON config file: %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:132
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:169
+#: node_modules/yargs/lib/usage.js:158
+msgid "Commands:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:165
+msgid "Options:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:175
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:242
+#: node_modules/yargs/lib/usage.js:226
+msgid "count"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:178
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:245
+#: node_modules/yargs/lib/usage.js:229
+msgid "array"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:182
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:250
+#: node_modules/yargs/lib/usage.js:234
+msgid "required"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:183
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:251
+#: node_modules/yargs/lib/usage.js:235
+msgid "choices:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:202
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:270
+#: node_modules/yargs/lib/usage.js:254
+msgid "Examples:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:280
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:385
+#: node_modules/yargs/lib/usage.js:354
+msgid "generated-value"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:302
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:177
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:407
+#: node_modules/yargs/lib/usage.js:376
+msgid "default:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:19
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:26
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:49
+#: node_modules/yargs/lib/validation.js:22
+#: node_modules/yargs/lib/validation.js:37
+#, javascript-format
+msgid "Not enough non-option arguments: got %s, need at least %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:23
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:37
+#: node_modules/yargs/lib/validation.js:26
+#, javascript-format
+msgid "Too many non-option arguments: got %s, maximum of %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:148
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:185
+#: node_modules/yargs/lib/validation.js:171
+msgid "Invalid values:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:151
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:188
+#: node_modules/yargs/lib/validation.js:174
+#, javascript-format
+msgid "Argument: %s, Given: %s, Choices: %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:171
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:218
+#: node_modules/yargs/lib/validation.js:200
+#, javascript-format
+msgid "Argument check failed: %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:238
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:283
+#: node_modules/yargs/lib/validation.js:270
+msgid "Implications failed:"
+msgstr ""
+
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:179
+#: node_modules/yargs/lib/usage.js:166
+msgid "aliases:"
+msgstr ""
+
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:313
+#, javascript-format
+msgid "Arguments %s and %s are mutually exclusive"
+msgstr ""
+
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:332
+#: node_modules/yargs/lib/validation.js:294
+#, javascript-format
+msgid "Did you mean %s?"
+msgstr ""
+
+#: search.php:5
+msgid "Sorry, no results were found."
+msgstr ""
+
+#: template-contact.php:54 template-contact.php:55
+msgid "Nombre"
+msgstr ""
+
+#: template-contact.php:58 template-contact.php:59
+msgid "e-mail"
+msgstr ""
+
+#: template-contact.php:62
+msgid "Suscribirse"
+msgstr ""
+
+#: template-team.php:25
+msgid "Staff"
+msgstr ""
 
 #: templates/comments.php:19
 msgid "&larr; Older comments"
@@ -68,36 +502,56 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
-#: templates/content-page.php:2 templates/content-single.php:11
+#: templates/content-page.php:6
 msgid "Pages:"
 msgstr ""
 
-#: templates/entry-meta.php:2
-msgid "By"
+#: templates/content-single-rider.php:18
+msgid "Edad"
 msgstr ""
 
-#. Theme Name of the plugin/theme
-msgid "Sage Starter Theme"
+#: templates/content-single-rider.php:22
+msgid "Altura (cm)"
 msgstr ""
 
-#. Theme URI of the plugin/theme
-msgid "https://roots.io/sage/"
+#: templates/content-single-rider.php:26
+msgid "Peso (kg)"
 msgstr ""
 
-#. Description of the plugin/theme
+#: templates/content-single-rider.php:35
+msgid "Biografía"
+msgstr ""
+
+#: templates/content-single-rider.php:39
+msgid "Palmarés"
+msgstr ""
+
+#: templates/content-single.php:40
+msgid "Corredores relacionados"
+msgstr ""
+
+#: templates/content-single.php:51
+msgid "Etiquetas"
+msgstr ""
+
+#: templates/content-single.php:62
+msgid "Más noticias"
+msgstr ""
+
+#: templates/footer.php:34
 msgid ""
-"Sage is a WordPress starter theme. <a href=\"https://github.com/roots/sage"
-"\">Contribute on GitHub</a>"
+"CLUB DEPORTIVO CICLISTA ALBERTO CONTADOR. Todos los derechos reservados. "
+"Prohibida su copia o reproducción sin autorización expresa."
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "Roots"
+#: templates/header.php:4
+msgid "Menu"
 msgstr ""
 
-#. Author URI of the plugin/theme
-msgid "https://roots.io/"
+#: templates/header.php:30
+msgid "Síguenos"
 msgstr ""
 
-#. Template Name of the plugin/theme
-msgid "Custom Template"
+#: templates/news-home.php:7
+msgid "Ir a noticias"
 msgstr ""

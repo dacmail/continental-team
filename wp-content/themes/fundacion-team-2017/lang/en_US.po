@@ -1,0 +1,300 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-03-12 10:14+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_e;__;_e\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: assets\n"
+"X-Poedit-SearchPathExcluded-1: bower_components\n"
+"X-Poedit-SearchPathExcluded-2: dist\n"
+"X-Poedit-SearchPathExcluded-3: node_modules\n"
+
+#: 404.php:2
+msgid "Página no encontrada"
+msgstr "Page not found"
+
+#: 404.php:4
+msgid "La página que buscas parece que no existe."
+msgstr "The page you are looking for doesn’t exists"
+
+#: base.php:14
+msgid ""
+"Estás usando una versión antigua del navegador. Por favor <a href=\"http://"
+"browsehappy.com/\">actualizalo</a> para mejroar la experiencia."
+msgstr ""
+"You are using an <strong>outdated</strong> browser. Please <a href=“http://"
+"browsehappy.com/“>upgrade your browser</a> to improve your experience."
+
+#: front-page.php:14
+msgid "En la red"
+msgstr "Social stream"
+
+#: front-page.php:15
+msgid "Ir a redes sociales"
+msgstr "Go to social networks"
+
+#: functions.php:23
+#, php-format
+msgid "Error locating %s for inclusion"
+msgstr ""
+
+#: index.php:3 templates/news-home.php:6
+msgid "Actualidad"
+msgstr "News"
+
+#: index.php:9
+msgid "Todo"
+msgstr "All"
+
+#: index.php:10
+msgid "Noticias"
+msgstr "News"
+
+#: index.php:11
+msgid "Galerías"
+msgstr "Galleries"
+
+#: index.php:12
+msgid "Videos"
+msgstr "Videos"
+
+#: lib/customizer.php:14
+msgid "Enlaces sociales"
+msgstr "Social links"
+
+#: lib/customizer.php:20
+msgid "Facebook URL"
+msgstr "Facebook URL"
+
+#: lib/customizer.php:28
+msgid "Twitter URL"
+msgstr ""
+
+#: lib/customizer.php:36
+msgid "Youtube URL"
+msgstr ""
+
+#: lib/customizer.php:44
+msgid "Instagram URL"
+msgstr ""
+
+#: lib/extras.php:54 templates/content-single-rider.php:86
+msgid "Noticia"
+msgstr "News"
+
+#: lib/extras.php:55
+msgid "Galería"
+msgstr "Gallery"
+
+#: lib/extras.php:56
+msgid "Video"
+msgstr "Video"
+
+#: lib/extras.php:58 lib/extras.php:104
+msgid "Corredor"
+msgstr "Rider"
+
+#: lib/extras.php:67
+msgid "Sponsors"
+msgstr ""
+
+#: lib/extras.php:68
+msgid "Sponsor"
+msgstr ""
+
+#: lib/extras.php:69 lib/extras.php:70
+msgid "Añadir Sponsor"
+msgstr ""
+
+#: lib/extras.php:71
+msgid "Editar Sponsor"
+msgstr ""
+
+#: lib/extras.php:72
+msgid "Nuevo Sponsor"
+msgstr ""
+
+#: lib/extras.php:73
+msgid "Ver Sponsors"
+msgstr ""
+
+#: lib/extras.php:74
+msgid "Buscar Sponsors"
+msgstr ""
+
+#: lib/extras.php:75
+msgid "No se han encontrado Sponsors "
+msgstr ""
+
+#: lib/extras.php:76
+msgid "No hay Sponsors en la papelera"
+msgstr ""
+
+#: lib/extras.php:103 lib/extras.php:114
+msgid "Corredores"
+msgstr ""
+
+#: lib/extras.php:105
+msgid "Añadir nuevo"
+msgstr ""
+
+#: lib/extras.php:106
+msgid "Añadir nuevo Corredor"
+msgstr ""
+
+#: lib/extras.php:107
+msgid "Editar Corredor"
+msgstr ""
+
+#: lib/extras.php:108
+msgid "Nuevo Corredor"
+msgstr ""
+
+#: lib/extras.php:109
+msgid "Ver Corredor"
+msgstr ""
+
+#: lib/extras.php:110
+msgid "Buscar Corredores"
+msgstr ""
+
+#: lib/extras.php:111
+msgid "No corredores found"
+msgstr ""
+
+#: lib/extras.php:112
+msgid "No corredores found in Trash"
+msgstr ""
+
+#: lib/extras.php:113
+msgid "Corredor padre:"
+msgstr ""
+
+#: lib/setup.php:31
+msgid "Menú principal"
+msgstr ""
+
+#: lib/setup.php:32
+msgid "Menú secundario"
+msgstr ""
+
+#: lib/setup.php:33
+msgid "Menú idiomas"
+msgstr ""
+
+#: lib/setup.php:68
+msgid "Super Menú"
+msgstr ""
+
+#: lib/setup.php:76
+msgid "Banner home"
+msgstr ""
+
+#: lib/titles.php:13
+msgid "Latest Posts"
+msgstr ""
+
+#: lib/titles.php:18
+#, php-format
+msgid "Search Results for %s"
+msgstr ""
+
+#: lib/titles.php:20
+msgid "Not Found"
+msgstr ""
+
+#: search.php:5
+msgid "Sorry, no results were found."
+msgstr ""
+
+#: template-contact.php:54 template-contact.php:55
+msgid "Nombre"
+msgstr ""
+
+#: template-contact.php:58 template-contact.php:59
+msgid "e-mail"
+msgstr ""
+
+#: template-contact.php:62
+msgid "Suscribirse"
+msgstr "Subscribe"
+
+#: template-team.php:25
+msgid "Staff"
+msgstr ""
+
+#: templates/comments.php:19
+msgid "&larr; Older comments"
+msgstr ""
+
+#: templates/comments.php:22
+msgid "Newer comments &rarr;"
+msgstr ""
+
+#: templates/comments.php:31
+msgid "Comments are closed."
+msgstr ""
+
+#: templates/content-page.php:6
+msgid "Pages:"
+msgstr ""
+
+#: templates/content-single-rider.php:18
+msgid "Edad"
+msgstr "Age"
+
+#: templates/content-single-rider.php:22
+msgid "Altura (cm)"
+msgstr "Height (cm)"
+
+#: templates/content-single-rider.php:26
+msgid "Peso (kg)"
+msgstr "Weight (kg)"
+
+#: templates/content-single-rider.php:35
+msgid "Biografía"
+msgstr "Biography"
+
+#: templates/content-single-rider.php:39
+msgid "Palmarés"
+msgstr "Results"
+
+#: templates/content-single.php:40
+msgid "Corredores relacionados"
+msgstr "Related riders"
+
+#: templates/content-single.php:51
+msgid "Etiquetas"
+msgstr "Tags"
+
+#: templates/content-single.php:62
+msgid "Más noticias"
+msgstr "More news"
+
+#: templates/footer.php:34
+msgid ""
+"CLUB DEPORTIVO CICLISTA ALBERTO CONTADOR. Todos los derechos reservados. "
+"Prohibida su copia o reproducción sin autorización expresa."
+msgstr "CLUB DEPORTIVO CICLISTA ALBERTO CONTADOR. All rights reserved."
+
+#: templates/header.php:4
+msgid "Menu"
+msgstr "Menu"
+
+#: templates/header.php:30
+msgid "Síguenos"
+msgstr "Follow us"
+
+#: templates/news-home.php:7
+msgid "Ir a noticias"
+msgstr "Got to news"
