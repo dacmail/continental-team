@@ -35,10 +35,19 @@
     a {
       margin-right: rem(10px);
       display: inline-block;
+      svg > g > path:first-of-type {
+        transition: $transition-standard;
+      }
+      &:hover {
+        svg > g > path:first-of-type {
+          fill: $primary;
+        }
+      }
     }
   }
   &__name {
     @include title();
+    letter-spacing: rem(-2px);
     @media (max-width: $sm) {
       text-align: center;
     }
@@ -80,6 +89,7 @@
         font-size: rem(16px);
         line-height: 1.0;
         text-align: center;
+        letter-spacing: 0px;
         color: $warm-grey;
       }
     }
@@ -167,6 +177,9 @@
       text-align: justify;
       color: $black;
       margin-bottom: rem(10px);
+      strong {
+        font-weight: 900;
+      }
     }
   }
   &__title {

@@ -89,8 +89,12 @@
       display: inline-block;
       margin-left: rem(20px);
       color: rgba($primary, .9);
+      transition: $transition-standard;
       @media (max-width: $sm) {
         margin-left: rem(10px);
+      }
+      &:hover {
+        color: $black;
       }
     }
   }
@@ -121,6 +125,7 @@
       height: rem(48px);
       background-color: $primary;
       margin-right: rem(5px);
+      transition: $transition-standard;
       svg {  
         position: absolute;
         left: 50%;
@@ -129,6 +134,9 @@
         path {
           fill: $white;
         }
+      }
+      &:hover {
+        background-color: $black;
       }
     }
   }

@@ -43,7 +43,7 @@ function setup() {
   add_image_size('staff', 330, 400, true);
   add_image_size('rider', 524, 672, true);
   add_image_size('rider-big', 936, 1200, true);
-  add_image_size('rider-gallery', 9999, 800, true);
+  add_image_size('rider-gallery', 9999, 800, false);
   add_image_size('masonry', 800, 1500, false);
   add_image_size('featured', 1600, 1600, false);
   // Enable post formats

@@ -20,6 +20,7 @@ section.team {
       flex: 0 0 25%;
       padding: rem(0px) rem(15px);
       margin-bottom: rem(60px);
+      transition: $transition-standard;
       @media (max-width: $sm) {
         flex: 0 0 50%;
         width: 50%;
@@ -27,6 +28,9 @@ section.team {
       @media (max-width: $xs) {
         flex: 0 0 100%;
         width: 100%;
+      }
+      &:hover {
+        transform: scale(1.1);
       }
       &__image {
         display: block;

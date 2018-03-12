@@ -35,7 +35,7 @@
           <?php the_content(); ?>
         </div>
         <?php $riders = get_field('riders'); ?>
-        <?php if ($riders) :?>
+        <?php if ($riders) : ?>
           <div class="article__riders">
             <h2 class="article__riders__title"><?php esc_html_e('Corredores relacionados', 'ungrynerd'); ?></h2>
             <?php foreach ($riders as $rider) : ?>

@@ -69,6 +69,10 @@
         height: rem(48px);
         background-color: $primary;
         margin-right: rem(5px);
+        transition: $transition-standard;
+        &:hover {
+          background-color: $black;
+        }
         svg {
           position: absolute;
           left: 50%;
@@ -88,6 +92,10 @@
         color: $white;
         background-color: $primary;
         padding: rem(25px);
+        transition: $transition-standard;
+        &:hover {
+          background-color: $black;
+        }
       }
       &--email {
         padding-top: rem(90px);
@@ -141,6 +149,10 @@
           font-weight: 900;
           line-height: 1.25;
           cursor: pointer;
+          transition: $transition-standard;
+          &:hover {
+            background-color: $black;
+          }
         }
       }
 
