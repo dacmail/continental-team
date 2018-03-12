@@ -81,6 +81,14 @@ function widgets_init() {
     'before_title'  => '',
     'after_title'   => ''
   ]);
+  register_sidebar([
+    'name'          => __('Banner home (Sólo móvil)', 'ungrynerd'),
+    'id'            => 'banner-home-mobile',
+    'before_widget' => '',
+    'after_widget'  => '',
+    'before_title'  => '',
+    'after_title'   => ''
+  ]);
 
 }
 add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');

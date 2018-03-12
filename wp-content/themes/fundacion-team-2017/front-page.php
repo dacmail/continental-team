@@ -3,9 +3,14 @@
 <?php get_template_part('templates/carousel') ?>
 <?php get_template_part('templates/news-home') ?>
 
-<?php if (is_active_sidebar('banner-home')): ?>
+<?php if (is_active_sidebar('banner-home') && !wp_is_mobile()): ?>
   <section class="banner">
     <?php dynamic_sidebar('banner-home') ?>
+  </section>
+<?php endif ?>
+<?php if (is_active_sidebar('banner-home-mobile') && wp_is_mobile()): ?>
+  <section class="banner">
+    <?php dynamic_sidebar('banner-home-mobile') ?>
   </section>
 <?php endif ?>
 

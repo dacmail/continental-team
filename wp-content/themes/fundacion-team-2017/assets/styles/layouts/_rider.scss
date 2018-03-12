@@ -75,6 +75,9 @@
       color: $white;
       padding: rem(0px) rem(27px);
       border-right: rem(1px) solid $warm-grey;
+      @media (max-width: $sm) {
+        padding: rem(0px) rem(15px);
+      }
       &:first-of-type {
         padding-left: rem(0px);
       }
