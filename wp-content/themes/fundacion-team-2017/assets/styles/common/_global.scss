@@ -64,8 +64,7 @@ img {
     font-size: rem(26px);
   }
   a:hover {
-    transition: $transition-standard;
-    color: $primary;
+    text-decoration: underline;
   }
 }
 
@@ -83,8 +82,7 @@ img {
     font-size: rem(21px);
   }
   a:hover {
-    transition: $transition-standard;
-    color: $primary;
+    text-decoration: underline;
   }
 }
 
@@ -104,8 +102,7 @@ img {
     line-height: 1.5;
   }
   a:hover {
-    transition: $transition-standard;
-    color: $primary;
+    text-decoration: underline;
   }
 }
 

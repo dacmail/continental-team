@@ -14,7 +14,7 @@
     <div class="riders">
       <?php while ($riders->have_posts()) : $riders->the_post(); ?>
         <article class="riders__rider">
-          <a href="<?php the_permalink() ?>"><?php the_post_thumbnail('rider', array('class' => 'riders__rider__image')) ?></a>
+          <a class="riders__rider__bg" href="<?php the_permalink() ?>"><?php the_post_thumbnail('rider', array('class' => 'riders__rider__image')) ?></a>
           <h2 class="riders__rider__name"><a href="<?php the_permalink() ?>"><?= Extras\ungrynerd_svg('flag-' . get_field('bandera')) ?><?php the_title(); ?></a></h2>
         </article>
       <?php endwhile; ?>

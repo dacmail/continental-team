@@ -20,7 +20,7 @@ section.team {
       flex: 0 0 25%;
       padding: rem(0px) rem(15px);
       margin-bottom: rem(60px);
-      transition: $transition-standard;
+      
       @media (max-width: $sm) {
         flex: 0 0 50%;
         width: 50%;
@@ -29,11 +29,19 @@ section.team {
         flex: 0 0 100%;
         width: 100%;
       }
-      &:hover {
-        transform: scale(1.1);
+      &__bg {
+        display: block;
+        background: url('../images/bg-single-rider.jpg') no-repeat bottom center;
+        background-size: contain;
+        overflow: hidden;
       }
+      
       &__image {
         display: block;
+        transition: $transition-standard;
+        &:hover {
+          transform: scale(1.05);
+        }
       }
       &__name {
         font-size: rem(18px);
