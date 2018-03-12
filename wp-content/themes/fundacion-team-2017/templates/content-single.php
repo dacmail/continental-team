@@ -40,7 +40,7 @@
             <h2 class="article__riders__title"><?php esc_html_e('Corredores relacionados', 'ungrynerd'); ?></h2>
             <?php foreach ($riders as $rider) : ?>
               <a class="article__riders__rider" href="<?= get_permalink($rider); ?>">
-                <?= get_the_post_thumbnail( $rider, 'thumbnail'); ?>
+                <?= get_the_post_thumbnail( $rider, 'mini'); ?>
                 <?= get_the_title($rider); ?>
               </a>
             <?php endforeach; ?>

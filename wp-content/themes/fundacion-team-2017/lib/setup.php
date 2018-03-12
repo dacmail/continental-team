@@ -46,6 +46,7 @@ function setup() {
   add_image_size('rider-gallery', 9999, 800, false);
   add_image_size('masonry', 800, 1500, false);
   add_image_size('featured', 1600, 1600, false);
+  add_image_size('mini', 100, 100, array( 'center', 'top' ) );
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats
   add_theme_support('post-formats', ['gallery', 'video']);

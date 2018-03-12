@@ -8,7 +8,7 @@ use Roots\Sage\Wrapper;
 <!doctype html>
 <html <?php language_attributes(); ?>>
   <?php get_template_part('templates/head'); ?>
-  <body <?php body_class(); ?>>
+  <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
     <!--[if IE]>
       <div class="alert alert-warning">
         <?php _e('Estás usando una versión antigua del navegador. Por favor <a href="http://browsehappy.com/">actualizalo</a> para mejroar la experiencia.', 'sage'); ?>

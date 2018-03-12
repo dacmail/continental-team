@@ -161,14 +161,17 @@
       position: relative;
       max-width: 90%;
       overflow: hidden;
-      &:after {
+      &:before {
         content: '';
         height: rem(2px);
         width: 100%;
         background: $gray;
         position: absolute;
-        top: 50%;
-        margin-left: rem(15px);
+        top: rem(12px);
+        margin-left: rem(60px);
+      }
+      ul {
+        margin-top: rem(20px);
       }
     }
     &__result {

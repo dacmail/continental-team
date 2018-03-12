@@ -12,7 +12,6 @@
 <section class="social">
   <header class="social__header">
     <h2 class="social__header__title"><?php esc_html_e('En la red', 'ungrynerd'); ?></h2>
-    <a href="<?php echo get_permalink(); ?>" class="social__more"><?php esc_html_e('Ir a redes sociales', 'ungrynerd'); ?> <?php echo Extras\ungrynerd_svg('icon-more') ?></a>
   </header>
   <?php echo do_shortcode('[ff id="1"]') ?>
 </section>

@@ -40,7 +40,7 @@
         <?php if (have_rows('palmares')): ?>
           <ul class="rider__results__list">
           <?php while (have_rows('palmares')) : the_row(); ?>
-            <li class="rider__results__year"><?php the_sub_field('year'); ?></li>
+            <li class="rider__results__year"><?php the_sub_field('year'); ?>
             <?php if (have_rows('rows')): ?>
               <ul>
               <?php while (have_rows('rows')) : the_row(); ?>
@@ -51,6 +51,7 @@
               <?php endwhile; ?>
               </ul>
             <?php endif ?>
+            </li>
           <?php endwhile; ?>
           </ul>
         <?php endif ?>

@@ -47,13 +47,20 @@ $transition-standard: all 0.2s ease-in-out;
     margin-bottom: rem(50px);
   }
   h2 {
-    font-size: 24px;
+    font-size: rem(24px);
     font-weight: 900;
     line-height: 1.33;
     margin-bottom: 0px;
     & + p {
       margin-top: 0px;
     }
+  }
+  h3 {
+    margin-top: 0rem;
+    font-size: rem(24px);
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: rem(30px);
   }
   .alignleft {
     float: left;
@@ -68,5 +75,14 @@ $transition-standard: all 0.2s ease-in-out;
     @media (max-width: $md) {
       max-width: 100%;
     }
+  }
+  blockquote {
+    font-size: rem(24px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.33;
+    border-left: 8px solid $primary;
+    padding-left: rem(20px);
+    margin: 0rem;
   }
 }

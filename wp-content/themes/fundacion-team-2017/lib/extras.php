@@ -164,3 +164,11 @@ function ungrynerd_pagination($query=null) {
   </style>
   <?php endif;
 }
+
+
+add_filter('style_loader_tag', __NAMESPACE__ . '\ungrynerd_remove_type_attr', 10, 2);
+add_filter('script_loader_tag', __NAMESPACE__ . '\ungrynerd_remove_type_attr', 10, 2);
+
+function ungrynerd_remove_type_attr($tag, $handle) {
+  return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", '', $tag );
+}

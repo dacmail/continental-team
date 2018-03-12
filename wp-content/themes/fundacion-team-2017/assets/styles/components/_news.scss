@@ -28,6 +28,14 @@
     @media (max-width: $xs) {
       display: none;
     }
+    &:hover {
+      color: $black;
+      svg {
+        path {
+          fill: $black;
+        }
+      }
+    }
   }
   &__wrapper {
     display: flex;

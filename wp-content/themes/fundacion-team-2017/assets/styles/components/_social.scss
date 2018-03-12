@@ -20,17 +20,6 @@
       @include title-section();
     }
   }
-  &__more {
-    text-transform: uppercase;
-    font-size: rem(16px);
-    font-weight: 800;
-    line-height: 1.0;
-    text-align: right;
-    color: $primary;
-    @media (max-width: $xs) {
-      display: none;
-    }
-  }
   .ff-stream {
     padding: rem(0px);
   }
@@ -49,7 +38,30 @@
   #ff-stream-1 .ff-twitter .ff-overlay {
     background-color: rgba(0, 161, 223, 0.9);
   }
-  .ff-loadmore-wrapper {
-    display: none;
+  .ff-loadmore-wrapper .ff-btn {
+    color: $white;
+    background-color: $primary !important;
+    border-radius: 0rem;
+    font-weight: bold;
+    font-size: rem(16px);
+    margin-top: rem(40px);
+    padding: 20px 50px;
+    &:hover {
+      background-color: $black !important;
+    }
+  }
+  .ff-sc-label2 .ff-facebook .ff-icon:before,
+  .ff-sc-label2 .ff-twitter .ff-icon:before,
+  .ff-sc-label2 .ff-instagram .ff-icon:before {
+    border: none;
+  }
+  .ff-item .ff-content, .ff-article, .ff-item .ff-content p {
+    font-size: rem(16px);
+  }
+  .ff-layout-grid .ff-has-overlay:hover img.emoji {
+    transform: none !important;
+  }
+  #ff-stream-1 .ff-item-bar .ff-share-popup a {
+    color: $black !important;
   }
 }

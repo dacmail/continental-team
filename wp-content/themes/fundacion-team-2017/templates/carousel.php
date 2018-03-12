@@ -8,7 +8,7 @@
         <div class="carousel__slide__wrap">
           <span class="carousel__slide__post-type"><?php Extras\ungrynerd_post_type(get_post_type(), get_post_format( )); ?></span> ·
            <span class="carousel__slide__date"><?php the_time(get_option('date_format')); ?></span>
-          <h1 class="carousel__slide__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+          <h2 class="carousel__slide__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         </div>
       </article>
     <?php endwhile; ?>
