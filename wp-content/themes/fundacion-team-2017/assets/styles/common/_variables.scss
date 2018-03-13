@@ -50,7 +50,7 @@ $transition-standard: all 0.2s ease-in-out;
     font-size: rem(24px);
     font-weight: 900;
     line-height: 1.33;
-    margin-bottom: 0px;
+    margin-bottom: rem(10px);
     & + p {
       margin-top: 0px;
     }

@@ -1,7 +1,9 @@
 .sponsors-prefooter {
   background-color: $black;
   padding: rem(60px) rem(0px);
+  margin-top: rem(160px);
   @media (max-width: $sm) {
+    margin-top: rem(30px);
     padding: rem(30px) rem(0px);
   }
 }

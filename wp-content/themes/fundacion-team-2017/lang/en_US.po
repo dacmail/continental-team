@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-03-12 10:14+0100\n"
+"POT-Creation-Date: 2018-03-13 12:56+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -35,13 +35,9 @@ msgstr ""
 "You are using an <strong>outdated</strong> browser. Please <a href=“http://"
 "browsehappy.com/“>upgrade your browser</a> to improve your experience."
 
-#: front-page.php:14
+#: front-page.php:19
 msgid "En la red"
 msgstr "Social stream"
-
-#: front-page.php:15
-msgid "Ir a redes sociales"
-msgstr "Go to social networks"
 
 #: functions.php:23
 #, php-format
@@ -88,7 +84,7 @@ msgstr ""
 msgid "Instagram URL"
 msgstr ""
 
-#: lib/extras.php:54 templates/content-single-rider.php:86
+#: lib/extras.php:54 templates/content-single-rider.php:87
 msgid "Noticia"
 msgstr "News"
 
@@ -192,12 +188,16 @@ msgstr ""
 msgid "Menú idiomas"
 msgstr ""
 
-#: lib/setup.php:68
+#: lib/setup.php:69
 msgid "Super Menú"
 msgstr ""
 
-#: lib/setup.php:76
+#: lib/setup.php:77
 msgid "Banner home"
+msgstr ""
+
+#: lib/setup.php:85
+msgid "Banner home (Sólo móvil)"
 msgstr ""
 
 #: lib/titles.php:13
@@ -269,6 +269,10 @@ msgstr "Biography"
 msgid "Palmarés"
 msgstr "Results"
 
+#: templates/content-single-rider.php:82
+msgid "Noticias relacionadas"
+msgstr "Related news"
+
 #: templates/content-single.php:40
 msgid "Corredores relacionados"
 msgstr "Related riders"
@@ -298,3 +302,6 @@ msgstr "Follow us"
 #: templates/news-home.php:7
 msgid "Ir a noticias"
 msgstr "Got to news"
+
+#~ msgid "Ir a redes sociales"
+#~ msgstr "Go to social networks"

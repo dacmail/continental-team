@@ -36,6 +36,10 @@
         }
       }
     }
+    svg {
+      position: relative;
+      top: 1px;
+    }
   }
   &__wrapper {
     display: flex;
@@ -81,7 +85,7 @@
         display: block;
         transition: $transition-standard;
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.05);
         }
       }
     }
@@ -180,6 +184,7 @@
   }
   &--listing {
     max-width: $container;
+    min-height: rem(500px);
     margin: rem(0px) auto;
     padding: rem(0px);
     &.news .news__item {
@@ -228,6 +233,7 @@
       }
       &__title {
         font-size: rem(24px);
+        margin-bottom: rem(15px);
       }
     }
   }

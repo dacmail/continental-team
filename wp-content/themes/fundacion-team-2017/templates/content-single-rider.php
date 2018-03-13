@@ -79,11 +79,11 @@
       'posts_per_page' => 3)) ?>
     <?php if ($news->have_posts()): ?>
       <div class="rider__news">
-        <h2 class="rider__title">Noticias relacionadas</h2>
+        <h2 class="rider__title"><?php esc_html_e('Noticias relacionadas', 'ungrynerd'); ?></h2>
         <div class="rider__news__wrapper">
         <?php while ($news->have_posts()) : $news->the_post(); ?>
           <article class="news-item">
-            <?php the_post_thumbnail('featured_medium') ?>
+            <div class="news-item__image"><?php the_post_thumbnail('featured_medium') ?></div>
             <p class="news-item__meta"><strong><?php esc_html_e('Noticia', 'ungrynerd'); ?></strong> · <?php the_time(get_option('date_format')); ?></p>
             <h3 class="news-item__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
           </article>

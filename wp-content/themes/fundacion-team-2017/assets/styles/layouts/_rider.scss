@@ -183,6 +183,7 @@
       text-align: justify;
       color: $black;
       margin-bottom: rem(10px);
+      font-weight: 400;
       strong {
         font-weight: 900;
       }
@@ -239,8 +240,15 @@
       @media (max-width: $sm) {
         flex: 0 0 100%;
       }
+      &__image {
+        overflow: hidden;
+      }
       img {
         width: 100%;
+        transition: $transition-standard;
+        &:hover {
+          transform: scale(1.05);
+        }
       }
       &__meta {
         font-size: rem(16px);
@@ -262,6 +270,9 @@
         margin: rem(0px);
         a {
           color: $black;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
