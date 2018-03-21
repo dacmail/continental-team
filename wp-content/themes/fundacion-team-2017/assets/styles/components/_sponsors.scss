@@ -74,10 +74,16 @@
           display: inline-block;
           color: $white;
           margin: 0rem rem(20px);
+          overflow: hidden;
           svg {
             margin-right: rem(5px);
             position: relative;
             top: rem(2px);
+          }
+          &:hover {
+            svg {
+              animation: toTopFromBottom 0.6s forwards;
+            }
           }
         }
       }

@@ -4,7 +4,7 @@
     <div class="container sponsors-block sponsors-block--level1">
       <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
         <?php $logo = wp_get_attachment_image_src(get_field('sponsor_alt_logo'), 'full');  ?>
-        <a class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
+        <a target="_blank" class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
       <?php endwhile; ?>
     </div>
   <?php endif; ?>
@@ -14,7 +14,7 @@
     <div class="container sponsors-block sponsors-block--level2">
       <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
         <?php $logo = wp_get_attachment_image_src(get_field('sponsor_alt_logo'), 'full');  ?>
-        <a class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
+        <a target="_blank" class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
       <?php endwhile; ?>
     </div>
   <?php endif; ?>
@@ -24,7 +24,7 @@
     <div class="container sponsors-block sponsors-block--level3">
       <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
         <?php $logo = wp_get_attachment_image_src(get_field('sponsor_alt_logo'), 'full');  ?>
-        <a class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
+        <a target="_blank" class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
       <?php endwhile; ?>
     </div>
   <?php endif; ?>

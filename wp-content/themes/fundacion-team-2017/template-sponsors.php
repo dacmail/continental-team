@@ -15,7 +15,7 @@
             <div class="container">
               <div class="sponsors-block__wrapper">
                 <?php $logo = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');  ?>
-                <a class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
+                <a target="_blank" class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
                 <div class="sponsors-block__social">
                   <a target="_blank" href="<?php the_field('sponsor_link'); ?>"><?= Extras\ungrynerd_svg('icon-sp-home'); ?> <?php the_title(); ?></a>
                   <?php $twitter = get_field('sponsor_twitter'); ?>
@@ -47,7 +47,7 @@
           <div class="container">
             <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
               <?php $logo = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');  ?>
-              <a class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
+              <a target="_blank" class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
             <?php endwhile; ?>
           </div>
         </div>
@@ -58,7 +58,7 @@
         <div class="container sponsors-block sponsors-block--level3">
           <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
             <?php $logo = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');  ?>
-            <a class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
+            <a target="_blank" class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
           <?php endwhile; ?>
         </div>
       <?php endif; ?>

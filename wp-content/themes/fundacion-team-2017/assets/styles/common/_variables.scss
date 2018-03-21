@@ -21,6 +21,18 @@ $warm-grey: #9b9b9b;
 
 $transition-standard: all 0.2s ease-in-out;
 
+@keyframes toTopFromBottom {
+	49% {
+		transform: translateY(-100%);
+	}
+	50% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+	51% {
+		opacity: 1;
+	}
+}
 
 %container {
   max-width: $container;

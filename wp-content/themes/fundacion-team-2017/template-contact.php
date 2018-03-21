@@ -49,14 +49,14 @@
           <?php the_field('contact_text'); ?>
         </div>
         <div class="block block--form">
-          <form action="<?php the_field('contact_form'); ?>">
+          <form action="<?php the_field('contact_form'); ?>" method="post" target="_blank">
             <p>
               <label for="nombre"><?php esc_html_e('Nombre', 'ungrynerd'); ?></label>
-              <input id="nombre" type="text"  name="" placeholder="<?php esc_html_e('Nombre', 'ungrynerd'); ?>">
+              <input id="nombre" type="text"  name="FNAME" placeholder="<?php esc_html_e('Nombre', 'ungrynerd'); ?>">
             </p>
             <p>
               <label for="email"><?php esc_html_e('e-mail', 'ungrynerd'); ?></label>
-              <input id="email" type="email" name="" placeholder="<?php esc_html_e('e-mail', 'ungrynerd'); ?>">
+              <input id="email" type="email" name="EMAIL" placeholder="<?php esc_html_e('e-mail', 'ungrynerd'); ?>">
             </p>
             <p>
               <input type="submit" value="<?php esc_html_e('Suscribirse', 'ungrynerd'); ?>">

@@ -55,7 +55,7 @@
               }
             });
             $('.news__filter a').on('click', function (e) {
-              e.preventDefault;
+              e.preventDefault();
               $('.news__filter a').removeClass('active');
               $(this).addClass('active');
               $grid.isotope({ filter: $(this).data('filter') });

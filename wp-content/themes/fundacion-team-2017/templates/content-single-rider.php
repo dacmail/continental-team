@@ -8,9 +8,15 @@
         </div>
         <div class="rider__data">
           <div class="rider__social">
-            <a target="_blank" href="<?php the_field('twitter') ?>"><?= Extras\ungrynerd_svg('icon-twitter-rider') ?></a>
-            <a target="_blank" href="<?php the_field('instagram') ?>"><?= Extras\ungrynerd_svg('icon-instagram-rider') ?></a>
-            <a target="_blank" href="<?php the_field('facebook') ?>"><?= Extras\ungrynerd_svg('icon-facebook-rider') ?></a>
+            <?php if ( get_field('twitter') ): ?>
+              <a target="_blank" href="<?php the_field('twitter') ?>"><?= Extras\ungrynerd_svg('icon-twitter-rider') ?></a>
+            <?php endif; ?>
+            <?php if ( get_field('instagram') ): ?>
+              <a target="_blank" href="<?php the_field('instagram') ?>"><?= Extras\ungrynerd_svg('icon-instagram-rider') ?></a>
+            <?php endif; ?>
+            <?php if ( get_field('facebook') ): ?>
+              <a target="_blank" href="<?php the_field('facebook') ?>"><?= Extras\ungrynerd_svg('icon-facebook-rider') ?></a>
+            <?php endif; ?>
           </div>
           <h1 class="rider__name"><?= Extras\ungrynerd_svg('flag-' . get_field('bandera')) ?><?php the_title(); ?></h1>
           <div class="rider__info">
