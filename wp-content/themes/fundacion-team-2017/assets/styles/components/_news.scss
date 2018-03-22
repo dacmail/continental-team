@@ -183,7 +183,7 @@
     }
   }
   &--listing {
-    max-width: $container;
+    max-width: rem($container-px + 20px);
     min-height: rem(500px);
     margin: rem(0px) auto;
     padding: rem(0px);

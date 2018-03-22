@@ -170,5 +170,7 @@ add_filter('style_loader_tag', __NAMESPACE__ . '\ungrynerd_remove_type_attr', 10
 add_filter('script_loader_tag', __NAMESPACE__ . '\ungrynerd_remove_type_attr', 10, 2);
 
 function ungrynerd_remove_type_attr($tag, $handle) {
-  return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", '', $tag );
+  return preg_replace("/type=['\"]text\/(javascript|css)['\"]/", '', $tag);
 }
+
+add_filter('wp_calculate_image_srcset_meta', '__return_null');

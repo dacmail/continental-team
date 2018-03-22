@@ -73,7 +73,8 @@
       img {
         width: rem(48px);
         margin-right: rem(10px);
-        background: $black;
+        background: url('../images/bg-rider-small.jpg') no-repeat center center $black;
+        background-size: cover;
       }
     }
   }

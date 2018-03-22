@@ -31,7 +31,7 @@
 </section>
 <footer class="footer">
   <div class="container">
-    <p>© <?php echo date('Y') ?> - <?php esc_html_e('CLUB DEPORTIVO CICLISTA ALBERTO CONTADOR. Todos los derechos reservados. Prohibida su copia o reproducción sin autorización expresa.', 'ungrynerd'); ?></p>
+    <p>© <?php echo date('Y') ?> - <?php esc_html_e('HAYF SPORTS SL. Todos los derechos reservados. Prohibida su copia o reproducción sin autorización expresa.', 'ungrynerd'); ?></p>
     <p><a target="_blank" href="http://ungrynerd.com">by <strong>UNGRYNERD</strong></a></p>
   </div>
 </footer>

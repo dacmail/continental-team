@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-03-13 12:56+0100\n"
+"POT-Creation-Date: 2018-03-22 08:51+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -48,22 +48,6 @@ msgstr ""
 msgid "Actualidad"
 msgstr "News"
 
-#: index.php:9
-msgid "Todo"
-msgstr "All"
-
-#: index.php:10
-msgid "Noticias"
-msgstr "News"
-
-#: index.php:11
-msgid "Galerías"
-msgstr "Galleries"
-
-#: index.php:12
-msgid "Videos"
-msgstr "Videos"
-
 #: lib/customizer.php:14
 msgid "Enlaces sociales"
 msgstr "Social links"
@@ -84,7 +68,7 @@ msgstr ""
 msgid "Instagram URL"
 msgstr ""
 
-#: lib/extras.php:54 templates/content-single-rider.php:87
+#: lib/extras.php:54 templates/content-single-rider.php:93
 msgid "Noticia"
 msgstr "News"
 
@@ -219,7 +203,7 @@ msgstr ""
 
 #: template-contact.php:54 template-contact.php:55
 msgid "Nombre"
-msgstr ""
+msgstr "Name"
 
 #: template-contact.php:58 template-contact.php:59
 msgid "e-mail"
@@ -249,27 +233,27 @@ msgstr ""
 msgid "Pages:"
 msgstr ""
 
-#: templates/content-single-rider.php:18
+#: templates/content-single-rider.php:24
 msgid "Edad"
 msgstr "Age"
 
-#: templates/content-single-rider.php:22
+#: templates/content-single-rider.php:28
 msgid "Altura (cm)"
 msgstr "Height (cm)"
 
-#: templates/content-single-rider.php:26
+#: templates/content-single-rider.php:32
 msgid "Peso (kg)"
 msgstr "Weight (kg)"
 
-#: templates/content-single-rider.php:35
+#: templates/content-single-rider.php:41
 msgid "Biografía"
 msgstr "Biography"
 
-#: templates/content-single-rider.php:39
+#: templates/content-single-rider.php:45
 msgid "Palmarés"
 msgstr "Results"
 
-#: templates/content-single-rider.php:82
+#: templates/content-single-rider.php:88
 msgid "Noticias relacionadas"
 msgstr "Related news"
 
@@ -285,11 +269,27 @@ msgstr "Tags"
 msgid "Más noticias"
 msgstr "More news"
 
+#: templates/filter-format.php:6
+msgid "Todo"
+msgstr "All"
+
+#: templates/filter-format.php:7
+msgid "Noticias"
+msgstr "News"
+
+#: templates/filter-format.php:8
+msgid "Galerías"
+msgstr "Galleries"
+
+#: templates/filter-format.php:9
+msgid "Videos"
+msgstr "Videos"
+
 #: templates/footer.php:34
 msgid ""
-"CLUB DEPORTIVO CICLISTA ALBERTO CONTADOR. Todos los derechos reservados. "
-"Prohibida su copia o reproducción sin autorización expresa."
-msgstr "CLUB DEPORTIVO CICLISTA ALBERTO CONTADOR. All rights reserved."
+"HAYF SPORTS SL. Todos los derechos reservados. Prohibida su copia o "
+"reproducción sin autorización expresa."
+msgstr "HAYF SPORTS SL. All rights reserved."
 
 #: templates/header.php:4
 msgid "Menu"
