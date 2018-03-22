@@ -75,7 +75,7 @@ section.team {
     justify-content: center;
   }
   .member {
-    flex: 0 0 calc(100%/7);
+    flex: 0 0 calc(100%/6);
     margin-bottom: rem(30px);
     padding: rem(0px) rem(15px);  
     @media (max-width: $sm) {
