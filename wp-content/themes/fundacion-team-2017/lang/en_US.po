@@ -289,7 +289,9 @@ msgstr "Videos"
 msgid ""
 "HAYF SPORTS SL. Todos los derechos reservados. Prohibida su copia o "
 "reproducción sin autorización expresa."
-msgstr "HAYF SPORTS SL. All rights reserved."
+msgstr ""
+"HAYF SPORTS SL. All rights reserved. Any unauthorized copying or "
+"reproduction is strictly prohibited."
 
 #: templates/header.php:4
 msgid "Menu"
