@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-03-22 08:51+0100\n"
+"POT-Creation-Date: 2018-03-27 17:52+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -213,6 +213,18 @@ msgstr ""
 msgid "Suscribirse"
 msgstr "Subscribe"
 
+#: template-sponsors.php:15
+msgid "Patrocinadores principales"
+msgstr "Title Sponsors"
+
+#: template-sponsors.php:48
+msgid "Patrocinadores oficiales"
+msgstr "Official Sponsors:"
+
+#: template-sponsors.php:60
+msgid "Proveedores oficiales"
+msgstr "Official Suppliers"
+
 #: template-team.php:25
 msgid "Staff"
 msgstr ""
@@ -304,6 +316,3 @@ msgstr "Follow us"
 #: templates/news-home.php:7
 msgid "Ir a noticias"
 msgstr "Got to news"
-
-#~ msgid "Ir a redes sociales"
-#~ msgstr "Go to social networks"

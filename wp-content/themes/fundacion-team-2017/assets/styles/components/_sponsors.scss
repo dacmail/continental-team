@@ -12,6 +12,23 @@
   @extend %flex;
   align-items: center;
   justify-content: center;
+  &__title {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 0.88;
+    letter-spacing: 8.9px;
+    color: $white;
+    background-color: $black;
+    border: solid 1px #333333;
+    padding: 23px 50px;
+    display: inline-block;
+    margin: -80px auto 0 auto;
+    text-transform: uppercase;
+    @media (max-width: $sm) {
+      padding: 20px;
+      letter-spacing: 0;
+    }
+  }
   &__item {
     display: block;
     padding: rem(10px);
@@ -38,6 +55,9 @@
     .sponsors-block__item {
       padding: rem(15px);
     }
+    .sponsors-block__title {
+      margin-top: -35px;
+    }
   }
 }
 .sponsors-section {
@@ -47,14 +67,14 @@
     &--level1 {
       color: $white;
       background: $black;
-      padding: rem(50px) 0rem;
-      margin-bottom: 0rem;
+      padding: rem(50px) 0;
+      margin-bottom: 0;
       &.type-0 {
         background: url('../images/bg-sponsor-1.jpg') no-repeat center center;
         background-size: cover;
       }
       &.type-1 {
-        margin-top: 0rem;
+        margin-top: 0;
         background: url('../images/bg-sponsor-2.jpg') no-repeat center center;
         background-size: cover;
       }
@@ -64,7 +84,10 @@
         flex-direction: column;
       }
       .sponsors-block__wrapper {
-        margin: rem(90px) 0rem rem(50px) 0rem;
+        margin: rem(90px) 0 rem(50px) 0;
+        @media (max-width: $sm) {
+          margin: rem(30px) 0 rem(20px) 0;
+        }  
       }
       .sponsors-block__item {
         margin-bottom: rem(65px);
@@ -91,6 +114,7 @@
     &--level2 {
       background-color: $gray;
       margin-top: 0rem;
+      margin-bottom: -10px;
       .container {
         max-width: rem($container-px + 120px);
         padding: rem(60px) 0rem;
@@ -99,12 +123,21 @@
         justify-content: center;
         .sponsors-block__item {
           padding: rem(90px) rem(60px);
+          @media (max-width: $sm) {
+            padding: rem(30px);
+          }
         }
       }
     }
     &--level3 {
+      @media (max-width: $sm) {
+        justify-content: space-between;
+      }
       .sponsors-block__item {
           padding: rem(50px) rem(60px);
+          @media (max-width: $sm) {
+            padding: rem(10px);
+          }
         }
     }
   }

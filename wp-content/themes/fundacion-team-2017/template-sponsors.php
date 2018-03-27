@@ -12,6 +12,10 @@
         <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
           <div class="sponsors-block sponsors-block--level1 type-<?= $sponsors->current_post; ?>">
             <div class="container">
+              <?php if ($sponsors->current_post==0): ?>
+                <h2 class="sponsors-block__title"><?php esc_html_e('Title Sponsors', 'ungrynerd'); ?></h2>
+              <?php endif; ?>
+
               <div class="sponsors-block__wrapper">
                 <?php $logo = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');  ?>
                 <a target="_blank" class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
@@ -43,6 +47,7 @@
       <?php $sponsors = new WP_Query(array('post_type' => array('sponsor'), 'meta_key' => 'sponsor_type', 'meta_value' => 1, 'posts_per_page' => -1, 'order' => 'ASC')); ?>
       <?php if ($sponsors->have_posts()) : ?>
         <div class="sponsors-block sponsors-block--level2">
+          <h2 class="sponsors-block__title"><?php esc_html_e('Official Sponsors', 'ungrynerd'); ?></h2>
           <div class="container">
             <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
               <?php $logo = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');  ?>
@@ -54,6 +59,7 @@
 
       <?php $sponsors = new WP_Query(array('post_type'=> array('sponsor'), 'meta_key' => 'sponsor_type', 'meta_value' => 2, 'posts_per_page' => -1, 'order' => 'ASC')); ?>
       <?php if ($sponsors->have_posts()) : ?>
+        <h2 class="sponsors-block__title"><?php esc_html_e('Official Suppliers', 'ungrynerd'); ?></h2>
         <div class="container sponsors-block sponsors-block--level3">
           <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
             <?php $logo = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');  ?>
