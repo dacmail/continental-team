@@ -1,0 +1,421 @@
+AWSTATS DATA FILE 6.8 (build 1.910)
+# If you remove this file, all statistics for date 201803 will be lost/reset.
+
+# Position (offset in bytes) in this file of beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 27
+POS_GENERAL 1864                
+POS_TIME 2540                
+POS_VISITOR 7563                
+POS_DAY 11474               
+POS_DOMAIN 3253                
+POS_LOGIN 3621                
+POS_ROBOT 3776                
+POS_WORMS 4174                
+POS_EMAILSENDER 4305                
+POS_EMAILRECEIVER 4448                
+POS_SESSION 11586               
+POS_SIDER 11774               
+POS_FILETYPES 4583                
+POS_OS 4780                
+POS_BROWSER 4906                
+POS_SCREENSIZE 5169                
+POS_UNKNOWNREFERER 5243                
+POS_UNKNOWNREFERERBROWSER 5427                
+POS_ORIGIN 5565                
+POS_SEREFERRALS 5704                
+POS_PAGEREFS 5861                
+POS_SEARCHWORDS 6693                
+POS_KEYWORDS 6845                
+POS_MISC 2204                
+POS_ERRORS 6904                
+POS_CLUSTER 3477                
+POS_SIDER_404 7018                
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20180302122756 98 24299 37249965690
+FirstTime 20180301002820
+LastTime 20180302121333
+LastUpdate 20180302123011 98 0 97 1 0
+TotalVisits 100                 
+TotalUnique 74                  
+MonthHostsKnown 0                   
+MonthHostsUnknown 97                  
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+QuickTimeSupport 0 0 0
+JavaEnabled 0 0 0
+JavascriptDisabled 0 0 0
+PDFSupport 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 0 0
+RealPlayerSupport 0 0 0
+TotalMisc 0 0 0
+DirectorSupport 0 0 0
+FlashSupport 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 7 33 1842044 4 5 21885
+1 2 17 1321062 2 6 9034
+2 9 25 1019204 6 9 9124
+3 6 6 181484 4 5 72526
+4 2 2 111040 2 3 130412
+5 11 11 430370 3 5 77486
+6 6 6 352492 0 0 0
+7 2 2 5827 2 2 67
+8 5 7 435102 3 20 222156
+9 10 38 1801486 0 1 0
+10 18 78 3918063 6 14 244258
+11 6 37 1621813 0 1 0
+12 12 22 888240 4 13 58039
+13 2 16 437882 4 5 26082
+14 2 31 2120298 2 3 145754
+15 9 35 5944402 1 3 10470
+16 10 35 1748305 3 7 77160
+17 4 5 242850 0 2 0
+18 5 46 3175084 3 11 73525
+19 7 46 6604438 9 20 4
+20 4 22 1466877 0 0 0
+21 7 48 2821315 2 10 57381
+22 6 25 4584458 2 2 65273
+23 5 50 2566433 11 13 271356
+END_TIME
+
+# Domain - Pages - Hits - Bandwidth
+# The 10 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 10
+us 95 442 31284904
+ip 39 68 3473834
+it 6 19 5321591
+eu 5 44 2112809
+de 3 16 621697
+lu 3 17 959003
+es 2 18 1056393
+fr 2 4 129262
+hu 1 14 615870
+dk 1 1 65206
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 10 first Hits must be first (order not required for others)
+BEGIN_ROBOT 8
+googlebot 31 317805 20180302122756 2
+bot[+:,\.\;\/\\-] 27 694516 20180302040926 7
+crawl 9 206083 20180301230522 1
+yandex 5 67275 20180302100520 2
+wordpress 4 0 20180302013715 0
+robot 2 134 20180302031343 2
+unknown 1 67 20180301220335 1
+mj12bot 1 67 20180302072618 1
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 8
+php 23 61095 0 0
+css 36 536970 0 0
+png 85 4817213 0 0
+html 130 7306112 0 0
+xml 2 2090 0 0
+jpg 291 32354950 0 0
+js 74 446319 0 0
+Unknown 2 115820 0 0
+END_FILETYPES
+
+# OS ID - Hits
+BEGIN_OS 8
+winlong 20
+winxp 46
+winnt 242
+win2000 7
+linuxubuntu 34
+linux 157
+macosx 118
+Unknown 19
+END_OS
+
+# Browser ID - Hits
+BEGIN_BROWSER 17
+firefox50.0 1
+msie6.0 26
+opera 3
+firefox29.0 17
+firefox58.0 51
+firefox34.0 1
+firefox49.0 2
+firefox31.0 14
+netscape4.79 4
+msie8.0 1
+mozilla 32
+msie7.0 7
+firefox40.1 5
+msie9.0 4
+firefox36.0 1
+Unknown 11
+safari 463
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 3
+\ 20180301215059
+facebookexternalhit/1.1 20180301205859
+Mozilla/4.0_(compatible;) 20180302121333
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 2
+\ 20180301215059
+facebookexternalhit/1.1 20180301205859
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 73 98
+From1 1 1
+From2 23 30
+From3 47 47
+From4 13 467
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 1
+google 23 30
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 10 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 23
+https://kerch.site 3 3
+https://t.co/kVWp3XVjPr 3 3
+http://gezlev.com.ua 3 3
+http://ankerch.crimea.ua 3 3
+http://potolokelekor.ru 3 3
+https://natprof.ru 3 3
+https://professionalsolutions.eu/ru/ 3 3
+http://strady.org.ua 3 3
+http://metallo-konstruktsii.ru 3 3
+https://nakozhe.com 2 2
+http://r.duckduckgo.com/l/ 1 1
+http://www.columb.net.ua 1 1
+https://l.instagram.com 1 1
+http://m.facebook.com 1 1
+https://pills24h.com/buy-zoloft-online-without-prescription/ 2 2
+https://www.facebook.com 1 1
+https://www.bing.com 1 1
+https://t.co/tAtQOHVtJl 2 2
+https://pfrf-kabinet.ru 2 2
+http://m.facebook.com 1 1
+http://spy-app.info/mobile-spy-app/ 2 2
+https://m.facebook.com 1 1
+http://03p.info 2 2
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 0
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 0
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 4
+302 1 0
+400 4 4
+404 53 286041
+301 22 0
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referer
+BEGIN_SIDER_404 9
+/ytt.php 1 -
+/apple-touch-icon-precomposed.png 20 -
+/apple-touch-icon.png 20 -
+/apple-touch-icon-120x120-precomposed.png 4 -
+/wp-profi1e.php 1 -
+/wp-log-7.php 1 -
+/apple-touch-icon-120x120.png 4 -
+/wp-print.php 1 -
+/xmlrpc-blog.php 1 -
+END_SIDER_404
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 10 first Hits must be first (order not required for others)
+BEGIN_VISITOR 97
+2001:41d0:1004:284d:: 15 15 687510 20180302120148 20180302120148 /feed/
+46.118.125.21 8 8 520644 20180301213110
+93.145.1.223 7 20 787538 20180301105242
+86.215.4.50 7 20 988928 20180301154908
+46.119.114.157 7 7 455438 20180302064909
+134.249.48.151 7 7 450418 20180301081039
+178.159.37.55 6 6 389228 20180302050008
+2001:41d0:a:7c93:: 5 5 229170 20180302101335
+46.118.116.121 4 4 258816 20180302041219
+46.235.158.196 4 4 234156 20180302121333 20180302121333 /
+52.27.2.86 0 1 1398 
+85.10.221.233 1 8 219969 20180302105645
+2a03:2880:3020:1fe7:face:b00c:0:8000 0 2 184816 
+5.89.40.27 1 12 603568 20180301165415
+195.22.127.224 1 1 1045 20180302055053
+85.227.140.153 1 14 1202674 20180302005022
+120.22.64.189 2 15 839777 20180301232237
+151.0.79.132 1 14 5308892 20180301193425
+88.5.59.63 1 8 271316 20180301234505
+80.29.134.86 1 1 20019 20180302113307 20180302113307 /
+131.72.64.26 2 2 5827 20180301225051
+213.140.94.79 2 2 5827 20180302001928
+2a02:a03f:4aa6:ec00:d18b:a408:e878:9c10 1 14 1202674 20180301183146
+87.64.76.189 1 12 603568 20180302110929
+83.49.117.30 0 4 369632 
+2a03:2880:3020:5fe3:face:b00c:0:8000 0 1 92408 
+181.110.93.243 0 1 53182 
+80.26.179.90 0 1 92408 
+2a01:e34:ed30:8ba0:6075:ef5e:78c:bd5a 1 14 4890268 20180301150846
+180.249.102.31 2 2 67607 20180302095617
+213.138.250.128 2 15 681076 20180301215803
+188.13.58.141 1 14 615870 20180302001012
+213.201.84.254 0 1 22967 
+87.201.39.106 1 4 55280 20180301220315
+54.243.18.35 2 2 23991 20180302082654
+213.140.64.89 2 2 5827 20180301090421
+80.67.12.253 2 2 5827 20180301053027
+134.249.66.84 3 3 168398 20180301051516
+66.102.6.221 1 3 39402 20180301223731
+188.86.49.58 1 1 65206 20180301205904
+199.30.24.171 0 1 1398 
+80.246.106.4 0 1 0 
+131.253.25.91 0 1 11915 
+130.105.230.217 1 14 615870 20180301093052
+2a03:2880:3020:afd4:face:b00c:0:8000 0 1 92408 
+194.154.216.86 3 16 959003 20180301180143
+66.249.93.79 1 1 65206 20180301153335
+92.191.170.60 3 22 746282 20180302120246 20180302120246 /
+84.197.85.216 1 14 828591 20180301181815
+179.49.22.194 1 1 2401 20180301161448
+146.241.32.18 1 14 615870 20180301210618
+174.109.124.129 1 14 615870 20180301194714
+84.78.18.197 1 14 1202674 20180301103703
+176.87.141.106 0 1 92408 
+5.32.48.22 0 5 1607846 
+37.13.114.44 0 1 92408 
+173.244.135.25 1 1 45834 20180301222745
+62.210.215.100 1 1 45834 20180301122542
+80.98.104.237 1 14 615870 20180302102726
+109.198.133.38 2 2 5827 20180301192920
+81.44.11.174 1 14 828591 20180302091812
+66.102.6.193 0 2 93806 
+91.89.228.83 1 1 11846 20180301003403
+2a03:2880:30:afca:face:b00c:0:8000 0 1 92408 
+93.45.28.38 1 14 1202674 20180301010818
+89.183.23.189 2 15 681076 20180301101004
+66.102.6.223 0 3 138108 
+85.233.248.28 2 2 5827 20180301071251
+194.116.158.84 1 14 750657 20180301144555
+2a03:2880:2110:eff7:face:b00c:0:1 0 1 92408 
+65.55.210.211 1 1 13648 20180301052607
+2a03:2880:2111:bfef:face:b00c:0:8000 0 1 92408 
+115.188.174.95 1 14 615870 20180302023416
+2a03:2880:3011:9fc4:face:b00c:0:8000 1 1 65206 20180301205829
+155.64.38.81 1 1 57910 20180301105239
+62.83.97.201 0 1 92408 
+86.98.54.233 1 4 2523378 20180301220140
+89.141.106.9 2 15 681076 20180301115441
+197.161.133.218 3 3 6242 20180302034517
+2001:41d0:a:fc9b::1 1 1 65206 20180301124635
+131.253.25.68 0 2 16740 
+181.9.169.25 1 8 271316 20180301111828
+88.148.84.161 1 15 392048 20180301133126
+2a03:2880:3020:aff2:face:b00c:0:8000 0 1 92408 
+194.250.203.181 0 2 80883 
+131.253.25.70 1 1 65206 20180301022752
+176.31.64.186 1 1 65206 20180301064226
+193.106.30.99 1 1 2545 20180301122532
+92.243.226.17 2 2 5827 20180302020130
+92.243.250.221 2 2 5827 20180301002820
+2.40.49.168 1 14 1132770 20180301142340
+66.249.93.77 1 1 65206 20180302094047
+217.85.160.198 1 14 615870 20180301193009
+2.53.63.63 1 14 1163307 20180301214824
+212.237.14.168 1 1 65206 20180301120341
+77.228.14.200 1 14 828591 20180301204545
+83.47.43.202 2 30 1674780 20180301232609
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 2
+20180301 119 512 39619033 72
+20180302 38 131 6021536 28
+END_DAY
+
+# Session range - Number of visits
+BEGIN_SESSION 5
+5mn-15mn 1
+30s-2mn 3
+2mn-5mn 2
+0s-30s 87
+30mn-1h 3
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_SIDER 13
+/ 93 5961525 57 53
+/feed/ 24 1100016 19 19
+/wp-login.php 21 59790 11 11
+/moschetti-repitio-victoria-y-habtom-culmino-la-carrera-en-la-tercera-plaza-del-podio/ 5 60725 5 5
+/moschetti-repeated-victory-and-habtom-culminated-the-race-in-the-third-place-of-the-podium/ 3 35538 3 3
+/wp-includes/wlwmanifest.xml 2 2090 1 1
+/xmlrpc.php 2 1305 1 0
+/wp-json 2 115820 1 1
+/the-polartec-kometa-ready-to-his-debut-in-the-vuelta-a-valencia/ 1 11186 0 1
+/comments/feed/ 1 783 0 1
+/page/2/ 1 64781 1 0
+/wp-json/ 1 57910 0 0
+/el-polartec-kometa-se-puso-en-marcha-en-mar-de-pulpi/ 1 13648 1 1
+END_SIDER

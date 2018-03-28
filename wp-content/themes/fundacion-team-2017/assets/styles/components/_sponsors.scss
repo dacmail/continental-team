@@ -68,7 +68,10 @@
       color: $white;
       background: $black;
       padding: rem(50px) 0;
-      margin-bottom: 0;
+      margin-bottom: rem(150px);
+      @media (max-width: $sm) {
+        margin-bottom: rem(70px);
+      }  
       &.type-0 {
         background: url('../images/bg-sponsor-1.jpg') no-repeat center center;
         background-size: cover;
