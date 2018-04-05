@@ -134,6 +134,12 @@
         a {
           color: $white;
         }
+        &.lang-item {
+          display: none;
+          @media (max-width: $sm) {
+            display: block;
+          }
+        }
       }
 
     }
