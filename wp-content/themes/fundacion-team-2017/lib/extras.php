@@ -174,3 +174,15 @@ function ungrynerd_remove_type_attr($tag, $handle) {
 }
 
 add_filter('wp_calculate_image_srcset_meta', '__return_null');
+
+
+if (function_exists('pll_register_string')) {
+  /**
+   * Register some string from the customizer to be translated with Polylang
+   */
+  function ungrynerd_pll_register_string() {
+    pll_register_string('ungrynerd_legal', get_theme_mod('ungrynerd_legal'), 'ungrynerd', true);
+  }
+
+  add_action('after_setup_theme', __NAMESPACE__ . '\ungrynerd_pll_register_string');
+}

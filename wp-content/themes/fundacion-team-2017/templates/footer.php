@@ -31,7 +31,12 @@
 </section>
 <footer class="footer">
   <div class="container">
-    <p>© <?php echo date('Y') ?> - <?php esc_html_e('HAYF SPORTS SL. Todos los derechos reservados. Prohibida su copia o reproducción sin autorización expresa.', 'ungrynerd'); ?></p>
+    <p>
+      © <?php echo date('Y') ?> - 
+      <?php esc_html_e('HAYF SPORTS SL. Todos los derechos reservados. 
+      Prohibida su copia o reproducción sin autorización expresa.', 'ungrynerd'); ?>
+      - <a href="<?= pll__(get_theme_mod('ungrynerd_legal')); ?>"><?php esc_html_e('Aviso legal', 'ungrynerd'); ?></a>
+    </p>
     <p><a target="_blank" href="http://ungrynerd.com">by <strong>UNGRYNERD</strong></a></p>
   </div>
 </footer>
