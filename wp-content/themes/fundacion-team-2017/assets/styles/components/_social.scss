@@ -64,4 +64,8 @@
   #ff-stream-1 .ff-item-bar .ff-share-popup a {
     color: $black !important;
   }
+  .ff-layout-grid .ff-item .ff-img-holder img {
+    height: 100%;
+    object-fit: cover;
+  }
 }
