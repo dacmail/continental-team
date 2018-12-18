@@ -16,6 +16,7 @@
  */
 session_start();
 
+/** @noinspection PhpIncludeInspection */
 require_once( dirname($_SERVER["SCRIPT_FILENAME"]) . '/LAClassLoader.php' );
 LAClassLoader::get(dirname($_SERVER["SCRIPT_FILENAME"]) . '/')->register(true);
 
@@ -44,7 +45,9 @@ if (isset($_REQUEST['action'])){
 					$db->setOption('bg_task_time', $time);
 					echo 'new cache time: ' . $time;
 				}
-			} else  $db->setOption('bg_task_time', time());
+			} else  {
+			    $db->setOption('bg_task_time', time());
+            }
 			break;
 		case 'flow_flow_save_stream_settings':
 			$db->save_stream_settings();

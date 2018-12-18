@@ -16,7 +16,7 @@ use flow\db\FFDB;
 abstract class LADBMigrationBase implements ILADBMigration{
 	
 	public function version() {
-		return LADBMigrationManager::INIT_MIGRAION;
+		return LADBMigrationManager::INIT_MIGRATION;
 	}
 	
 	public function execute($conn, $manager){
@@ -117,11 +117,11 @@ abstract class LADBMigrationBase implements ILADBMigration{
 				`post_status` VARCHAR(15),
 				`post_source` VARCHAR(300),
 				`post_additional` VARCHAR(300),
-				`user_bio` VARCHAR(200),
+				`user_bio` TEXT,
 				`user_counts_media` INT,
 				`user_counts_follows` INT,
 				`user_counts_followed_by` INT,
-				`location` VARCHAR(300),
+				`location` VARCHAR(500),
 				`carousel_size` INT,
 				PRIMARY KEY (`post_id`, `post_type`, `feed_id`)
 			) ?p";

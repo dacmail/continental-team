@@ -121,7 +121,7 @@ var FlowFlowApp = (function($){
       this.setupModelsAndViews();
       this.setupTabsAndContainer();
       this.attachGlobalEvents();
-      Controller.confirmPopup = this.initConfirmPopup();
+      Controller.popup = this.initPopup();
       //this.initClipBoard();
 
     },
@@ -154,28 +154,40 @@ var FlowFlowApp = (function($){
     createBackup: function (e) {
 
       var data = {
-        'action': 'create_backup'
+        'action': 'create_backup',
+         security: window._nonce
       };
 
       Controller.makeOverlayTo('show');
 
-      $.post(_ajaxurl, data).done(function(){
+      $.post( window._ajaxurl, data).done(function( res ){
+        if ( res == 'not_allowed' ) {
+            var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+            Controller.makeOverlayTo('hide');
+            return;
+        }
         location.reload();
       })
 
     },
 
     restoreBackup: function (e) {
-      var promise = Controller.confirmPopup('Are you sure?');
+      var promise = Controller.popup('Are you sure?');
       var self = this;
       promise.then(function success(){
         var data = {
           action: 'restore_backup',
-          id: $(self).closest('tr').attr('backup-id')
+          id: $(self).closest('tr').attr('backup-id'),
+          security: window._nonce
         }
         Controller.makeOverlayTo('show');
 
-        $.post(_ajaxurl, data).done(function(data){
+        $.post( window._ajaxurl, data ).done(function(data){
+          if ( data == 'not_allowed' ) {
+              var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+              Controller.makeOverlayTo('hide');
+              return;
+          }
           sessionStorage.setItem('as_view_mode', 'list');
           sessionStorage.setItem('as_active_tab', 0);
           location.reload();
@@ -184,23 +196,29 @@ var FlowFlowApp = (function($){
     },
 
     deleteBackup: function () {
-      var promise = Controller.confirmPopup('Are you sure?');
+      var promise = Controller.popup('Are you sure?');
       var self = this;
 
       promise.then(function success(){
         var data = {
           action: 'delete_backup',
-          id: $(self).closest('tr').attr('backup-id')
+          id: $(self).closest('tr').attr('backup-id'),
+          security: window._nonce
         }
         Controller.makeOverlayTo('show');
 
-        $.post(_ajaxurl, data).done(function(){
+        $.post( window._ajaxurl, data ).done(function( res ){
+          if ( res == 'not_allowed' ) {
+              var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+              Controller.makeOverlayTo('hide');
+              return;
+          }
           location.reload();
         })
       }, function fail () {})
     },
 
-    initConfirmPopup: function () {
+    initPopup: function () {
       // Alert popup
 
       var $popup = $('.cd-popup');
@@ -240,25 +258,33 @@ var FlowFlowApp = (function($){
         }
       }
 
-      function confirm (text, neutral) {
+      function popup ( text, neutral, type ) {
         var defer = $.Deferred();
 
-        if ( !neutral ) $popup.removeClass('is-neutral');
-        $popup.data('defer', defer);
-        $popup.find('p').html(text || 'Are you sure?');
-        $popup.addClass('is-visible' + (neutral ? ' is-neutral' : ''));
+        if ( !neutral ) $popup.removeClass( 'is-neutral' );
 
-        $(document).on('keyup', escClose);
+        if ( type !== 'alert' ) {
+          $popup.removeClass( 'is-alert' );
+          $popup.find('.cd-buttons li:last-child a').html('Yes');
+        } else {
+          $popup.find('.cd-buttons li:last-child a').html('OK')
+        }
+
+        $popup.data( 'defer', defer );
+        $popup.find( 'p' ).html( text || 'Are you sure?' );
+        $popup.addClass( 'is-visible' + ( neutral ? ' is-neutral' : '') + ( type === 'alert' ? ' is-alert' : '' ) );
+
+        $(document).on( 'keyup', escClose );
         return defer.promise();
       }
       //close popup when clicking the esc keyboard button
-      $(document).keyup(function(event){
-        if(event.which=='27'){
+      $( document ).keyup( function( event ){
+        if( event.which == '27' ){
           $popup.removeClass('is-visible');
         }
       });
 
-      return confirm;
+      return popup;
     },
 
     setupModelsAndViews : function () {
@@ -323,7 +349,7 @@ var FlowFlowApp = (function($){
       feedsModel = new FeedsModel({feeds: window.feeds});
       feedsView = new FeedsView({model: feedsModel, el: self.$form.find('#sources-list')[0]});
     },
-    
+
     tabsCursor: (function () {
       var $cont;
       var $tabs;
@@ -377,7 +403,7 @@ var FlowFlowApp = (function($){
         initFor: init
       }
     })(),
-    
+
     attachGlobalEvents : function () {
 
       var self = this;
@@ -391,11 +417,33 @@ var FlowFlowApp = (function($){
           model = new StreamModel();
           view = new StreamView({model: model});
           streamModels.add(model);
+          view.$el.addClass('stream-view-new');
           self.$container.append(view.$el);
-          view.saveViaAjax();
+          view.saveViaAjax().then(function ( stream ) {
+
+              if ( stream.error ) {
+              // todo remove view
+                  self.$container.find('#stream-view-new').remove();
+                  streamModels.remove( model );
+                  self.switchToView('list');
+              } else {
+                  setTimeout(function(){
+                    self.switchToView( stream.id );
+
+                    setTimeout( function () {
+                        view.$el.find('.input-not-obvious input').focus()
+                    }, 400)
+                  },0)
+              }
+          });
         }
 
-        setTimeout(function(){self.switchToView('new')},100);
+        setTimeout(function(){
+          // resetting layout
+          // self.switchToView('list')
+          //   self.switchToView('new')
+            // Controller.$container.find('.view-visible').removeClass('view-visible');
+        }, 50);
       });
 
       this.$form.find('#streams-tab').on('click', function () {
@@ -452,7 +500,7 @@ var FlowFlowApp = (function($){
           $licenseCont = $('#envato_license');
 
           if ($licenseCont.is('.plugin-activated')) {
-            promise = self.confirmPopup('Are you sure?');
+            promise = self.popup('Are you sure?');
             promise.then(function success(){
               $licenseCont.find('input').val('');
               $licenseCont.find(':checkbox').attr('checked', false);
@@ -532,14 +580,17 @@ var FlowFlowApp = (function($){
         data = {
           action: la_plugin_slug_down + '_ff_save_settings',
           settings: serialized,
-          doSubcribe: opts.doSubscribe
+          doSubcribe: opts.doSubscribe,
+          security: window._nonce
         };
 
-        $.post(_ajaxurl, data, function( response ) {
+        $.post( window._ajaxurl, data, function( response ) {
           console.log('Got this from the server: ' , response )
           var $fb_token, $submitted;
-          if( response == -1 ){
-
+          if ( response == -1 || response.error ) {
+              var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+              Controller.makeOverlayTo('hide');
+              return;
           }
           else{
             // Do something on success
@@ -594,8 +645,7 @@ var FlowFlowApp = (function($){
         }, 'json' ).fail( function( d ){
           console.log( d.responseText );
           console.log( d );
-          //alert('Error occured. If you see this after adding FB auth then double-check your data.')
-          alert('Error occurred. '.concat(d.responseText));
+          alert('Error occurred. ' + d.responseText);
           self.makeOverlayTo('hide');
         });
 
@@ -603,7 +653,7 @@ var FlowFlowApp = (function($){
       });
 
       this.$form.delegate('input', 'keydown', function (e){
-        var $t = $(this)
+        var $t = $(this);
         if ($t.is('.validation-error')) {
           $t.removeClass('validation-error');
         }
@@ -640,12 +690,12 @@ var FlowFlowApp = (function($){
       this.initInstagramAuth();
     },
 
-    backUrl: _ajaxurl + '?action=flow_flow_social_auth',
+    backUrl: window._ajaxurl + '?action=flow_flow_social_auth',
 
     initFacebookAuth: function () {
       //https://www.facebook.com/dialog/oauth
 
-      var f = "http://flow.looks-awesome.com/service/auth/facebook2.php?" + $.param({
+      var f = "https://flow.looks-awesome.com/service/auth/facebook2.php?" + $.param({
             back: this.backUrl
           });
       $("#facebook-auth").click(function(){
@@ -657,7 +707,6 @@ var FlowFlowApp = (function($){
           return
         }
         document.location.href = f;
-        //alert(h);
       });
 
       if ($('#facebook_access_token').val() !== '') {
@@ -721,7 +770,6 @@ var FlowFlowApp = (function($){
           return
         }
         document.location.href = h;
-        //alert(h);
       });
 
       if ($('#instagram_access_token').val() !== '') {
@@ -752,7 +800,7 @@ var FlowFlowApp = (function($){
       return scrollbarWidth
     },
 
-    switchToView : function (view) {
+    switchToView: function (view) {
 
       var self = this;
       this.$container.find('.view-visible').removeClass('view-visible');
@@ -766,6 +814,8 @@ var FlowFlowApp = (function($){
           self.$form.addClass('stream-view-visible');
         }
       // },0)
+
+        console.log('switch to view', view)
 
       sessionStorage.setItem('ff_stream', view);
     },
@@ -862,7 +912,7 @@ var FlowFlowApp = (function($){
     },
 
     validateEmail: function (val) {
-      return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}$/.test(val);
+      return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,20}$/.test(val);
     },
 
     validateCode: function (val) {
@@ -882,6 +932,7 @@ var FlowFlowApp = (function($){
         "cache":                 "yep",
         "cache_lifetime":        "10",
         "gallery":               "yep",
+        "gallery-type":          "classic",
         "private":               "nope",
         "hide-on-desktop":       "nope",
         "hide-on-mobile":        "nope",
@@ -907,7 +958,7 @@ var FlowFlowApp = (function($){
         "gc-style":              "style-1",
         "upic-pos":              "timestamp",
         "upic-style":            "round",
-        "icon-style":            "label1",
+        "icon-style":            "label2",
         "cardcolor":             "rgb(255, 255, 255)",
         "namecolor":             "rgb(59, 61, 64)",
         "textcolor":             "rgb(131, 141, 143)",
@@ -929,8 +980,8 @@ var FlowFlowApp = (function($){
         "s-laptop":              "15",
         "s-tablet-l":            "10",
         "s-tablet-p":            "10",
-        "s-smart-l":             "5",
-        "s-smart-p":             "5",
+        "s-smart-l":             "15",
+        "s-smart-p":             "15",
         "m-c-desktop":           "5",
         "m-c-laptop":            "4",
         "m-c-tablet-l":          "3",
@@ -941,8 +992,8 @@ var FlowFlowApp = (function($){
         "m-s-laptop":            "15",
         "m-s-tablet-l":          "10",
         "m-s-tablet-p":          "10",
-        "m-s-smart-l":           "5",
-        "m-s-smart-p":           "5",
+        "m-s-smart-l":           "15",
+        "m-s-smart-p":           "15",
         "j-h-desktop":           "260",
         "j-h-laptop":            "240",
         "j-h-tablet-l":          "220",
@@ -955,6 +1006,33 @@ var FlowFlowApp = (function($){
         "j-s-tablet-p":          "0",
         "j-s-smart-l":           "0",
         "j-s-smart-p":           "0",
+        "c-r-desktop":           "2",
+        "c-r-laptop":            "2",
+        "c-r-tablet-l":          "2",
+        "c-r-tablet-p":          "2",
+        "c-r-smart-l":           "1",
+        "c-r-smart-p":           "1",
+        "c-c-desktop":           "5",
+        "c-c-laptop":            "4",
+        "c-c-tablet-l":          "3",
+        "c-c-tablet-p":          "3",
+        "c-c-smart-l":           "3",
+        "c-c-smart-p":           "3",
+        "c-s-desktop":           "0",
+        "c-s-laptop":            "0",
+        "c-s-tablet-l":          "0",
+        "c-s-tablet-p":          "0",
+        "c-s-smart-l":           "0",
+        "c-s-smart-p":           "0",
+        "c-autoplay":            "",
+        "c-arrows-always":       "yep",
+        "c-arrows-mob":          "nope",
+        "c-dots":                "yep",
+        "c-dots-mob":            "nope",
+        "wallwidth":             "",
+        "wallvm":                "20",
+        "wallhm":                "0",
+        "wallcomments":          "yep",
         "g-ratio-w":             "1",
         "g-ratio-h":             "2",
         "g-ratio-img":           "1/2",
@@ -962,7 +1040,7 @@ var FlowFlowApp = (function($){
         "m-overlay":             "nope",
         "css":                   "",
         "feeds":                 [],
-        "template":              ['header', 'text', 'image', 'meta'],
+        "template":              ['meta', 'image', 'header', 'text'],
         "tv":                    "nope",
         "tv-int":                "5",
         "tv-logo":               "",
@@ -981,8 +1059,9 @@ var FlowFlowApp = (function($){
         emulateJSON: true,
         data: {
           action: isNew ? la_plugin_slug_down + '_create_stream' : la_plugin_slug_down + '_save_stream_settings',
-          stream: this.toJSON()
-        }
+          stream: this.toJSON(),
+          security: window._nonce
+        },
       };
       // legacy feeds to JSON
       if (typeof $params.data.stream.feeds !== 'string') {
@@ -991,9 +1070,14 @@ var FlowFlowApp = (function($){
 
       if ($params.data.stream.errors) delete $params.data.stream.errors;
 
-      return Backbone.sync( 'create', this, $params ).done(function(serverModel){
-        if (serverModel['id']) {
-          self.set('id', serverModel['id'])
+      return Backbone.sync( 'create', this, $params ).done( function( serverModel ){
+        if ( serverModel.error ) {
+          var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+          Controller.makeOverlayTo('hide');
+          return;
+        }
+        if ( serverModel['id'] ) {
+          self.set( 'id', serverModel['id'] )
         }
         /*for (var prop in serverModel) {
           if (prop === 'feeds' && typeof serverModel[prop] !== 'object') serverModel[prop] = JSON.parse(serverModel[prop])
@@ -1006,10 +1090,16 @@ var FlowFlowApp = (function($){
         emulateJSON: true,
         data: {
           'action': la_plugin_slug_down + '_get_stream_settings',
-          'stream-id': this.get('id')
+          'stream-id': this.get('id'),
+          'security': window._nonce
         }
       };
-      return Backbone.sync( 'read', this, $params ).done(function () {
+      return Backbone.sync( 'read', this, $params ).done(function ( res ) {
+         if ( res.error ) {
+             var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+             setTimeout(function(){Controller.switchToView('list')}, 1000);
+             return;
+         }
       })
     },
     destroy: function() {
@@ -1019,14 +1109,20 @@ var FlowFlowApp = (function($){
         type: 'GET',
         data: {
           'action': la_plugin_slug_down + '_delete_stream',
-          'stream-id': this.get('id')
+          'stream-id': this.get('id'),
+          'security': window._nonce
         }
       };
-      return Backbone.sync( 'delete', this, $params ).done(function(){
+      return Backbone.sync( 'delete', this, $params ).done(function( stream ){
+        if ( stream && stream.error ) {
+          var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+          Controller.makeOverlayTo('hide');
+          return;
+        }
         self.collection.remove(self);
       })
     },
-    urlRoot: _ajaxurl,
+    urlRoot: window._ajaxurl,
     url: function () {
       return this.urlRoot;
     }
@@ -1051,12 +1147,17 @@ var FlowFlowApp = (function($){
         type: 'GET',
         data: {
           'action': la_plugin_slug_down + '_delete_stream',
-          'stream-id': this.get('id')
+          'stream-id': this.get('id'),
+          'security': window._nonce
         }
       };
       ; //
-      return Backbone.sync( 'delete', this, $params).done(function(){
-        console.log('sync callback');
+      return Backbone.sync( 'delete', this, $params ).done(function( stream ){
+        if ( stream && stream.error ) {
+            var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+            Controller.makeOverlayTo('hide');
+            return;
+        }
         self.collection.remove(self);
       })
     },
@@ -1067,14 +1168,20 @@ var FlowFlowApp = (function($){
         type: 'POST',
         data: {
           'action': la_plugin_slug_down + '_clone_stream',
-          'stream': this.toJSON()
+          'stream': this.toJSON(),
+          'security': window._nonce
         }
       };
-      return Backbone.sync( 'create', this, $params).done(function(stream){
+      return Backbone.sync( 'create', this, $params ).done( function( stream ){
+        if ( stream.error ) {
+            var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+            Controller.makeOverlayTo('hide');
+            return;
+        }
         streamRowModels.add(stream);
       })
     },
-    urlRoot: _ajaxurl,
+    urlRoot: window._ajaxurl,
     url: function () {
       return this.urlRoot;
     }
@@ -1179,8 +1286,6 @@ var FlowFlowApp = (function($){
         if(cellWidth < feedsWidth){
           $cell.append('<span class="link-more" data-action="edit">+ ' + hiddenCount + ' more')
         }
-
-        console.log('hide feeds')
       }, 4)
     },
 
@@ -1260,7 +1365,7 @@ var FlowFlowApp = (function($){
       return defer.promise()
     },
     destroy: function() {
-      var promise = Controller.confirmPopup('Just checking for misclick. Delete stream?');
+      var promise = Controller.popup('Just checking for misclick. Delete stream?');
       var self = this;
 
       promise.then(function(){
@@ -1268,7 +1373,8 @@ var FlowFlowApp = (function($){
         var request = self.model.destroy();
         Controller.makeOverlayTo('show');
 
-        request.done(function(){
+        request.done(function( stream ){
+          if ( stream && stream.error ) return;
           self.remove();
           if (streamRowModels.length === 0) {
             Controller.$list.append(templates.streamRowEmpty);
@@ -1359,7 +1465,7 @@ var FlowFlowApp = (function($){
       this.render();
 
       this.model.listenTo(this, 'changeModel', function (data){
-        console.log('changeModel event', data);
+        // console.log('changeModel event', data);
         self.model.set(data.name, data.val);
       })
 
@@ -1424,7 +1530,6 @@ var FlowFlowApp = (function($){
             } else {
               self.rowModel.set(prop, attrs[prop]);
             }
-            console.log('changing row model once', prop)
           }
         }
       })
@@ -1453,6 +1558,8 @@ var FlowFlowApp = (function($){
         Controller.tabsCursor.initFor(this.$el, id);
 
         setTimeout(function () {
+          self.$preview = self.$el.find('.preview .ff-stream-wrapper');
+
           self.configDesign();
           self.applySavedTemplate();
           self.trigger('preview-update');
@@ -1489,16 +1596,17 @@ var FlowFlowApp = (function($){
       this.$el.find('input[type="range"]').on('mouseup', function() {
         this.blur();
       }).on('change input', function () {
-        var $t = $(this);
-        var $v = $t.data('el') ? $t.data('el') : $t.parent().find('.range-value');
+          var $t = $(this);
+          var name = this.name.indexOf('-r-') + 1 ? 'row' : 'column';
+          var $v = $t.data('el') ? $t.data('el') : $t.next('.range-value');
 
-        if (!$v) {
-          $v = $t.parent().find('.range-value');
-          $t.data('el', $v)
-        }
+          if (!$v) {
+              $v = $t.parent().find('.range-value');
+              $t.data('el', $v)
+          }
 
-        $v.html(this.value + ' column' + (this.value > 1 ? 's' : ''));
-        $t = null;
+          $v.html(this.value + ' ' + name + (this.value > 1 ? 's' : ''));
+          $t = null;
       }).change()/*.rangeslider()*/;
 
       this.$el.find('input[data-color-format]').ColorPickerSliders(this.colorPickersConfig);
@@ -1543,11 +1651,11 @@ var FlowFlowApp = (function($){
       }
 
       for ( i = 0, len = template.length; i < len; i++ ) {
-         $cont.append(detached[template[i]]);
+         $cont.append( detached[template[i]] );
       }
 
-      $cont.find('.ff-label-wrapper').insertAfter(detached.meta);
-      $cont.find('.ff-item-bar').appendTo($cont);
+      $cont.find('.ff-label-wrapper').insertAfter( detached.meta );
+      $cont.find('> .ff-item-bar').appendTo($cont);
     },
 
     renderConnectedFeeds: function () {
@@ -1576,7 +1684,7 @@ var FlowFlowApp = (function($){
       }
       $cont.html('').append(items).closest('.stream-feeds').removeClass('stream-feeds--connecting');
     },
-    
+
     connectFeed: function (e) {
       var self = this;
 
@@ -1613,7 +1721,7 @@ var FlowFlowApp = (function($){
         Controller.makeOverlayTo('hide');
       });
     },
-    
+
     displayFeedsSelect: function () {
 
       var self = this;
@@ -1641,7 +1749,7 @@ var FlowFlowApp = (function($){
 
       if (isEmpty || isEmptyAfterFilter) {
         var msg = isEmpty ? 'You haven\'t created feeds yet. Go to Feeds tab to create?' : 'You connected all feeds already. Go to Feeds tab to create new?';
-        var promise = Controller.confirmPopup(msg, 'neutral');
+        var promise = Controller.popup(msg, 'neutral');
 
         promise.then(function(){
           Controller.$form.find('#sources-tab').click()
@@ -1665,7 +1773,7 @@ var FlowFlowApp = (function($){
     },
 
     detachFeed: function (e) {
-      var promise = Controller.confirmPopup('Detach feed from stream?');
+      var promise = Controller.popup('Detach feed from stream?');
       var self = this;
       var $t = $(e.target).closest('span');
       var id = $t.data('id');
@@ -1690,7 +1798,7 @@ var FlowFlowApp = (function($){
           }
       )
     },
-    
+
     disableAction: function (e) {
       e.stopImmediatePropagation()
     },
@@ -1740,11 +1848,14 @@ var FlowFlowApp = (function($){
       var val = e.currentTarget.value;
       var self = this;
       var $p = $(e.currentTarget).closest('.section');
-      $p.find('.section-settings').removeClass('settings-section__active').end()
+
+      $p.removeClass(function(index, cls) {
+          return cls.match(/\w+-layout-chosen/)[0];
+      }).addClass(val + '-layout-chosen').find('.section-settings').removeClass('settings-section__active').end()
           .find('.settings-' + val).addClass('settings-section__active');
-      // setTimeout(function () {
-      //   Controller.setHeight(self.model.get('id'));
-      // },0);
+      setTimeout(function () {
+          Controller.setHeight(self.model.get('id'));
+      },0);
     },
 
     previewChangeAlign: function (e) {
@@ -1958,6 +2069,9 @@ var FlowFlowApp = (function($){
       var promise = this.model.save(isNew);
 
       promise.done(function(serverModel){
+
+        if (serverModel.error) return;
+
         Controller.makeOverlayTo('hide');
 
         self.render();
@@ -1969,9 +2083,10 @@ var FlowFlowApp = (function($){
 
           Controller.$list.append(self.rowView.$el);
           self.bindModels();
-          self.$el.find('.input-not-obvious input').focus();
-
+        } else {
+          self.$el.removeClass('stream-view-new');
         }
+
         self.rowModel.set('id', serverModel.id);
         self.model.trigger('stream-saved');
 
@@ -1992,13 +2107,15 @@ var FlowFlowApp = (function($){
       }).always(function () {
         self.saving = false;
       });
+
+      return promise;
     },
 
     showPreview: function (e) {
       var $t = $(e.target);
       var id = $t.data('id');
       Controller.makeOverlayTo('show');
-      $.get(_ajaxurl, {
+      $.get( window._ajaxurl, {
         'action' :  'flow_flow_show_preview',
         'stream-id' : id
       }).success(function(response){
@@ -2056,7 +2173,8 @@ var FlowFlowApp = (function($){
         emulateJSON: true,
         data: {
           action: la_plugin_slug_down + '_save_sources_settings',
-          model: this.toJSON()
+          model: this.toJSON(),
+          security: window._nonce
         }
       };
 
@@ -2077,7 +2195,14 @@ var FlowFlowApp = (function($){
       }
       $params.data.model.feeds = feedsToSend;
       /**/
-      return Backbone.sync( 'create', this, $params ).done(function(serverModel){
+      return Backbone.sync( 'create', this, $params ).done(function( serverModel ){
+
+        if ( serverModel && serverModel.error ) {
+            var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+            Controller.makeOverlayTo('hide');
+            return;
+        }
+
         if (self.isNew() && serverModel && serverModel['id']) {
           self.set('id', serverModel['id']);
         }
@@ -2110,11 +2235,11 @@ var FlowFlowApp = (function($){
         }
 
         if (changed) {
-          
+
         }
       });
     },
-    urlRoot: _ajaxurl,
+    urlRoot: window._ajaxurl,
     url: function () {
       return this.urlRoot;
     }
@@ -2457,7 +2582,7 @@ var FlowFlowApp = (function($){
             ival = stripslashes( settings[prop] );
             if (prop !== 'content') ival = capitaliseFirstLetter ( ival );
             if (prop === 'mod') ival = 'moderated';
-            
+
             ival = ival.replace('_timeline', '').replace('http://', '').replace('https://', '');
             if (ival.length > 20) {
               ival = ival.substring(0, 20) + '...';
@@ -2602,7 +2727,7 @@ var FlowFlowApp = (function($){
     },
 
     deleteFeed: function (e) {
-      var promise = Controller.confirmPopup('Do you want to permanently delete this feed?');
+      var promise = Controller.popup('Do you want to permanently delete this feed?');
       var $t = $(e.currentTarget);
       var self = this;
       promise.then(function success(){
@@ -2765,6 +2890,9 @@ var FlowFlowApp = (function($){
 
       if (errorData.type === 'facebook' && errorStr.indexOf('Application request limit') + 1) {
         errorStr += '. Check <a href="http://docs.social-streams.com/article/133-facebook-app-request-limit-reached" target="_blank">more info</a>'
+      }
+      else if (errorStr.toLowerCase().indexOf('bad request') + 1) {
+          errorStr += '<br><br>Check <a href="https://docs.social-streams.com/article/55-400-bad-request" target="_blank"> info</a>'
       }
 
       Controller.$errorPopup.html('<h4>Plugin received next error message from network API for this feed:</h4><p>' + errorStr + '</p>')
@@ -2958,9 +3086,13 @@ var FlowFlowApp = (function($){
 
       var promise = this.model.save(isNew);
 
-      promise.done(function(serverModel){
+      promise.done( function( serverModel ){
         var oldText = $t.html();
         Controller.makeOverlayTo('hide');
+
+        if ( serverModel && serverModel.error ) {
+            return;
+        }
 
         self.render();
 
@@ -2974,6 +3106,8 @@ var FlowFlowApp = (function($){
       }).fail(function(){
         alert('Something went wrong. Please try to reload page. If this repeats please contact support at https://social-streams.com/contact/')
       });
+
+      return promise;
     }
   });
 
@@ -3067,7 +3201,7 @@ var FlowFlowApp = (function($){
 
   // global shortcuts
   window.sectionExpandCollapse = sectionExpandCollapse;
-  
+
   return {
     'init' : function () {
       var self = this;
@@ -3096,13 +3230,14 @@ var FlowFlowApp = (function($){
       }
     },
     sectionExpandCollapse : sectionExpandCollapse,
-    confirmPopup: Controller.confirmPopup
+    popup: Controller.popup
   }
 })(jQuery)
 
 jQuery(document).bind('html_ready', function(){
   var app = FlowFlowApp.init();
-  window.confirmPopup = app.Controller.confirmPopup;
+  // legacy, compatibility, todo change in add-on
+  window.confirmPopup = app.Controller.popup;
 });
 
 function capitaliseFirstLetter (string)
@@ -3112,6 +3247,7 @@ function capitaliseFirstLetter (string)
 
 
 function stripslashes (str) {
+  if ( !str ) return;
   str = str.replace(/\\'/g, '\'');
   str = str.replace(/\\"/g, '"');
   str = str.replace(/\\0/g, '\0');

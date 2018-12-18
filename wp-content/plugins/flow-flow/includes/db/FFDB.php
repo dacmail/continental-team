@@ -1,6 +1,5 @@
 <?php namespace flow\db;
 use flow\settings\FFSettingsUtils;
-use flow\social\FFFeedUtils;
 
 if ( ! defined( 'WPINC' ) ) die;
 
@@ -98,8 +97,9 @@ class FFDB {
 	 * @return bool
 	 */
 	public static function rollback(){
-		return self::conn()->conn->rollback();
+		$result = self::conn()->conn->rollback();
 		self::$db->conn->autocommit(true);
+		return $result;
 	}
 
 	/**
@@ -188,7 +188,7 @@ class FFDB {
 				$source['enabled'] = $source['system_enabled'] == 1 ? ($source['enabled'] == 1 ? FFSettingsUtils::YEP : FFSettingsUtils::NOPE) : FFSettingsUtils::NOPE;
 				$offset = get_option('gmt_offset', 0);
 				$date = $source['last_update'] + $offset * 3600;
-				$source['last_update'] = $source['last_update'] == 0 ? 'N/A' : FFFeedUtils::classicStyleDate($date);
+				$source['last_update'] = $source['last_update'] == 0 ? 'N/A' : FFSettingsUtils::classicStyleDate($date);
 				if (!isset($source['errors']) || is_null($source['errors'])) {
 					$source['errors'] = array();
 				}
@@ -224,8 +224,8 @@ class FFDB {
 						}
 					}
 				}
-				if (empty($source['errors']) && $source['status'] === '0') {
-					$source['errors'] = array( array( 'type' => $source['type'], 'message' => 'Feed cache has not been built. Try to manually rebuild cache using three dots menu on the right.' ) );
+				if ((empty($source['errors']) || is_string($source['errors'])) && $source['status'] === '0') {
+					$source['errors'] = array( array( 'type' => $source['type'], 'message' => 'Feed cache has not been built. Try to manually rebuild cache using three dots menu on the left.' ) );
 				}
 			}
 			return $result;
@@ -328,8 +328,6 @@ class FFDB {
 		else{
 			$feeds = (array)$stream->feeds;
 		}
-		//$feeds = (is_array($stream->feeds) || is_object($stream->feeds)) ? serialize($stream->feeds) : stripslashes($stream->feeds);
-		//$feeds = json_decode($feeds);
 		unset($stream->feeds);
 		$serialized = serialize($stream);
 

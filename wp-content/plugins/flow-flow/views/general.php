@@ -34,12 +34,12 @@ $options = $context['options'];
 			</dd>
 			<dt class="multiline">Date format<p class="desc">Used in post timestamps.</p></dt>
 			<dd>
-				<input id="general-settings-ago-format" class="clearcache" type="radio" name="flow_flow_options[general-settings-date-format]" <?php if (isset($options['general-settings-date-format']) && $options['general-settings-date-format'] == 'agoStyleDate') echo "checked"; ?> value="agoStyleDate"/>
+                <input id="general-settings-ago-format" class="clearcache" type="radio" name="flow_flow_options[general-settings-date-format]" <?php if ( (isset($options['general-settings-date-format']) && $options['general-settings-date-format'] == 'agoStyleDate') || !isset($options['general-settings-date-format'])) echo "checked"; ?> value="agoStyleDate"/>
 				<label for="general-settings-ago-format">Short</label>
-				<input id="general-settings-classic-format" class="clearcache" type="radio" name="flow_flow_options[general-settings-date-format]" <?php if (!isset($options['general-settings-date-format']) || $options['general-settings-date-format'] == 'classicStyleDate') echo "checked"; ?> value="classicStyleDate"/>
+                <input id="general-settings-classic-format" class="clearcache" type="radio" name="flow_flow_options[general-settings-date-format]" <?php if (isset($options['general-settings-date-format']) && $options['general-settings-date-format'] == 'classicStyleDate') echo "checked"; ?> value="classicStyleDate"/>
 				<label for="general-settings-classic-format">Classic</label>
 				<?php if (FF_USE_WP) { ?>
-				<input id="general-settings-wp-format" class="clearcache" type="radio" name="flow_flow_options[general-settings-date-format]" <?php if (!isset($options['general-settings-date-format']) || $options['general-settings-date-format'] == 'wpStyleDate') echo "checked"; ?> value="wpStyleDate"/>
+                <input id="general-settings-wp-format" class="clearcache" type="radio" name="flow_flow_options[general-settings-date-format]" <?php if (isset($options['general-settings-date-format']) && $options['general-settings-date-format'] == 'wpStyleDate') echo "checked"; ?> value="wpStyleDate"/>
 				<label for="general-settings-wp-format">WordPress</label>
 				<?php }?>
 			</dd>
@@ -48,7 +48,7 @@ $options = $context['options'];
 				<label for="general-settings-open-links-in-new-window">
 					<input id="general-settings-open-links-in-new-window" class="switcher clearcache" type="checkbox"
 					       name="flow_flow_options[general-settings-open-links-in-new-window]"
-						<?php if (!isset($options['general-settings-open-links-in-new-window']) || $options['general-settings-open-links-in-new-window'] == 'yep') echo "checked"; ?>
+                        <?php if (!isset($options['general-settings-open-links-in-new-window']) || (isset($options['general-settings-open-links-in-new-window']) && $options['general-settings-open-links-in-new-window'] == 'yep')) echo "checked"; ?>
 					       value="yep"/><div><div></div></div>
 				</label>
 			</dd>
@@ -57,7 +57,7 @@ $options = $context['options'];
 				<label for="general-settings-disable-proxy-server">
 					<input id="general-settings-disable-proxy-server" class="clearcache switcher" type="checkbox"
 					       name="flow_flow_options[general-settings-disable-proxy-server]"
-						<?php if (!isset($options['general-settings-disable-proxy-server']) || $options['general-settings-disable-proxy-server'] == 'yep') echo "checked"; ?>
+						<?php if (isset($options['general-settings-disable-proxy-server']) && $options['general-settings-disable-proxy-server'] == 'yep') echo "checked"; ?>
 					       value="yep"/><div><div></div></div>
 			</dd>
 			<dt class="multiline">Disable curl "follow location"
@@ -66,7 +66,7 @@ $options = $context['options'];
 				<label for="general-settings-disable-follow-location">
 					<input id="general-settings-disable-follow-location" class="clearcache switcher" type="checkbox"
 					       name="flow_flow_options[general-settings-disable-follow-location]"
-						<?php if (!isset($options['general-settings-disable-follow-location']) || $options['general-settings-disable-follow-location'] == 'yep') echo "checked"; ?>
+						<?php if (isset($options['general-settings-disable-follow-location']) && $options['general-settings-disable-follow-location'] == 'yep') echo "checked"; ?>
 					       value="yep"/><div><div></div></div>
 			</dd>
 			<dt class="multiline">Use IPv4 protocol
@@ -126,29 +126,12 @@ $options = $context['options'];
 						<?php if (isset($options['general-uninstall']) && $options['general-uninstall'] == 'yep') echo "checked"; ?> value="yep"/>
 					<div><div></div></div>
 			</dd>
-
-<!--			<dt class="multiline">Save images to server-->
-<!--			<p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempus a nibh condimentum commodo. Integer fermentum tortor lectus, eu porta orci dictum venenatis</p></dt>-->
-<!--			<dd>-->
-<!--				<label for="general-settings-save-images">-->
-<!--					<input id="general-settings-save-images" class="clearcache switcher" type="checkbox"-->
-<!--					       name="flow_flow_options[general-settings-save-images]"-->
-								<?php //if (isset($options['general-settings-save-images']) && $options['general-settings-save-images'] == 'yep') echo "checked"; ?>
-<!--					       value="yep"/><div><div></div></div>-->
-<!--			</dd>-->
-			<!--<dt class="multiline">SEO mode<p class="desc">When cache content is available plugin injects stream HTML synchronously and search bots index it</p></dt>
-	                    <dd>
-		                    <label for="general-settings-seo-mode">
-			                    <input id="general-settings-seo-mode" class="switcher" type="checkbox"
-			                           name="flow_flow_options[general-settings-seo-mode]"
-				                    <?php /*if (isset($options['general-settings-seo-mode']) && $options['general-settings-seo-mode'] == 'yep') echo "checked"; */?>
-			                           value="yep"/><div><div></div></div>
-
-	                    </dd>-->
-
 		</dl>
 		<span id="general-settings-sbmt" class='admin-button green-button submit-button'>Save Changes</span>
 	</div>
-	<?php include($context['root']  . 'views/footer.php'); ?>
+	<?php
+		/** @noinspection PhpIncludeInspection */
+		include($context['root']  . 'views/footer.php');
+	?>
 
 </div>

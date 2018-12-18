@@ -5,9 +5,8 @@ use flow\db\FFDB;
 use flow\db\FFDBManager;
 use flow\settings\FFSettingsUtils;
 use flow\social\FFBaseFeed;
-use flow\social\FFFeedUtils;
 use flow\settings\FFGeneralSettings;
-use la\core\social\LAFeedWithComments;
+use flow\social\LAFeedWithComments;
 
 /**
  * Flow-Flow.
@@ -18,7 +17,7 @@ use la\core\social\LAFeedWithComments;
  * @link      http://looks-awesome.com
  * @copyright 2014-2016 Looks Awesome
  *
- * @property FFStreamSettings stream
+ * @property \flow\settings\FFStreamSettings stream
  */
 class FFCacheManager implements FFCache{
 	/** @var  FFDBManager */
@@ -65,14 +64,32 @@ class FFCacheManager implements FFCache{
 						if (!$criticalError){
 							list($new_posts, $existed_posts) = $this->separation($exist_feed_ids, $posts);
 							$countPosts4Insert = sizeof($new_posts);
-							if ($countPosts4Insert > 0 && FFDB::beginTransaction()) {
-								$hasNewItems = true;
-								$this->save( $feed, $new_posts);
-								$this->db->setRandomOrder($feed_id);
+							if (FFDB::beginTransaction()){
+								if ($countPosts4Insert > 0) {
+									$hasNewItems = true;
+									$smart_order = 0;
+									usort( $new_posts, array( $this, 'compareByTime' ) );
+									foreach ( $new_posts as $post ) {
+										$post->smart_order = $smart_order;
+										$smart_order++;
+									}
+									$this->db->setSmartOrder($feed_id, $countPosts4Insert);
+								}
+
+								if ('facebook' == $feed->getType()){
+									if ($hasNewItems) {
+										$this->save( $feed, $new_posts);
+										$this->db->setRandomOrder($feed_id);
+									}
+									$this->updateAdditionalInfo($existed_posts);
+								}
+								else {
+									$this->save( $feed, $posts);
+									$this->db->setRandomOrder($feed_id);
+								}
 							}
-							$this->updateAdditionalInfo($existed_posts);
 						}
-						if ($feed->feed->system_enabled != (int)!$criticalError) {
+						if (isset($feed->feed->system_enabled) && $feed->feed->system_enabled != (int)!$criticalError) {
 							$this->db->systemDisableSource($feed_id, (int)!$criticalError);
 						}
 						$this->setCacheInfo($feed_id, $status);
@@ -131,7 +148,7 @@ class FFCacheManager implements FFCache{
 	}
 
 	/**
-	 * @param FFStreamSettings $stream
+	 * @param \flow\settings\FFStreamSettings $stream
 	 * @param bool $moderation
 	 *
 	 * @return void
@@ -223,20 +240,8 @@ class FFCacheManager implements FFCache{
 	 * @throws \Exception
 	 * @return void
 	 */
-    private function save( $feed, $value ) {
-	    if (sizeof($value) > 0) {
-		    $countByFeed = array();
-		    usort( $value, array( $this, 'compareByTime' ) );
-		    foreach ( $value as $id => $post ) {
-			    if (!array_key_exists($post->feed_id, $countByFeed)) $countByFeed[$post->feed_id] = 0;
-			    $count = $countByFeed[$post->feed_id];
-			    $post->smart_order = $count;
-			    $countByFeed[$post->feed_id] = $count + 1;
-		    }
-		    foreach ( $countByFeed as $feedId => $count ) {
-			    $this->db->setSmartOrder($feedId, $count);
-		    }
-
+	private function save( $feed, $value ) {
+		if (sizeof($value) > 0) {
 		    $only4insertPartOfSqlTemplate =
 			    FFDB::conn()->parse('`creation_index`=?i', $this->hash);
 
@@ -264,9 +269,9 @@ class FFCacheManager implements FFCache{
 					'user_counts_follows' => isset($post->userMeta->counts->follows) ? $post->userMeta->counts->follows : 0,
 					'user_counts_followed_by' => isset($post->userMeta->counts->followed_by) ? $post->userMeta->counts->followed_by : 0,
 					'user_link' => $post->userlink,
-					'smart_order' => $post->smart_order,
 					'post_source' => isset($post->source) ? $post->source : '',
 					'location' => isset($post->location) ? json_encode($post->location) : '',
+					'smart_order' => $post->smart_order,
 					'post_status' => $status
 				));
 				
@@ -274,13 +279,13 @@ class FFCacheManager implements FFCache{
 				$common = array(
 					'post_header' => @FFDB::conn()->conn->real_escape_string(trim($post->header)),
 					'post_text'   => $this->prepareText($post->text),
-					'post_timestamp' => FFFeedUtils::correctionTimeZone($post->system_timestamp),
+					'post_timestamp' => $this->correctionTimeZone($post->system_timestamp),
 					'post_additional' => json_encode($post->additional),
 					'carousel_size' => 0
 				);
 				
 				if (isset($post->carousel) && sizeof($post->carousel) > 1){
-					$this->db->deleteCarousel4Post($feed_id, $post->id, $post->type);
+					$this->db->deleteCarousel4Post($feed_id, $post->id);
 					foreach ($post->carousel as $media){
 						$mediaPartOfSql4carousel = FFDB::conn()->parse('`media_url`=?s, `media_width`=?i, `media_height`=?i, `media_type`=?s,', 
 							$media['url'], $media['width'], $media['height'], $media['type']);
@@ -297,8 +302,13 @@ class FFCacheManager implements FFCache{
 				
 				$this->db->addOrUpdatePost($only4insertPartOfSql, $imagePartOfSql, $mediaPartOfSql, $common);
 			}
-			$this->debug('Have saved posts');
 		}
+	}
+
+	private function correctionTimeZone($date){
+		$dt = new \DateTime("@{$date}");
+		$dt->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+		return $dt->getTimestamp();
 	}
 	
 	private function updateAdditionalInfo($posts){
@@ -321,7 +331,7 @@ class FFCacheManager implements FFCache{
 	 * @param array $row
 	 * @param bool $moderation
 	 *
-	 * @return stdClass
+	 * @return \stdClass
 	 */
 	protected function buildPost($row, $moderation = false){
 		$post = new \stdClass();
@@ -331,7 +341,7 @@ class FFCacheManager implements FFCache{
 		$post->screenname = $row['screenname'];
 		$post->userpic = $row['userpic'];
 		$post->system_timestamp = $row['system_timestamp'];
-		$post->timestamp = FFFeedUtils::classicStyleDate($row['system_timestamp'], FFGeneralSettings::get()->dateStyle());
+		$post->timestamp = FFSettingsUtils::classicStyleDate($row['system_timestamp'], FFGeneralSettings::get()->dateStyle());
 		$post->text = stripslashes($row['text']);
 		$post->location = json_decode($row['location']);
 		$post->userlink = $row['userlink'];
@@ -349,8 +359,8 @@ class FFCacheManager implements FFCache{
 			$url = $row['image_url'];
 			$width = $row['image_width'];
 			$tWidth = $this->stream->getImageWidth();
-			$height = FFFeedUtils::getScaleHeight($tWidth, $width, $row['image_height']);
-			if (($post->type != 'posts') && $this->db->getGeneralSettings()->useProxyServer() && ($width + 50) > $tWidth) $url = FFFeedUtils::proxy($url, $tWidth);
+			$height = FFSettingsUtils::getScaleHeight($tWidth, $width, $row['image_height']);
+			if (($post->type != 'posts') && $this->db->getGeneralSettings()->useProxyServer() && ($width + 50) > $tWidth) $url = $this->proxy($url, $tWidth);
 			if (($row['image_width'] == '-1') && ($row['image_height'] == '-1')) {
 				$post->img = array('url' => $url, 'type' => 'image');
 			}
@@ -371,6 +381,22 @@ class FFCacheManager implements FFCache{
 	}
 
 	/**
+	 * http://carlo.zottmann.org/2013/04/14/google-image-resizer/
+	 * @param string $url
+	 * @param string $width
+	 * @return string
+	 */
+	public static function proxy($url, $width){
+		if (strpos($url, '/www.', 10) > 10) return $url;
+		$query = http_build_query(array(
+			'container' => 'focus',
+			'resize_w' => $width,
+			'refresh' => 86400, //one day
+			'url' => $url));
+		return "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?".$query;
+	}
+
+	/**
 	 * @param $feedId
 	 * @param $status
 	 *
@@ -386,51 +412,6 @@ class FFCacheManager implements FFCache{
 			throw new \Exception('Can`t save the cache info');
 		}
 	}
-
-	/**
-	 * @param string $format
-	 * @param mixed | null $args
-	 *
-	 * @return void
-	 */
-	private function debug($format, $args = null){
-		if (isset($_REQUEST['debug'])) {
-			$msg = vsprintf($format, $args);
-			$id = is_null($this->stream) ? '' : $this->stream->getId();
-			error_log('DEBUG :: Stream: ' . $id . ' :: ' . $msg);
-			echo 'DEBUG :: Stream: ' . $id . ' :: ' . $msg . '<br>';
-		}
-	}
-
-	/**
-	 * @param string $format
-	 * @param mixed | null $args
-	 *
-	 * @return void
-	 */
-	private function trace($format, $args = null){
-		if (isset($_REQUEST['debug'])) {
-			$msg = vsprintf($format, $args);
-			$id = is_null($this->stream) ? '' : $this->stream->getId();
-			error_log('TRACE :: Stream: ' . $id . ' :: ' . $msg);
-			echo 'TRACE :: Stream: ' . $id . ' :: ' . $msg . '<br>';
-		}
-	}
-
-	/**
-	 * @param string $format
-	 * @param mixed | null $args
-	 *
-	 * @return void
-	 */
-	private function error($format, $args = null){
-		if (true) {
-			$msg = vsprintf($format, $args);
-			$id = is_null($this->stream) ? '' : $this->stream->getId();
-			error_log('ERROR :: Stream: ' . $id . ' :: ' . $msg);
-			if (isset($_REQUEST['debug'])) echo 'ERROR :: Stream: ' . $id . ' :: ' . $msg . '<br>';
-		}
-	}
 	
 	private function separation( $exist_feed_ids, $posts ){
 		$existed_posts = array();
@@ -440,7 +421,7 @@ class FFCacheManager implements FFCache{
 				unset($posts[$id]);
 			}
 		}
-		return array(array_values($posts), $existed_posts);
+		return array($posts, $existed_posts);
 	}
 	
 	private function encodeHash($hash){

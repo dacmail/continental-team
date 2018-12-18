@@ -29,11 +29,12 @@ class LALicenseTab implements LATab{
 	}
 
 	public function title() {
-		return $this->activated ? 'License' : '<span>!</span>Activate';
+		return $this->activated ? 'License' : '<i class="flaticon-error" style="display: inline-block;"></i> Activate';
 	}
 
 	public function includeOnce( $context ) {
 		$context['activated'] = $this->activated;
+		/** @noinspection PhpIncludeInspection */
 		include_once($context['root']  . 'views/license.php');
 	}
 }

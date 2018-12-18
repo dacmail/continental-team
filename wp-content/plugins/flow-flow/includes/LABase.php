@@ -1,13 +1,13 @@
 <?php namespace flow;
 use flow\cache\FFCache;
 use flow\cache\FFCacheAdapter;
+use flow\cache\FFImageSizeCacheManager;
 use flow\db\FFDB;
 use flow\db\FFDBManager;
 use flow\settings\FFGeneralSettings;
-use flow\social\FFFeedUtils;
 use flow\settings\FFSettingsUtils;
 use flow\settings\FFStreamSettings;
-use la\core\social\LAFeedWithComments;
+use flow\social\LAFeedWithComments;
 
 if ( ! defined('FF_BY_DATE_ORDER'))   define('FF_BY_DATE_ORDER', 'compareByTime');
 if ( ! defined('FF_RANDOM_ORDER'))    define('FF_RANDOM_ORDER',  'randomCompare');
@@ -129,7 +129,8 @@ abstract class LABase {
 	 * @since    1.0.0
 	 */
 	public final function enqueue_scripts() {
-		$this->enqueueScripts();
+	    // Customization 16.08.18, JS opts added in public.php instead
+//         $this->enqueueScripts();
 	}
 	
 	public final function processAjaxRequest() {
@@ -138,6 +139,7 @@ abstract class LABase {
 			$stream = $this->db->getStream($_REQUEST['stream-id']);
 			if (isset($stream)) {
 				$disableCache = isset($_REQUEST['disable-cache']) ? (bool)$_REQUEST['disable-cache'] : false;
+                header('Content-Type: application/json');
 				echo $this->process(array($stream), $disableCache);
 			}
 		}
@@ -217,7 +219,8 @@ abstract class LABase {
 										}
 										else {
 											//$_COOKIE['XDEBUG_SESSION'] = 'PHPSTORM';
-											FFFeedUtils::getFeedData($this->getLoadCacheUrl($feed_id, $force), 1, false, false, $use, $useIpv4);
+											$url = $this->getLoadCacheUrl( $feed_id, $force );
+											FFSettingsUtils::get( $url, 1, false, false, $use, $useIpv4);
 										}
 									}
 								}
@@ -235,7 +238,7 @@ abstract class LABase {
 		$this->refreshCache(null, false, true);
 	}
 
-	public final function emailNotification() {
+	public final function emailNotification () {
 		/** @var \flow\db\LADBManager $dbm */
 		$dbm = $this->context['db_manager'];
 		/** @var FFGeneralSettings $settings */
@@ -245,7 +248,7 @@ abstract class LABase {
 		}
 	}
 
-	public function renderShortCode($attr, $text = null) {
+	public function renderShortCode ($attr, $text = null) {
 		if (isset($attr['id'])){
 			if ($this->prepareProcess()) {
 				$this->db->dataInit(true);
@@ -253,12 +256,24 @@ abstract class LABase {
 				if (isset($stream)) {
 					$stream->preview = (isset($attr['preview']) && $attr['preview']);
 					$stream->gallery = $stream->preview ? FFSettingsUtils::NOPE : isset($stream->gallery) ? $stream->gallery : FFSettingsUtils::NOPE;
-					return $this->renderStream($stream, $this->getPublicContext($stream, $this->context));
+					$output = $this->renderStream($stream, $this->getPublicContext($stream, $this->context));
+
+                    /* workaround for extra P tags issue and possibly &&, set to true */
+                    $echo = isset($_GET["echo"]);
+
+					if ( $echo ) {
+					    echo $output;
+					    return '';
+                    } else {
+                        return $output;
+                    }
+
 				}
 			} else {
-				echo 'Flow-Flow message: Stream with specified ID not found or no feeds were added to stream';
+				echo '<p>Flow-Flow message: Stream with specified ID not found or no feeds were added to stream</p>';
 			}
 		}
+		return '';
 	}
 	
 	/**
@@ -329,6 +344,24 @@ abstract class LABase {
 	protected abstract function getNameJSOptions();
 	
 	protected function prepareProcess($forceLoadCache = false) {
+		$_REQUEST['stream-id'] = @filter_var( trim( $_REQUEST['stream-id'] ), FILTER_SANITIZE_NUMBER_INT);
+		$_REQUEST['action'] = @filter_var( trim( $_REQUEST['action'] ), FILTER_SANITIZE_STRING );
+		if (isset($_REQUEST['page'])) $_REQUEST['page'] = filter_var( trim( $_REQUEST['page'] ), FILTER_SANITIZE_NUMBER_INT);
+		if (isset($_REQUEST['countOfPages'])) $_REQUEST['countOfPages'] = filter_var( trim( $_REQUEST['countOfPages'] ), FILTER_SANITIZE_NUMBER_INT);
+		if (isset($_REQUEST['hash'])){
+			$hash = filter_var( $_REQUEST['hash'], FILTER_VALIDATE_REGEXP, array("options"=>array('regexp' => '/^\d{10}[.]\w{96}$/')));
+			if (false === $hash){
+				status_header(400);
+				exit;
+			}
+		}
+		if (isset($_REQUEST['disable-cache']) && !empty($_REQUEST['disable-cache'])){
+			$_REQUEST['disable-cache'] = filter_var( trim( $_REQUEST['disable-cache'] ), FILTER_SANITIZE_NUMBER_INT);
+		}
+		if (isset($_REQUEST['preview']) && !empty($_REQUEST['preview'])){
+			$_REQUEST['preview'] = filter_var( trim( $_REQUEST['preview'] ), FILTER_SANITIZE_NUMBER_INT);
+		}
+
 		if ($this->db->countFeeds() > 0) {
 			$this->generalSettings = $this->db->getGeneralSettings();
 			$this->cache = new FFCacheAdapter($this->context, $forceLoadCache);
@@ -336,28 +369,33 @@ abstract class LABase {
 		}
 		return false;
 	}
-	
+
 	protected function renderStream($stream, $context){
 		$settings = new FFStreamSettings($stream);
 		if ($settings->isPossibleToShow()){
 			if ( ! in_array( 'curl', get_loaded_extensions() ) ) {
 				echo "<p style='background: indianred;padding: 15px;color: white;'>Flow-Flow admin info: Your server doesn't have cURL module installed. Please ask your hosting to check this.</p>";
-				return;
+				return '';
 			}
 			
 			if (!isset($stream->layout) || empty($stream->layout)) {
 				echo "<p style='background: indianred;padding: 15px;color: white;'>Flow-Flow admin info: Please choose stream layout on options page.</p>";
-				return;
+				return '';
 			}
 			
 			ob_start();
 			$css_version = isset($stream->last_changes) ? $stream->last_changes : '1.0';
 			$url = content_url() . '/resources/' . $context['slug'] . '/css/stream-id' . $stream->id . '.css';
+			if (!is_main_site()){
+				$url = content_url() . '/resources/' . $context['slug'] . '/css/stream-id' . $stream->id . '-'. get_current_blog_id() . '.css';
+			}
 			echo "<link rel='stylesheet' id='ff-dynamic-css" . $stream->id . "' type='text/css' href='{$url}?ver={$css_version}'/>";
-			
+
+			/** @noinspection PhpIncludeInspection */
 			include($context['root']  . 'views/public.php');
 			$output = ob_get_clean();
 			$output = str_replace("\r\n", '', $output);
+
 			return $output;
 		}
 		else
@@ -389,6 +427,11 @@ abstract class LABase {
 				error_log($e->getTraceAsString());
 			}
 		}
+		return '';
+	}
+
+	protected function initContextBeforeCreateFeedInstances(){
+		$this->context['image_size_cache'] = new FFImageSizeCacheManager($this->context['db_manager']->image_cache_table_name);
 	}
 	
 	private function process4feeds($feeds, $disableCache = false, $background = false) {
@@ -404,13 +447,16 @@ abstract class LABase {
 			error_log($e->getMessage());
 			error_log($e->getTraceAsString());
 		}
+		return '';
 	}
-	
+
 	/**
 	 * Rework code, delete the reference to the database and the logic of expiration life time
 	 *
 	 * @param $post_id
 	 * @param $feed_id
+	 *
+	 * @return array
 	 */
 	private function process4comments($post_id, $feed_id){
 		$time = time();
@@ -420,6 +466,7 @@ abstract class LABase {
 		// if no comments or comments are outdated
 		if(count($comments) === 0 || ($comments[0]["updated_time"] < $expiration) ){
 			$sources = $this->db->sources();
+			$this->initContextBeforeCreateFeedInstances();
 			/** @var LAFeedWithComments $instance */
 			$instance = $this->createFeedInstance($sources[$feed_id]);
 			if ($instance instanceof LAFeedWithComments){
@@ -430,7 +477,7 @@ abstract class LABase {
 					if (sizeof($comments) > 0 && FFDB::beginTransaction()){
 						$this->db->removeComments($post_id);
 						foreach ( $comments as &$comment ) {
-							//TODO refact to batch
+							//TODO refactor to batch
 							$comment->updated_time = $time;
 							if (is_object($comment->from)) $comment->from = json_encode($comment->from);
 							$this->db->addComments($post_id, $comment);
@@ -440,7 +487,7 @@ abstract class LABase {
 				} catch (\Exception $e) {
 					FFDB::rollbackAndClose();
 					error_log($e->getMessage());
-					error_log($e->getTraceAsString());
+					error_log($e);
 				}
 			}
 		}
@@ -448,6 +495,7 @@ abstract class LABase {
 	}
 	
 	private function createFeedInstances($feeds) {
+		$this->initContextBeforeCreateFeedInstances();
 		$result = array();
 		if (is_array($feeds)) {
 			foreach ($feeds as $feed) {
@@ -464,14 +512,61 @@ abstract class LABase {
 		if ($feed->type == 'linkedin') {
 			$feed->type = 'linkedIn';
 		}
+		if ($feed->type == 'instagram') {
+			/** @noinspection PhpIncludeInspection */
+			require_once $this->context['root'] . 'libs/InstagramScraper.php';
+			/** @noinspection PhpIncludeInspection */
+			require_once $this->context['root'] . 'libs/Unirest.php';
+			/** @noinspection PhpIncludeInspection */
+			require_once $this->context['root'] . 'libs/phpFastCache.php';
+		}
 		if (FF_USE_WP && $feed->type == 'wordpress'){
 			$wpt = 'wordpress-type';
 		}
 		
 		$clazz = new \ReflectionClass( 'flow\\social\\FF' . ucfirst($feed->$wpt) );//don`t change this line
 		$instance = $clazz->newInstance();
-		$instance->init($this->context, $this->generalSettings, $feed);
+		$instance->init($this->context, $this->prepareFeed($feed, $this->generalSettings));
 		return $instance;
+	}
+
+	/**
+	 * @param $feed
+	 * @param $options FFGeneralSettings
+	 *
+	 * @return mixed
+	 */
+	private function prepareFeed($feed, $options){
+		$feed->{'use-excerpt'} = FFSettingsUtils::YepNope2ClassicStyleSafe($feed, 'use-excerpt');
+		$feed->{'include-post-title'} = FFSettingsUtils::YepNope2ClassicStyleSafe($feed, 'include-post-title');
+		$feed->{'only-text'} = FFSettingsUtils::YepNope2ClassicStyleSafe($feed, 'only-text');
+		$feed->{'rich-text'} = FFSettingsUtils::YepNope2ClassicStyleSafe($feed, 'rich-text');
+		$feed->{'hide-caption'} = FFSettingsUtils::YepNope2ClassicStyleSafe($feed, 'hide-caption');
+		$feed->{'playlist-order'} = FFSettingsUtils::YepNope2ClassicStyleSafe($feed, 'playlist-order');
+		$feed->replies = FFSettingsUtils::notYepNope2ClassicStyleSafe($feed, 'replies');
+		$feed->retweets = FFSettingsUtils::YepNope2ClassicStyleSafe($feed, 'retweets');
+		$feed->{'use-geo'} = FFSettingsUtils::YepNope2ClassicStyleSafe($feed, 'use-geo');
+
+
+		$original = $options->original();
+		$feed->linkedin_access_token    = @$original['linkedin_access_token'];
+		$feed->dribbble_access_token    = @$original['dribbble_access_token'];
+		$feed->foursquare_access_token  = @$original['foursquare_access_token'];
+		$feed->foursquare_client_id     = @$original['foursquare_client_id'];
+		$feed->foursquare_client_secret = @$original['foursquare_client_secret'];
+		$feed->google_api_key           = @$original['google_api_key'];
+		$feed->instagram_access_token   = @$original['instagram_access_token'];
+		$feed->soundcloud_api_key       = @$original['soundcloud_api_key'];
+		$feed->twitter_access_settings = array(
+			'oauth_access_token' => @$original['oauth_access_token'],
+			'oauth_access_token_secret' => @$original['oauth_access_token_secret'],
+			'consumer_key' => @$original['consumer_key'],
+			'consumer_secret' => @$original['consumer_secret']
+		);
+
+		$feed->use_curl_follow_location = $options->useCurlFollowLocation();
+		$feed->use_ipv4 = $options->useIPv4();
+		return $feed;
 	}
 	
 	private function prepareResult(array $all, $errors, $hash) {
@@ -497,6 +592,7 @@ abstract class LABase {
 
 		
 		$result['server_time'] = time();
+
 		$json = json_encode($result);
 		if ($json === false){
 			$errors = array();

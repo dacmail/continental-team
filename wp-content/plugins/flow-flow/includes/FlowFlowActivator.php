@@ -54,7 +54,6 @@ class FlowFlowActivator extends LAActivatorBase{
 								'class' => '',
 								'admin_label' => true,
 								"holder" => "div",
-								"class" => "",
 								"heading" => __("Choose stream to place on page:" ),
 								"description" => "Please create and edit stream on plugin's page in admin.",
 								"param_name" => "id",
@@ -81,9 +80,10 @@ class FlowFlowActivator extends LAActivatorBase{
 				'slug_down'         => 'flow_flow',
 				'plugin_url'        => plugin_dir_url(dirname($file).'/'),
 				'admin_url'         => admin_url('admin-ajax.php'),
-				'table_name_prefix' => $wpdb->base_prefix . 'ff_',
-				'version' 			=> '3.2.1',
-				'faq_url' 			=> 'http://docs.social-streams.com/'
+				'table_name_prefix' => $wpdb->prefix . 'ff_',
+				'version' 			=> '4.1.2',
+				'faq_url' 			=> 'http://docs.social-streams.com/',
+				'count_posts_4init'	=> 30
 		);
 		$adapter = new FFFacebookCacheAdapter();
 		$context['facebook_cache'] = $adapter;
@@ -93,9 +93,9 @@ class FlowFlowActivator extends LAActivatorBase{
 	}
 	
 	protected function checkEnvironment(){
-		if(version_compare(PHP_VERSION, '5.3.0') == -1){
+		if(version_compare(PHP_VERSION, '5.6.0') == -1){
 			deactivate_plugins( plugin_basename( __FILE__ ) );
-			wp_die( '<b>Flow-Flow Social Stream</b> plugin requires PHP version 5.3.0 or higher. Pls update your PHP version or ask hosting support to do this for you, you are using old and unsecure one' );
+			wp_die( '<b>Flow-Flow Social Stream</b> plugin requires PHP version 5.6.0 or higher. Pls update your PHP version or ask hosting support to do this for you, you are using old and unsecure one' );
 		}
 		
 		if(!function_exists('curl_version')){
@@ -136,8 +136,8 @@ class FlowFlowActivator extends LAActivatorBase{
 	}
 	
 	protected function registrationCronActions(){
-		$this->addCronInterval('minute', array('interval' => MINUTE_IN_SECONDS, 'display' => 'Once Minute'));
-		$this->addCronInterval('sex_hours', array('interval' => MINUTE_IN_SECONDS * 60 * 6, 'display' => 'Sex hours'));
+		$this->addCronInterval('minute', array('interval' => MINUTE_IN_SECONDS, 'display' => 'Every Minute'));
+		$this->addCronInterval('sex_hours', array('interval' => MINUTE_IN_SECONDS * 60 * 6, 'display' => 'Six hours'));
 		add_filter('cron_schedules', array($this, 'getCronIntervals'));
 		
 		$time = time();
@@ -164,15 +164,18 @@ class FlowFlowActivator extends LAActivatorBase{
 		$dbm = $this->context['db_manager'];
 		$slug_down = $this->context['slug_down'];
 		$ff = FlowFlow::get_instance($this->context);
-		
+
+		// public endpoints
 		add_action('wp_ajax_fetch_posts', array( $ff, 'processAjaxRequest'));
 		add_action('wp_ajax_nopriv_fetch_posts', array( $ff, 'processAjaxRequest'));
-		add_action('wp_ajax_' . $slug_down . '_moderation_apply_action', array( $ff, 'moderation_apply'));
-		add_action('wp_ajax_load_cache', array( $ff, 'processAjaxRequestBackground'));
-		add_action('wp_ajax_nopriv_load_cache', array( $ff, 'processAjaxRequestBackground'));
+        add_action('wp_ajax_load_cache', array( $ff, 'processAjaxRequestBackground'));
+        add_action('wp_ajax_nopriv_load_cache', array( $ff, 'processAjaxRequestBackground'));
         add_action('wp_ajax_' . $slug_down . '_load_comments_and_carousel', array( $ff, 'loadCommentsAndCarousel'));
         add_action('wp_ajax_nopriv_' . $slug_down . '_load_comments_and_carousel', array( $ff, 'loadCommentsAndCarousel'));
+		// roles detect
+		add_action('wp_ajax_' . $slug_down . '_moderation_apply_action', array( $ff, 'moderation_apply'));
 
+		// secured endpoints
 		add_action('wp_ajax_' . $slug_down . '_social_auth',			array( $dbm, 'social_auth' ));
 		add_action('wp_ajax_' . $slug_down . '_save_sources_settings',	array( $dbm, 'save_sources_settings' ));
 		add_action('wp_ajax_' . $slug_down . '_get_stream_settings',	array( $dbm, 'get_stream_settings' ));
@@ -182,7 +185,7 @@ class FlowFlowActivator extends LAActivatorBase{
 		add_action('wp_ajax_' . $slug_down . '_clone_stream',			array( $dbm, 'clone_stream' ));
 		add_action('wp_ajax_' . $slug_down . '_delete_stream',			array( $dbm, 'delete_stream' ));
 		
-		new FFSnapshotManager($this->context, $dbm->snapshot_table_name);
+		new FFSnapshotManager($this->context);
 		
 		if (!FF_USE_WP_CRON){
 			add_action('wp_ajax_' . $slug_down . '_refresh_cache', array($ff, 'refreshCache'));
