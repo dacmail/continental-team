@@ -1,16 +1,144 @@
 .history {
 
   &__yearlist {
+    display: none;
+    @extend %container;
     list-style: none;
-    margin: rem(100px) 0;
+    margin-top: rem(100px);
+    margin-bottom: rem(100px);
     padding: 0;
 
     @media (max-width: $sm) {
-      margin: rem(30px) 0;
+      margin-top: rem(30px);
+      margin-bottom: rem(30px);
     }
 
     &-item {
       display: inline-block;
+
+      a {
+        color: $black;
+      }
+    }
+  }
+
+  &__years {
+
+  }
+
+  &__year {
+
+    &-intro {
+      background: $black;
+      color: $white;
+      padding-top: rem(100px);
+      margin-bottom: rem(50px);
+
+      @media (max-width: $sm) {
+        padding-top: rem(30px);
+        margin-bottom: rem(30px);
+      }
+    }
+
+    &-title {
+      font-family: Overpass;
+      font-size: rem(24px);
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1;
+      letter-spacing: rem(10px);
+      text-transform: uppercase;
+      margin-bottom: rem(50px);
+
+      strong {
+        font-weight: 800;
+      }
+    }
+
+    &-content {
+      columns: 2;
+      column-gap: 50px;
+      margin-bottom: rem(100px);
+      font-family: Overpass;
+      font-size: rem(16px);
+      font-weight: 300;
+      line-height: 1.5;
+
+      @media (max-width: $sm) {
+        column-gap: 30px;
+        margin-bottom: rem(30px);
+      }
+
+      p:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    &-photo {
+      display: block;
+    }
+  }
+
+  &__info {
+    @extend %flex;
+    @extend %container;
+    justify-content: space-between;
+
+    &-title {
+      @include title-section();
+      margin-bottom: rem(50px);
+
+      @media (max-width: $sm) {
+        margin-bottom: rem(30px);
+      }
+    }
+
+    &-block {
+      flex: 0 0 30%;
+
+      @media (max-width: $sm) {
+        flex: 0 0 100%;
+      }
+    }
+  }
+
+  &__results {
+    margin: rem(0px);
+    padding: rem(0px);
+    list-style: none;
+  }
+
+  &__result {
+    font-size: rem(16px);
+    line-height: 1.5;
+    text-align: justify;
+    color: $black;
+    margin-bottom: rem(10px);
+    font-weight: 300;
+
+    strong {
+      font-weight: 900;
+      display: block;
+    }
+  }
+
+  &__riders {
+    margin: rem(0px);
+    padding: rem(0px);
+    list-style: none;
+  }
+
+  &__rider {
+    font-size: rem(16px);
+    line-height: 1.5;
+    text-align: justify;
+    color: $black;
+    margin-bottom: rem(10px);
+    font-weight: 900;
+
+    svg {
+      margin-right: rem(8px);
     }
   }
 }
