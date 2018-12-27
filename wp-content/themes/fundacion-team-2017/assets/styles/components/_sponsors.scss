@@ -48,7 +48,7 @@
   }
   &--level2 {
     margin-bottom: rem(45px);
-    justify-content: space-between;
+    justify-content: center;
     @media (max-width: $sm) {
       justify-content: center;
     }
