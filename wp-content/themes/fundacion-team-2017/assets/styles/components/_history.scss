@@ -22,8 +22,21 @@
     }
   }
 
-  &__years {
+  &__team {
+    margin: 0 0 rem(50px) 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
 
+    @media (max-width: $sm) {
+      margin-bottom: rem(20px);
+    }
+
+    &-photo {
+      flex: 0 0 64px;
+      max-width: 64px;
+    }
   }
 
   &__year {
@@ -68,6 +81,7 @@
       @media (max-width: $sm) {
         column-gap: 30px;
         margin-bottom: rem(30px);
+        columns: 1;
       }
 
       p:first-of-type {

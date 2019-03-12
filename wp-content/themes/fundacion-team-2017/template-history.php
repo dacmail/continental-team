@@ -28,11 +28,21 @@
                 <div class="history__year-content">
                   <?php the_sub_field('content'); ?>
                 </div>
-                <?php $team_photo = get_sub_field('team_photo'); ?>
-                <?= wp_get_attachment_image($team_photo, 'featured', false, array('class' => 'history__year-photo')) ?>
               </div>
             </div>
 
+            <?php $team_photo = get_sub_field('team_photo'); ?>
+            <?php if ($team_photo) : ?>
+              <div class="container">
+                <ul class="history__team" >
+                  <?php foreach ($team_photo as $photo) : ?>
+                  <li class="history__team-photo">
+                    <?= wp_get_attachment_image($photo['ID'], 'rider-gallery'); ?>
+                  </li>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+            <?php endif; ?>
             <div class="history__info">
               <?php if (have_rows('riders')) : ?>
                 <div class="history__info-block">
@@ -40,7 +50,7 @@
                   <ul class="history__riders">
                   <?php while (have_rows('riders')) : the_row(); ?>
                     <li class="history__rider">
-                      <?= Extras\ungrynerd_svg('flag-' . get_sub_field('bandera')) ?> <?php the_sub_field('name'); ?>
+                      <?php the_sub_field('name'); ?>
                     </li>
                   <?php endwhile; ?>
                   </ul>
