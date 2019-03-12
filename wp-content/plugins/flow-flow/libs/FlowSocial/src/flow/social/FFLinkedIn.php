@@ -7,7 +7,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 
 class FFLinkedIn extends FFHttpRequestFeed {
@@ -25,6 +25,8 @@ class FFLinkedIn extends FFHttpRequestFeed {
 	/**
 	 * Search company.
 	 * http://stackoverflow.com.80bola.com/questions/17860616/search-company-api-linkedin
+	 *
+	 * @param \stdClass $feed
 	 */
 	public function deferredInit( $feed ) {
 		$token = $feed->linkedin_access_token;
@@ -75,6 +77,7 @@ class FFLinkedIn extends FFHttpRequestFeed {
 		elseif (isset($item->updateContent->companyJobUpdate)){
 			return $item->updateContent->companyJobUpdate->job->id;
 		}
+		return '';
 	}
 
 	protected function getHeader( $item ) {
@@ -84,6 +87,7 @@ class FFLinkedIn extends FFHttpRequestFeed {
 		elseif (isset($item->updateContent->companyJobUpdate)){
 			return $item->updateContent->companyJobUpdate->job->position->title;
 		}
+		return '';
 	}
 
 	protected function getScreenName( $item ) {
@@ -111,6 +115,7 @@ class FFLinkedIn extends FFHttpRequestFeed {
 			$location = $item->updateContent->companyJobUpdate->job->locationDescription;
 			return $location . '<br>' . $item->updateContent->companyJobUpdate->job->description;
 		}
+		return '';
 	}
 
 	protected function getUserlink( $item ) {

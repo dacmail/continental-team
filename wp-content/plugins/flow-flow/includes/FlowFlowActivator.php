@@ -81,7 +81,7 @@ class FlowFlowActivator extends LAActivatorBase{
 				'plugin_url'        => plugin_dir_url(dirname($file).'/'),
 				'admin_url'         => admin_url('admin-ajax.php'),
 				'table_name_prefix' => $wpdb->prefix . 'ff_',
-				'version' 			=> '4.1.2',
+				'version' 			=> '4.1.5',
 				'faq_url' 			=> 'http://docs.social-streams.com/',
 				'count_posts_4init'	=> 30
 		);
@@ -137,7 +137,7 @@ class FlowFlowActivator extends LAActivatorBase{
 	
 	protected function registrationCronActions(){
 		$this->addCronInterval('minute', array('interval' => MINUTE_IN_SECONDS, 'display' => 'Every Minute'));
-		$this->addCronInterval('sex_hours', array('interval' => MINUTE_IN_SECONDS * 60 * 6, 'display' => 'Six hours'));
+		$this->addCronInterval('six_hours', array('interval' => MINUTE_IN_SECONDS * 60 * 6, 'display' => 'Six hours'));
 		add_filter('cron_schedules', array($this, 'getCronIntervals'));
 		
 		$time = time();
@@ -150,7 +150,7 @@ class FlowFlowActivator extends LAActivatorBase{
 		
 		add_action('flow_flow_load_cache_4disabled', array($ff, 'refreshCache4Disabled'));
 		if(false == wp_next_scheduled('flow_flow_load_cache_4disabled')){
-			wp_schedule_event($time, 'sex_hours', 'flow_flow_load_cache_4disabled');
+			wp_schedule_event($time, 'six_hours', 'flow_flow_load_cache_4disabled');
 		}
 
 		add_action('flow_flow_email_notification', array($ff, 'emailNotification'));

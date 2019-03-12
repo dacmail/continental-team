@@ -1,14 +1,14 @@
-# Copyright (C) 2018 Looks Awesome
+# Copyright (C) 2019 Looks Awesome
 # This file is distributed under the same license as the Flow-Flow package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Flow-Flow 4.1.2\n"
+"Project-Id-Version: Flow-Flow 4.1.5\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/flow-flow\n"
-"POT-Creation-Date: 2018-11-23 16:35:00+00:00\n"
+"POT-Creation-Date: 2019-01-10 14:40:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Team Name <team@example.com>\n"
 "X-Generator: grunt-wp-i18n 0.4.9\n"

@@ -7,7 +7,7 @@
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2018 Looks Awesome
+ * @copyright Looks Awesome
  */
 class FFImageSizeCacheBase{
 

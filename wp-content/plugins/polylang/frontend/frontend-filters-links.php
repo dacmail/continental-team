@@ -236,12 +236,15 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			 *
 			 * @param array $args
 			 */
-			$white_list = apply_filters( 'pll_home_url_white_list', array(
-				array( 'file' => $theme_root ),
-				array( 'function' => 'wp_nav_menu' ),
-				array( 'function' => 'login_footer' ),
-				array( 'function' => 'get_custom_logo' ),
-			) );
+			$white_list = apply_filters(
+				'pll_home_url_white_list',
+				array(
+					array( 'file' => $theme_root ),
+					array( 'function' => 'wp_nav_menu' ),
+					array( 'function' => 'login_footer' ),
+					array( 'function' => 'get_custom_logo' ),
+				)
+			);
 		}
 
 		// We don't want to filter the home url in these cases
@@ -257,10 +260,13 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			 *
 			 * @param array $args
 			 */
-			$black_list = apply_filters( 'pll_home_url_black_list', array(
-				array( 'file' => 'searchform.php' ), // Since WP 3.6 searchform.php is passed through get_search_form
-				array( 'function' => 'get_search_form' ),
-			) );
+			$black_list = apply_filters(
+				'pll_home_url_black_list',
+				array(
+					array( 'file' => 'searchform.php' ), // Since WP 3.6 searchform.php is passed through get_search_form
+					array( 'function' => 'get_search_form' ),
+				)
+			);
 		}
 
 		$traces = version_compare( PHP_VERSION, '5.2.5', '>=' ) ? debug_backtrace( false ) : debug_backtrace();
@@ -339,7 +345,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 
 		elseif ( is_category() || is_tag() || is_tax() ) {
 			$obj = $wp_query->get_queried_object();
-			if ( $this->model->is_translated_taxonomy( $obj->taxonomy ) ) {
+			if ( ! empty( $obj ) && $this->model->is_translated_taxonomy( $obj->taxonomy ) ) {
 				$language = $this->model->term->get_language( (int) $obj->term_id );
 			}
 		}
@@ -355,10 +361,20 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			$language = $this->model->post->get_language( (int) $id );
 		}
 
+		if ( 3 === $this->options['force_lang'] ) {
+			foreach ( $this->options['domains'] as $lang => $domain ) {
+				$host = parse_url( $domain, PHP_URL_HOST );
+				if ( 'www.' . $_SERVER['HTTP_HOST'] === $host || 'www.' . $host === $_SERVER['HTTP_HOST'] ) {
+					$language = $this->model->get_language( $lang );
+					$redirect_url = str_replace( '://' . $_SERVER['HTTP_HOST'], '://' . $host, $requested_url );
+				}
+			}
+		}
+
 		if ( empty( $language ) ) {
 			$language = $this->curlang;
 			$redirect_url = $requested_url;
-		} else {
+		} elseif ( empty( $redirect_url ) ) {
 			// First get the canonical url evaluated by WP
 			// Workaround a WP bug which removes the port for some urls and get it back at second call to redirect_canonical
 			$_redirect_url = ( ! $_redirect_url = redirect_canonical( $requested_url, false ) ) ? $requested_url : $_redirect_url;
@@ -382,7 +398,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 
 		// The language is not correctly set so let's redirect to the correct url for this object
 		if ( $do_redirect && $redirect_url && $requested_url != $redirect_url ) {
-			wp_redirect( $redirect_url, 301 );
+			wp_redirect( $redirect_url, 301, POLYLANG );
 			exit;
 		}
 

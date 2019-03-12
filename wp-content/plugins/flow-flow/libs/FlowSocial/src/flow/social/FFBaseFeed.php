@@ -10,24 +10,28 @@ use flow\social\cache\FFImageSizeCacheBase;
  * @author    Looks Awesome <email@looks-awesome.com>
 
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 abstract class FFBaseFeed implements FFFeed{
 	/** @var \stdClass */
 	public $feed;
 
-    private $id;
-    /** @var FFImageSizeCacheBase */
-    protected $cache;
-    private $count;
-    private $imageWidth;
+	private $id;
+	/** @var FFImageSizeCacheBase */
+	protected $cache;
+	private $count;
+	private $imageWidth;
 	private $type;
-	/** @var  Exclude words */
+	/**
+	 * Exclude words
+	 * @var  array $filterByWords */
 	private $filterByWords;
-    /** @var  Include words */
+	/**
+	 * Include words
+	 * @var array $include */
 	private $include;
 	private $criticalError = true;
-    protected $errors;
+	protected $errors;
 	protected $context;
 
 	function __construct( $type ) {
