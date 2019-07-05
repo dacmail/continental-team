@@ -133,7 +133,10 @@
       label {
         display: none;
       }
-      input {
+      input[type=text],
+      input[type=email],
+      input[type=date],
+      input[type=text] {
         background-color: $white;
         border: 0px;
         font-size: 18px;
@@ -141,18 +144,22 @@
         line-height: 1;
         padding: rem(23px);
         width: 100%;
-        &[type=submit] {
-          text-transform: uppercase;
-          background-color: $primary;
-          color: $white;
-          font-size: 16px;
-          font-weight: 900;
-          line-height: 1.25;
-          cursor: pointer;
-          transition: $transition-standard;
-          &:hover {
-            background-color: $black;
-          }
+      }
+
+      input[type=submit] {
+        padding: rem(23px);
+        width: 100%;
+        text-transform: uppercase;
+        background-color: $primary;
+        color: $white;
+        font-size: 16px;
+        font-weight: 900;
+        line-height: 1.25;
+        cursor: pointer;
+        transition: $transition-standard;
+
+        &:hover {
+          background-color: $black;
         }
       }
 

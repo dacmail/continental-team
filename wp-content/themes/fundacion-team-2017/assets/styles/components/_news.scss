@@ -84,6 +84,7 @@
       img {
         display: block;
         transition: $transition-standard;
+        width: 100%;
         &:hover {
           transform: scale(1.05);
         }

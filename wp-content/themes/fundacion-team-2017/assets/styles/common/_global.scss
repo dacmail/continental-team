@@ -23,6 +23,11 @@ body {
   @extend %container;
 }
 
+.center {
+  text-align: center;
+  justify-content: center;
+}
+
 a {
   color: $primary;
   text-decoration: none;
@@ -114,6 +119,7 @@ img {
 .banner {
   max-width: rem(1560px);
   margin: rem(0px) auto rem(60px) auto;
+  text-align: center;
   @media (max-width: $md) {
     margin-bottom: rem(40px);
   }
@@ -121,6 +127,7 @@ img {
     margin-bottom: rem(20px);
   }
   img {
+    display: inline-block;
     max-width: 100%;
     height: auto;
   }
@@ -132,7 +139,7 @@ img {
 ::-moz-placeholder {
   color: #bbb;
 }
-:-ms-input-placeholder { 
+:-ms-input-placeholder {
   color: #bbb;
 }
 :-moz-placeholder {

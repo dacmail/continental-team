@@ -392,6 +392,8 @@ acf_add_local_field_group(array(
 				'au' => 'Austria',
 				'co' => 'Colombia',
 				'er' => 'Eritrea',
+				'pt' => 'Portugal',
+				'hu' => 'Hungría',
 			),
 			'default_value' => array(
 				0 => 'es',

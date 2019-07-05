@@ -32,14 +32,19 @@
             </div>
 
             <?php $team_photo = get_sub_field('team_photo'); ?>
+            <?php $riders = get_sub_field('riders'); ?>
             <?php if ($team_photo) : ?>
               <div class="container">
                 <ul class="history__team" >
+                  <?php $i = 0; ?>
                   <?php foreach ($team_photo as $photo) : ?>
                   <li class="history__team-photo">
                     <?= wp_get_attachment_image($photo['ID'], 'rider-gallery'); ?>
+                    <?php if (isset($riders[$i])) : ?>
+                      <span class="history__team-name"><?= $riders[$i]['name'] ?></span>
+                    <?php endif; ?>
                   </li>
-                  <?php endforeach; ?>
+                  <?php $i++; endforeach; ?>
                 </ul>
               </div>
             <?php endif; ?>

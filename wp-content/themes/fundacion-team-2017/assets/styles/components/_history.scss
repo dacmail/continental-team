@@ -43,8 +43,28 @@
     }
 
     &-photo {
-      flex: 0 0 64px;
-      max-width: 64px;
+      flex: 0 0 67px;
+      max-width: 67px;
+      position: relative;
+
+      &:hover {
+        .history__team-name {
+          display: block;
+        }
+      }
+    }
+
+    &-name {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $black;
+      padding: rem(4px);
+      font-size: rem(14px);
+      color: $white;
+      white-space: nowrap;
+      display: none;
     }
   }
 
