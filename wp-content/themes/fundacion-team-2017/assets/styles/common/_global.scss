@@ -126,10 +126,15 @@ img {
   @media (max-width: $sm) {
     margin-bottom: rem(20px);
   }
-  img {
+  img, figure {
     display: inline-block;
     max-width: 100%;
     height: auto;
+    margin: 0 auto;
+  }
+
+  &--global {
+    margin-bottom: 0;
   }
 }
 

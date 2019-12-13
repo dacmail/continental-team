@@ -89,7 +89,22 @@ function widgets_init() {
     'before_title'  => '',
     'after_title'   => ''
   ]);
-
+  register_sidebar([
+    'name'          => __('Banner global', 'ungrynerd'),
+    'id'            => 'banner-global',
+    'before_widget' => '',
+    'after_widget'  => '',
+    'before_title'  => '',
+    'after_title'   => ''
+  ]);
+  register_sidebar([
+    'name'          => __('Banner global (Sólo móvil)', 'ungrynerd'),
+    'id'            => 'banner-global-mobile',
+    'before_widget' => '',
+    'after_widget'  => '',
+    'before_title'  => '',
+    'after_title'   => ''
+  ]);
 }
 add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
 

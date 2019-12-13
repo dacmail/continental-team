@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-03-27 17:52+0200\n"
+"POT-Creation-Date: 2019-12-13 10:39+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-KeywordsList: esc_html__;esc_html_e;__;_e\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -39,7 +39,7 @@ msgstr ""
 msgid "En la red"
 msgstr "Social stream"
 
-#: functions.php:23
+#: functions.php:24
 #, php-format
 msgid "Error locating %s for inclusion"
 msgstr ""
@@ -66,6 +66,14 @@ msgstr ""
 
 #: lib/customizer.php:44
 msgid "Instagram URL"
+msgstr ""
+
+#: lib/customizer.php:52 templates/footer.php:38
+msgid "Aviso legal"
+msgstr ""
+
+#: lib/customizer.php:60
+msgid "Politica de privacidad"
 msgstr ""
 
 #: lib/extras.php:54 templates/content-single-rider.php:93
@@ -120,7 +128,7 @@ msgstr ""
 msgid "No hay Sponsors en la papelera"
 msgstr ""
 
-#: lib/extras.php:103 lib/extras.php:114
+#: lib/extras.php:103 lib/extras.php:114 template-history.php:54
 msgid "Corredores"
 msgstr ""
 
@@ -184,6 +192,14 @@ msgstr ""
 msgid "Banner home (Sólo móvil)"
 msgstr ""
 
+#: lib/setup.php:93
+msgid "Banner global"
+msgstr ""
+
+#: lib/setup.php:101
+msgid "Banner global (Sólo móvil)"
+msgstr ""
+
 #: lib/titles.php:13
 msgid "Latest Posts"
 msgstr ""
@@ -213,20 +229,42 @@ msgstr ""
 msgid "Suscribirse"
 msgstr "Subscribe"
 
-#: template-sponsors.php:15
-msgid "Patrocinadores principales"
-msgstr "Title Sponsors"
+#: template-history.php:26
+msgid "Temporada"
+msgstr ""
 
-#: template-sponsors.php:48
-msgid "Patrocinadores oficiales"
-msgstr "Official Sponsors:"
+#: template-history.php:66 templates/content-single-rider.php:45
+msgid "Palmarés"
+msgstr "Results"
 
-#: template-sponsors.php:60
-msgid "Proveedores oficiales"
-msgstr "Official Suppliers"
+#: template-history.php:78
+msgid "Maillot"
+msgstr ""
 
-#: template-team.php:25
+#: template-sponsors.php:16
+msgid "Title Sponsors"
+msgstr ""
+
+#: template-sponsors.php:50
+msgid "Official Sponsors"
+msgstr ""
+
+#: template-sponsors.php:64
+msgid "Official Suppliers"
+msgstr ""
+
+#: template-team.php:26
 msgid "Staff"
+msgstr ""
+
+#: template-team.php:39
+msgid "Próximamente"
+msgstr ""
+
+#: template-team.php:40
+msgid ""
+"Estamos actualizando nuestro Equipo para la próxima temporada, pronto podrás "
+"conocernos"
 msgstr ""
 
 #: templates/comments.php:19
@@ -261,10 +299,6 @@ msgstr "Weight (kg)"
 msgid "Biografía"
 msgstr "Biography"
 
-#: templates/content-single-rider.php:45
-msgid "Palmarés"
-msgstr "Results"
-
 #: templates/content-single-rider.php:88
 msgid "Noticias relacionadas"
 msgstr "Related news"
@@ -297,22 +331,39 @@ msgstr "Galleries"
 msgid "Videos"
 msgstr "Videos"
 
-#: templates/footer.php:34
+#: templates/footer.php:36
+#, fuzzy
+#| msgid ""
+#| "HAYF SPORTS SL. Todos los derechos reservados. Prohibida su copia o "
+#| "reproducción sin autorización expresa."
 msgid ""
-"HAYF SPORTS SL. Todos los derechos reservados. Prohibida su copia o "
-"reproducción sin autorización expresa."
+"HAYF SPORTS SL. Todos los derechos reservados.\n"
+"      Prohibida su copia o reproducción sin autorización expresa."
 msgstr ""
 "HAYF SPORTS SL. All rights reserved. Any unauthorized copying or "
 "reproduction is strictly prohibited."
 
-#: templates/header.php:4
+#: templates/footer.php:39
+msgid "Política de privacidad"
+msgstr ""
+
+#: templates/header.php:15
 msgid "Menu"
 msgstr "Menu"
 
-#: templates/header.php:30
+#: templates/header.php:41
 msgid "Síguenos"
 msgstr "Follow us"
 
 #: templates/news-home.php:7
 msgid "Ir a noticias"
 msgstr "Got to news"
+
+#~ msgid "Patrocinadores principales"
+#~ msgstr "Title Sponsors"
+
+#~ msgid "Patrocinadores oficiales"
+#~ msgstr "Official Sponsors:"
+
+#~ msgid "Proveedores oficiales"
+#~ msgstr "Official Suppliers"

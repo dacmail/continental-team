@@ -2,6 +2,49 @@
 if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array(
+	'key' => 'group_5d1e181be9945',
+	'title' => 'Campus',
+	'fields' => array(
+		array(
+			'key' => 'field_5d1e181fa6247',
+			'label' => 'Formulario',
+			'name' => 'form',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => '',
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'page_template',
+				'operator' => '==',
+				'value' => 'template-campus.php',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+));
+
+acf_add_local_field_group(array(
 	'key' => 'group_5a8ae6801e869',
 	'title' => 'Corredores relacionados',
 	'fields' => array(
@@ -44,7 +87,7 @@ acf_add_local_field_group(array(
 	'label_placement' => 'top',
 	'instruction_placement' => 'label',
 	'hide_on_screen' => '',
-	'active' => 1,
+	'active' => true,
 	'description' => '',
 ));
 
@@ -344,7 +387,7 @@ acf_add_local_field_group(array(
 		10 => 'tags',
 		11 => 'send-trackbacks',
 	),
-	'active' => 1,
+	'active' => true,
 	'description' => '',
 ));
 
@@ -392,8 +435,6 @@ acf_add_local_field_group(array(
 				'au' => 'Austria',
 				'co' => 'Colombia',
 				'er' => 'Eritrea',
-				'pt' => 'Portugal',
-				'hu' => 'Hungría',
 			),
 			'default_value' => array(
 				0 => 'es',
@@ -536,6 +577,8 @@ acf_add_local_field_group(array(
 			'max_height' => '',
 			'max_size' => '',
 			'mime_types' => '',
+			'return_format' => 'array',
+			'preview_size' => 'medium',
 		),
 		array(
 			'key' => 'field_5a7c2e9b2fb32',
@@ -667,7 +710,7 @@ acf_add_local_field_group(array(
 		10 => 'tags',
 		11 => 'send-trackbacks',
 	),
-	'active' => 1,
+	'active' => true,
 	'description' => '',
 ));
 
@@ -729,7 +772,7 @@ acf_add_local_field_group(array(
 	'label_placement' => 'top',
 	'instruction_placement' => 'label',
 	'hide_on_screen' => '',
-	'active' => 1,
+	'active' => true,
 	'description' => '',
 ));
 
@@ -761,6 +804,8 @@ acf_add_local_field_group(array(
 			'max_height' => '',
 			'max_size' => '',
 			'mime_types' => '',
+			'return_format' => 'array',
+			'preview_size' => 'medium',
 		),
 	),
 	'location' => array(
@@ -778,7 +823,7 @@ acf_add_local_field_group(array(
 	'label_placement' => 'top',
 	'instruction_placement' => 'label',
 	'hide_on_screen' => '',
-	'active' => 1,
+	'active' => true,
 	'description' => '',
 ));
 
@@ -893,6 +938,8 @@ acf_add_local_field_group(array(
 					'max_height' => '',
 					'max_size' => '',
 					'mime_types' => '',
+					'return_format' => 'array',
+					'preview_size' => 'medium',
 				),
 				array(
 					'key' => 'field_5c18af83b9820',
@@ -1025,7 +1072,7 @@ acf_add_local_field_group(array(
 		11 => 'tags',
 		12 => 'send-trackbacks',
 	),
-	'active' => 1,
+	'active' => true,
 	'description' => '',
 ));
 
@@ -1223,7 +1270,7 @@ acf_add_local_field_group(array(
 		12 => 'tags',
 		13 => 'send-trackbacks',
 	),
-	'active' => 1,
+	'active' => true,
 	'description' => '',
 ));
 
@@ -1231,6 +1278,25 @@ acf_add_local_field_group(array(
 	'key' => 'group_5a7c350c2ce9b',
 	'title' => 'Staff',
 	'fields' => array(
+		array(
+			'key' => 'field_5df3560818e1b',
+			'label' => 'Desactiva el acceso a equipo y staff',
+			'name' => 'disabled_team',
+			'type' => 'true_false',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => '',
+			'default_value' => 0,
+			'ui' => 1,
+			'ui_on_text' => '',
+			'ui_off_text' => '',
+		),
 		array(
 			'key' => 'field_5a7c35116bec0',
 			'label' => 'Staff',
@@ -1331,19 +1397,18 @@ acf_add_local_field_group(array(
 	'instruction_placement' => 'label',
 	'hide_on_screen' => array(
 		0 => 'excerpt',
-		1 => 'custom_fields',
-		2 => 'discussion',
-		3 => 'comments',
-		4 => 'revisions',
-		5 => 'slug',
-		6 => 'author',
-		7 => 'format',
-		8 => 'featured_image',
-		9 => 'categories',
-		10 => 'tags',
-		11 => 'send-trackbacks',
+		1 => 'discussion',
+		2 => 'comments',
+		3 => 'revisions',
+		4 => 'slug',
+		5 => 'author',
+		6 => 'format',
+		7 => 'featured_image',
+		8 => 'categories',
+		9 => 'tags',
+		10 => 'send-trackbacks',
 	),
-	'active' => 1,
+	'active' => true,
 	'description' => '',
 ));
 
@@ -1383,7 +1448,7 @@ acf_add_local_field_group(array(
 	'label_placement' => 'top',
 	'instruction_placement' => 'label',
 	'hide_on_screen' => '',
-	'active' => 1,
+	'active' => true,
 	'description' => '',
 ));
 
