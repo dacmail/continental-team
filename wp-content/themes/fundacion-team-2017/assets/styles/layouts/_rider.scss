@@ -1,10 +1,13 @@
 .rider {
   &__header {
-    background: url('../images/bg-rider.jpg') center top no-repeat $black;
+    background: url('../images/bg-rider.jpg') center bottom no-repeat $black;
     background-size: cover;
     margin-bottom: rem(80px);
     @media (max-width: $md) {
       margin-bottom: rem(40px);
+    }
+    @media (min-width: 2000px) {
+      background-size: 2000px auto;
     }
   }
   &__wrapper {
