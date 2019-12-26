@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-12-13 10:39+0100\n"
+"POT-Creation-Date: 2019-12-26 09:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -258,14 +258,16 @@ msgid "Staff"
 msgstr ""
 
 #: template-team.php:39
-msgid "Próximamente"
+msgid "Muy pronto"
 msgstr ""
 
 #: template-team.php:40
 msgid ""
-"Estamos actualizando nuestro Equipo para la próxima temporada, pronto podrás "
-"conocernos"
+"Estamos ultimando la página web de nuestro equipo para la próxima temporada "
+"y en breve estará completamente disponible"
 msgstr ""
+"We are finalizing our team’s website for the next season and it will soon "
+"be fully available”"
 
 #: templates/comments.php:19
 msgid "&larr; Older comments"

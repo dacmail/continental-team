@@ -36,8 +36,8 @@
     </section>
   <?php else :  ?>
     <section class="staff">
-      <h2 class="staff__title"><?php esc_html_e('Próximamente', 'ungrynerd'); ?></h2>
-      <p class="staff__text"><?php esc_html_e('Estamos actualizando nuestro Equipo para la próxima temporada, pronto podrás conocernos', 'ungrynerd'); ?></p>
+      <h2 class="staff__title"><?php esc_html_e('Muy pronto', 'ungrynerd'); ?></h2>
+      <p class="staff__text"><?php esc_html_e('Estamos ultimando la página web de nuestro equipo para la próxima temporada y en breve estará completamente disponible', 'ungrynerd'); ?></p>
     </section>
   <?php endif; ?>
 <?php endwhile; ?>
