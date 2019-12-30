@@ -436,6 +436,7 @@ acf_add_local_field_group(array(
 				'co' => 'Colombia',
 				'er' => 'Eritrea',
 				'dk' => 'Dinamarca',
+				'cz' => 'República checa',
 			),
 			'default_value' => array(
 				0 => 'es',

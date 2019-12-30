@@ -20,7 +20,10 @@
                 <?php $logo = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');  ?>
                 <a target="_blank" class="sponsors-block__item" href="<?php the_field('sponsor_link'); ?>"><img src="<?= $logo[0]; ?>" width="<?= $logo[1]/2; ?>" alt="<?php the_title_attribute(); ?>"></a>
                 <div class="sponsors-block__social">
-                  <a target="_blank" href="<?php the_field('sponsor_link'); ?>"><?= Extras\ungrynerd_svg('icon-sp-home'); ?> <?php the_title(); ?></a>
+                  <?php $link = get_field('sponsor_link'); ?>
+                  <?php if ($link) : ?>
+                    <a target="_blank" href="<?php the_field('sponsor_link'); ?>"><?= Extras\ungrynerd_svg('icon-sp-home'); ?> <?php the_title(); ?></a>
+                  <?php endif; ?>
                   <?php $twitter = get_field('sponsor_twitter'); ?>
                   <?php if ($twitter) : ?>
                     <a target="<?= $twitter['target'] ?>" href="<?= $twitter['url'] ?>"><?= Extras\ungrynerd_svg('icon-sp-twitter'); ?> <?= $twitter['title'] ?></a>
