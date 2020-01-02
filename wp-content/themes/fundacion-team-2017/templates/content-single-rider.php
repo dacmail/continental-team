@@ -4,7 +4,11 @@
     <header class="rider__header">
       <div class="rider__wrapper">
         <div class="rider__photo">
-          <?php the_post_thumbnail('rider-big'); ?>
+          <?php if (get_field('video')) : ?>
+            <video class="rider__video" src="<?php the_field('video') ?>" autoplay="true" muted></video>
+          <?php else : ?>
+              <?php the_post_thumbnail('rider-big'); ?>
+          <?php endif; ?>
         </div>
         <div class="rider__data">
           <div class="rider__social">
@@ -74,14 +78,14 @@
       </ul>
     <?php endif; ?>
     <?php $news = new WP_Query(array(
-      'post_type' => array('post'), 
+      'post_type' => array('post'),
       'meta_query'		=> array(
                           array(
                             'key' => 'riders',
                             'value' => '"' . get_the_ID() . '"',
                             'compare' => 'LIKE'
                             )
-                          ), 
+                          ),
       'posts_per_page' => 3)) ?>
     <?php if ($news->have_posts()): ?>
       <div class="rider__news">

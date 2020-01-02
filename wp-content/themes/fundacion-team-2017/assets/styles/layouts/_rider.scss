@@ -18,6 +18,9 @@
   }
   &__photo {
     flex: 0 0 40%;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
     @media (max-width: $sm) {
       flex: 0 0 100%;
       margin-bottom: rem(30px);
@@ -25,6 +28,10 @@
     img {
       display: block;
     }
+  }
+  &__video {
+    position: absolute;
+    left: -65%;
   }
   &__data {
     flex: 0 0 40%;
