@@ -439,6 +439,7 @@ acf_add_local_field_group(array(
 				'cz' => 'República checa',
 				'hu' => 'Hungria',
 				'pt' => 'Portugal',
+				'fr' => 'Francia',
 			),
 			'default_value' => array(
 				0 => 'es',
