@@ -840,15 +840,16 @@ if ( ! function_exists( 'render_seo_column' ) ) {
 			}
 		}
 
+		$value = aioseop_sanitize( $value );
 		if ( empty( $value ) ) {
 			$value = sprintf( '<strong>%s</strong>', sprintf( __( 'No value', 'all-in-one-seo-pack' ), str_replace( '_', ' ', $name ) ) );
 		}
 
-		$span  = "<span id='aioseop_{$column_name}_{$post_id}_value'>" . trim( $value ) . '</span>';
+		$span  = "<span id='aioseop_{$column_name}_{$post_id}_value'>" . $value . '</span>';
 		$nonce = wp_create_nonce( "aioseop_meta_{$column_name}_{$post_id}" );
 
 		?>
-		<div id="<?php echo "aioseop_${column_name}_${post_id}"; ?>" class="aioseop_mpc_admin_meta_options aio_editing">
+		<div id="<?php echo "aioseop_${column_name}_${post_id}"; ?>" class="aioseop_mpc_admin_meta_options">
 			<a
 				class="dashicons dashicons-edit aioseop-quickedit-pencil" 
 				href="javascript:void(0);"
@@ -918,31 +919,11 @@ if ( ! function_exists( 'aioseop_ajax_save_meta' ) ) {
 				$key = '_wp_attachment_image_alt';
 				break;
 			}
+			default:
+				return;
 		}
 
-		update_post_meta( $post_id, $key, $value );
-	}
-}
-
-if ( ! function_exists( 'aioseop_unprotect_meta' ) ) {
-
-	/**
-	 * AIOSEOP Unprotect Meta
-	 *
-	 * @since ?
-	 *
-	 * @param $protected
-	 * @param $meta_key
-	 * @param $meta_type
-	 *
-	 * @return bool
-	 */
-	function aioseop_unprotect_meta( $protected, $meta_key, $meta_type ) {
-		if ( isset( $meta_key ) && ( substr( $meta_key, 0, 9 ) === '_aioseop_' ) ) {
-			return false;
-		}
-
-		return $protected;
+		update_post_meta( $post_id, $key, aioseop_sanitize( $value ) );
 	}
 }
 
@@ -1481,6 +1462,7 @@ if ( ! function_exists( 'aioseop_get_admin_screens' ) ) {
 			'Video Sitemap'      => 'all-in-one-seo_page_' . AIOSEOP_PLUGIN_DIRNAME . '/pro/video_sitemap',
 			'Image SEO'          => 'all-in-one-seo_page_aiosp_image_seo',
 			'About Us'           => 'all-in-one-seo_page_aioseop-about',
+			'Local Business SEO' => 'all-in-one-seo_page_' . AIOSEOP_PLUGIN_DIRNAME . '/pro/modules/class-aioseop-schema-local-business',
 		);
 	}
 }
@@ -1498,7 +1480,11 @@ if ( ! function_exists( 'aioseop_get_utm_url' ) ) {
 	 *
 	 * @return  string  $href
 	 */
-	function aioseop_get_utm_url( $medium, $source = 'WordPress', $campaign = 'liteplugin' ) {
+	function aioseop_get_utm_url( $medium, $source = 'WordPress', $campaign = '' ) {
+
+		if( empty( $campaign ) ) {
+			$campaign = ( AIOSEOPPRO ) ? 'proplugin' : 'liteplugin';
+		}
 
 		$href = 'https://semperplugins.com/all-in-one-seo-pack-pro-version/';
 
@@ -1512,6 +1498,32 @@ if ( ! function_exists( 'aioseop_get_utm_url' ) ) {
 		);
 
 		return $href;
+	}
+}
+
+if ( ! function_exists('aioseop_add_url_utm') ) {
+
+	/**
+     * Adds UTM params to URL
+     *
+     * @since 3.5
+     *
+	 * @param  string $href Base URL to append UTM params.
+	 * @param  array  $args UTM params to apply to $href/URL.
+	 * @return string       Full URL with UTM params.
+	 */
+	function aioseop_add_url_utm( $href = '', $args = array() ) {
+		if ( empty( $href ) ) {
+			$href = 'https://semperplugins.com/all-in-one-seo-pack-pro-version/';
+		}
+
+	    $default_args = array(
+			'utm_source'   => 'WordPress',
+			'utm_medium'   => ( AIOSEOPPRO ) ? 'proplugin' : 'liteplugin'
+        );
+	    $args = wp_parse_args( $args, $default_args );
+
+		return add_query_arg( $args, $href );
 	}
 }
 
@@ -1543,5 +1555,110 @@ if ( ! function_exists( 'aioseop_filter_styles' ) ) {
 	function aioseop_filter_styles( $styles ) {
 		$styles[] = 'display';
 		return $styles;
+	}
+}
+
+if ( ! function_exists( 'aioseop_delete_rewrite_rules' ) ) {
+	/**
+	 * Deletes our sitemap rewrite rules to prevent conflicts with other sitemap plugins.
+	 *
+	 * @since 3.4.3
+	 */
+	function aioseop_delete_rewrite_rules() {
+		$rules = get_option( 'rewrite_rules' );
+		
+		if ( empty( $rules ) ) {
+			return;
+		}
+
+		$pattern = '#.*aiosp_.*#';
+		foreach ( $rules as $k => $v ) {
+			preg_match( $pattern, $v, $match );
+			if ( $match ) {
+				unset( $rules[ $k ] );
+			}
+		}
+
+		update_option( 'rewrite_rules', $rules );
+	}
+}
+
+if ( ! function_exists( 'aioseop_is_addon_allowed' ) ) {
+	function aioseop_is_addon_allowed( $addonName ) {
+		global $aioseop_options;
+		if (
+			! AIOSEOPPRO ||
+			! isset( $aioseop_options['addons'] ) ||
+			! is_array( $aioseop_options['addons'] ) ||
+			! in_array( $addonName, $aioseop_options['addons'], true )
+		) {
+			return false;
+		}
+		return true;
+	}
+}
+
+if ( ! function_exists( 'aioseop_last_modified_post' ) ) {
+	/**
+	 * Returns the last modified post.
+	 *
+	 * This function is also useful to check if there's at least 1 published post.
+	 *
+	 * @since 3.5.0
+	 *
+	 * @param  array $additionalArgs
+	 * @return mixed                 WP_Post or false.
+	 */
+	function aioseop_last_modified_post( $additionalArgs = array() ) {
+		$args = array(
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+			'orderby '       => 'modified',
+			'order'          => 'DESC'
+		);
+
+		if ( $additionalArgs ) {
+			foreach ( $additionalArgs as $k => $v ) {
+				$args[ $k ] = $v;
+			}
+		}
+
+		$query = ( new WP_Query( $args ) );
+		if ( ! $query->post_count ) {
+			return false;
+		}
+		return $query->posts[0];
+	}
+}
+
+if ( ! function_exists( 'aioseop_sanitize' ) ) {
+	/**
+	 * Sanitizes a given value before we store it in the DB.
+	 *
+	 * @since 3.7.0
+	 *
+	 * @param  mixed $value The value.
+	 * @return mixed $value The sanitized value.
+	 */
+	function aioseop_sanitize( $value ) {
+		switch ( gettype( $value ) ) {
+			case 'boolean':
+				return (bool) $value;
+			case 'string':
+				// This is similar to what sanitize_text_field() does but we want to escape tags instead of strip them.
+				return esc_html( wp_check_invalid_utf8( trim( $value ) ) );
+			case 'integer':
+				return intval( $value );
+			case 'double':
+				return floatval( $value );
+			case 'array':
+				$sanitized = array();
+				foreach ( (array) $value as $child ) {
+					array_push( $sanitized, aioseop_sanitize($child) );
+				}
+				return $sanitized;
+			default:
+				return false;
+		}
 	}
 }

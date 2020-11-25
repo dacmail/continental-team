@@ -27,3 +27,19 @@ foreach ($sage_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+
+
+add_filter('acf/settings/save_json', function ($path) {
+  $path = get_stylesheet_directory() . '/acf-json';
+  // If the directory doesn't exist, create it.
+  if (!is_dir($path)) {
+    mkdir($path);
+  }
+  return $path;
+});
+
+add_filter('acf/settings/load_json', function ($paths) {
+  unset($paths[0]);
+  $paths[] = get_stylesheet_directory() . '/acf-json';
+  return $paths;
+});
