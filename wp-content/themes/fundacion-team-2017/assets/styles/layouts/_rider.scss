@@ -206,6 +206,13 @@
     @media (max-width: $sm) {
       margin-bottom: rem(30px);
     }
+
+    span {
+      letter-spacing: 0;
+      font-size: 1rem;
+      color: $black;
+      text-transform: none;
+    }
   }
 
   &__gallery {
