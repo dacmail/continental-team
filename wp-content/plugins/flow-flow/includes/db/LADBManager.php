@@ -84,14 +84,20 @@ abstract class LADBManager {
 	public final function get_stream_settings(){
 
         if (FF_USE_WP) {
-            if (!check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
+            if (!current_user_can('manage_options') || !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
                 die( json_encode( array('error' => 'not_allowed') ) );
             }
         }
 
 		$id = $_GET['stream-id'];
 		$this->dataInit();
-		die(json_encode( $this->streams[$id]));
+
+		$stream = $this->streams[$id];
+
+        // cleaning if error was saved in database stream model, can be removed in future, now it's needed for affected users
+        if ( isset( $stream['error'] ) ) unset( $stream['error'] );
+
+        die( json_encode( $stream ) );
 	}
 	
 	/**
@@ -100,12 +106,16 @@ abstract class LADBManager {
 	public final function create_stream(){
 
         if (FF_USE_WP) {
-            if (!current_user_can('manage_options') && !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
+            if (!current_user_can('manage_options') || !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
                 die( json_encode( array('error' => 'not_allowed') ) );
             }
         }
 
 		$stream = $_POST['stream'];
+
+        // cleaning if error was saved in database stream model, can be removed in future, now it's needed for affected users
+        if ( isset( $stream['error'] ) ) unset( $stream['error'] );
+
 		$stream = (object)$stream;
 		try{
 			FFDB::beginTransaction();
@@ -136,7 +146,7 @@ abstract class LADBManager {
 	public final function save_sources_settings(){
 
         if (FF_USE_WP) {
-            if (!current_user_can('manage_options') && !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
+            if (!current_user_can('manage_options') || !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
                 $dontChange = true;
             }
         }
@@ -198,12 +208,17 @@ abstract class LADBManager {
 	public final function save_stream_settings(){
 
         if (FF_USE_WP) {
-            if (!current_user_can('manage_options') && !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
+            if (!current_user_can('manage_options') || !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
                 die( json_encode( array('error' => 'not_allowed') ) );
             }
         }
 
 		$stream = $_POST['stream'];
+
+        // cleaning if error was saved in database stream model, can be removed in future, now it's needed for affected users
+        if ( isset( $stream['error'] ) ) unset( $stream['error'] );
+
+        // casting object
 		$stream = (object)$stream;
 		$id = $stream->id;
 		try{
@@ -232,7 +247,7 @@ abstract class LADBManager {
 	public final function ff_save_settings_fn() {
 
         if (FF_USE_WP) {
-            if (!current_user_can('manage_options') && !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
+            if (!current_user_can('manage_options') || !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
                 die( json_encode( array('error' => 'not_allowed') ) );
             }
         }
@@ -264,7 +279,13 @@ abstract class LADBManager {
 			echo json_encode( $response );
 		}catch (\Exception $e){
 			error_log('ff_save_settings_fn error:');
-			error_log($e->getMessage());
+			$msg = $e->getMessage();
+
+			if ( strpos( $msg, 'Connection timed out after') !== false ) {
+			    $msg .= '. Failed to connect to http://flow.looks-awesome.com which validates purchase code. Please ask help from your hosting support and tell them curl_exec exits with connection timeout error on line 889 of wp-content/plugins/flow-flow/includes/db/LADBManager.php';
+            }
+
+			error_log( $msg );
 			error_log($e->getTraceAsString());
 			FFDB::rollbackAndClose();
 			die($e->getMessage());
@@ -414,7 +435,7 @@ abstract class LADBManager {
 	public function delete_stream(){
 
 	    if (FF_USE_WP) {
-            if (!current_user_can('manage_options') && !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
+            if (!current_user_can('manage_options') || !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
                 die( json_encode( array('error' => 'not_allowed') ) );
             }
         }
@@ -465,12 +486,16 @@ abstract class LADBManager {
 	public function clone_stream(){
 
         if (FF_USE_WP) {
-            if (!current_user_can('manage_options') && !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
+            if (!current_user_can('manage_options') || !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
                 die( json_encode( array('error' => 'not_allowed') ) );
             }
         }
 
 		$stream = $_REQUEST['stream'];
+
+        // cleaning if error was saved in database stream model, can be removed in future, now it's needed for affected users
+        if ( isset( $stream['error'] ) ) unset( $stream['error'] );
+
 		$stream = (object)$stream;
 		try{
 			FFDB::beginTransaction();
@@ -732,15 +757,10 @@ abstract class LADBManager {
 		return FFDB::conn()->query( $sql, $this->cache_table_name, $feedId, $values, $values );
 	}
 	
-	public function setRandomOrder($feedId){
-		return FFDB::conn()->query('UPDATE ?n SET `rand_order` = RAND() WHERE `feed_id`=?s', $this->posts_table_name, $feedId);
-	}
-	
-	public function setSmartOrder($feedId, $count){
-		$wherePartOfSql = FFDB::conn()->parse('feed_id = ?s', $feedId);
-		if (false === FFDB::conn()->query('UPDATE ?n SET `smart_order` = `smart_order` + ?i WHERE ?p', $this->posts_table_name, $count, $wherePartOfSql)){
-			throw new \Exception(FFDB::conn()->conn->error);
-		}
+	public function setOrders($feedId){
+		$conn = FFDB::conn();
+		$conn->query('SET @ROW = -1;');//test mysql_query("SELECT @ROW = -1");
+		return $conn->query('UPDATE ?n SET `rand_order` = RAND(), `smart_order` = @ROW := @ROW+1 WHERE `feed_id`=?s ORDER BY post_timestamp DESC', $this->posts_table_name, $feedId);
 	}
 	
 	public function removeOldRecords($c_count){

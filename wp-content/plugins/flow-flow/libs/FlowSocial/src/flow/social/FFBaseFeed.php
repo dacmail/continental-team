@@ -10,7 +10,7 @@ use flow\social\cache\FFImageSizeCacheBase;
  * @author    Looks Awesome <email@looks-awesome.com>
 
  * @link      http://looks-awesome.com
- * @copyright Looks Awesome
+ * @copyright 2014-2016 Looks Awesome
  */
 abstract class FFBaseFeed implements FFFeed{
 	/** @var \stdClass */
@@ -70,7 +70,7 @@ abstract class FFBaseFeed implements FFFeed{
 	 *
 	 * @return void
 	 */
-    public function init($context, $feed){
+	public function init($context, $feed){
 		$this->context = $context;
 		$this->errors = array();
 		$this->imageWidth = defined('FF_MAX_IMAGE_WIDTH') ? FF_MAX_IMAGE_WIDTH : 300;
@@ -124,6 +124,11 @@ abstract class FFBaseFeed implements FFFeed{
 			}
 		}
 		catch (\Exception $e){
+			$error = [
+				'type' => $this->getType(),
+				'message' => $e->getMessage(),
+			];
+			$this->errors[] = $error;
 			$this->print2log($e->getMessage());
 			$this->print2log($e);
 		}
@@ -223,8 +228,14 @@ abstract class FFBaseFeed implements FFFeed{
                             return true;
                         }
                         break;
-                    default:
-                        if (!empty($word) && ((mb_strpos(mb_strtolower($post->text), $word) !== false) || (isset($post->header) && mb_strpos(mb_strtolower($post->header), $word) !== false))) {
+                    case '$':
+                        $word = mb_substr($word, 1);
+                        if ( !empty($word) && ((mb_strpos( mb_strtolower( strip_tags( $post->text ) ), '#' . $word) !== false) || (isset($post->header) && mb_strpos( mb_strtolower( strip_tags( $post->header ) ), '#' . $word) !== false))) {
+                            return true;
+                        }
+                        break;
+                     default:
+                        if ( !empty($word) && ((mb_strpos( mb_strtolower( strip_tags( $post->text ) ), $word) !== false) || (isset($post->header) && mb_strpos( mb_strtolower( strip_tags( $post->header ) ), $word) !== false))) {
                             return true;
                         }
                         break;
@@ -275,7 +286,7 @@ abstract class FFBaseFeed implements FFFeed{
 		if ($post == null) return false;
 
 		$suitable = $this->includePost($post);
-		if($suitable){
+		if( $suitable ){
             $suitable = $this->excludePost($post);
         }
 
@@ -329,7 +340,13 @@ abstract class FFBaseFeed implements FFFeed{
 
 		if (sizeof($response['errors']) > 0){
 			$message = isset($response['errors'][0]['msg']) ? $response['errors'][0]['msg'] : '';
-			throw new LASocialRequestException($url, $response['errors'], $message);
+			if ($message == 'An unknown error has occurred.' && strpos($url, 'comments.summary(true),') > 0){
+				$url = str_replace('comments.summary(true),', '', $url);
+				$response = $this->getFeedData($url, $timeout, $header, $log);
+			}
+			else {
+				throw new LASocialRequestException($url, $response['errors'], $message);
+			}
 		}
 
 		return $response;

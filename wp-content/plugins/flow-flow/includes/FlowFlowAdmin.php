@@ -67,7 +67,8 @@ class FlowFlowAdmin extends LAAdminBase{
 		$context = apply_filters('ff_change_context', $context);
 
 		/** @noinspection PhpIncludeInspection */
-		include_once($context['root']  . 'views/admin.php');
+//		include_once($context['root']  . 'views/maintenance.php');
+		 include_once($context['root']  . 'views/admin.php');
 	}
 	
 	protected function initPluginAdminPage(){

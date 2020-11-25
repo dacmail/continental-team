@@ -1,5 +1,6 @@
 <?php namespace flow\cache;
 if ( ! defined( 'WPINC' ) ) die;
+if ( ! defined('FF_FACEBOOK_RATE_LIMIT')) define('FF_FACEBOOK_RATE_LIMIT', 200);
 
 use flow\db\FFDB;
 use flow\db\LADBManager;
@@ -17,7 +18,7 @@ use flow\social\LASocialException;
  * @copyright Looks Awesome
  */
 class FFFacebookCacheManager implements LAFacebookCacheManager {
-    protected static $postfix_at = 'la_facebook_access_token';
+	protected static $postfix_at = 'la_facebook_access_token';
 	protected static $postfix_at_expires = 'la_facebook_access_token_expires';
 
 	/** @var LADBManager  */

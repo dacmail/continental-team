@@ -8,7 +8,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
 
  * @link      http://looks-awesome.com
- * @copyright Looks Awesome
+ * @copyright 2014-2016 Looks Awesome
  */
 class FFPinterest extends FFRss {
 	private $pin;
@@ -56,7 +56,7 @@ class FFPinterest extends FFRss {
 
 	protected function getProfileImage($item){
 		$url = is_null($this->pin) ? parent::getProfileImage($item) : $this->pin->pinner->image_small_url;
-		$url = str_replace('_30.', '_140.', $url);
+		$url = str_replace('30x30_', '140x140_', $url);
 		return $url;
 	}
 

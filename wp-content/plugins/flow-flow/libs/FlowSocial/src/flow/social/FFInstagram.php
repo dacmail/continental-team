@@ -1,8 +1,12 @@
 <?php namespace flow\social;
-use InstagramScraper\Endpoints;
-use InstagramScraper\Exception\InstagramNotFoundException;
-use InstagramScraper\Instagram;
-use InstagramScraper\Model\Media;
+use Cake\Cache\Engine\FileEngine;
+use Cake\Cache\SimpleCacheEngine;
+use InstagramAPI\Endpoints;
+use InstagramAPI\Exception\InstagramAuthException;
+use InstagramAPI\Exception\InstagramException;
+use InstagramAPI\Exception\InstagramNotFoundException;
+use InstagramAPI\Instagram;
+use InstagramAPI\Model\Media;
 use Unirest\Request;
 
 if ( ! defined( 'WPINC' ) ) die;
@@ -14,7 +18,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
 
  * @link      http://looks-awesome.com
- * @copyright Looks Awesome
+ * @copyright 2014-2016 Looks Awesome
  */
 class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
     private $url;
@@ -25,6 +29,9 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 	private $alternative = false;
 	private $timeline;
 	private $accounts = [];
+	private $api = null;
+	private $username = null;
+	private $password = null;
 
 	public function __construct() {
 		parent::__construct( 'instagram' );
@@ -32,18 +39,52 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 
 	public function init( $context, $feed ) {
 		parent::init( $context, $feed );
-//		require_once $context['root'] . 'libs/InstagramScraper.php';
-//		require_once $context['root'] . 'libs/Unirest.php';
-//		require_once $context['root'] . 'libs/phpFastCache.php';
 		Request::verifyPeer(false);
 		Request::verifyHost(false);
 		Request::curlOpt( CURLOPT_IPRESOLVE, $feed->use_ipv4 ? CURL_IPRESOLVE_V4 : CURL_IPRESOLVE_V6);
 		Request::curlOpt( CURLOPT_FOLLOWLOCATION, true);
+
+		$this->username = $feed->instagram_login;
+		$this->password = $feed->instagram_password;
+	}
+
+	/**
+	 * @return Instagram
+	 * @throws InstagramAuthException
+	 * @throws InstagramException
+	 */
+	public function getApi(){
+		if ($this->api == null){
+			if (!empty($this->username) && !empty($this->password)){
+				if (defined('FF_CACHE_PATH')){
+					$session_folder = FF_CACHE_PATH . '/sessions';
+				}
+				else {
+					$session_folder = WP_CONTENT_DIR . '/resources/' . $this->context['slug'] . '/cache/sessions';
+				}
+				$fileEngine = new FileEngine();
+				$fileEngine->init([
+					'duration' => '+1 hours',
+					'path' => $session_folder,
+					'prefix' => 'ff_instagram_']);
+				$cache = new SimpleCacheEngine($fileEngine);
+				$this->api = Instagram::withCredentials($this->username, $this->password, $cache);
+				$this->api->login();
+			}
+			else {
+				$this->api = new Instagram();
+			}
+		}
+		return $this->api;
+	}
+
+	public function getCount() {
+		return 40;
 	}
 
 	public function deferredInit($feed) {
 		$accessToken = $feed->instagram_access_token;
-		$this->url = "https://api.instagram.com/v1/users/self/media/recent/?access_token={$accessToken}&count={$this->getCount()}";
+		$this->url = "https://api.instagram.com/v1/users/self/media/recent/?access_token={$accessToken}&count={$this->getCount()}&hl=en";
 		if (isset($feed->{'timeline-type'})) {
 			$this->timeline = $feed->{'timeline-type'};
 			switch ($this->timeline) {
@@ -53,7 +94,7 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 					//$this->userMeta = $this->getUserMeta($userId, $accessToken);
 					//$this->url = "https://api.instagram.com/v1/users/self/media/recent/?access_token={$accessToken}&count={$this->getCount()}";
 					if (empty($content)){
-						$this->url = "https://api.instagram.com/v1/users/self/media/recent/?access_token={$accessToken}&count={$this->getCount()}";
+						$this->url = "https://api.instagram.com/v1/users/self/media/recent/?access_token={$accessToken}&count={$this->getCount()}&hl=en";
 					}
 					else {
 						$this->url = $content;
@@ -75,7 +116,7 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 					$coordinates = explode(',', $feed->content);
 					$lat = trim($coordinates[0]);
 					$lng = trim($coordinates[1]);
-					$this->url = "https://api.instagram.com/v1/media/search?lat={$lat}&lng={$lng}&access_token={$accessToken}&count={$this->getCount()}";
+					$this->url = "https://api.instagram.com/v1/media/search?lat={$lat}&lng={$lng}&access_token={$accessToken}&count={$this->getCount()}&hl=en";
 					break;
 			}
 		}
@@ -84,8 +125,7 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 	public function onePagePosts() {
 		$result = array();
 		if ($this->alternative){
-			$instagram = new Instagram();
-			$instagram->setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36");
+			$instagram = $this->getApi();
 			$medias = [];
 			$forced_loading_of_post = false;
 			switch ($this->timeline){
@@ -196,6 +236,8 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 	 * @param bool $forced_loading_of_post
 	 *
 	 * @return \stdClass
+	 * @throws LASocialException
+	 * @throws InstagramException
 	 */
 	private function altParsePost($post, $forced_loading_of_post = false) {
 
@@ -289,81 +331,9 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 		}
 	}
 	
-    private function getCaption($text){
-		$text = FFFeedUtils::removeEmoji( (string) $text );
+	private function getCaption($text){
 		return $this->hashtagLinks($text);
-    }
-
-//    private function getUserMeta($userId, $accessToken){
-//        $request = $this->getFeedData("https://api.instagram.com/v1/users/{$userId}/?access_token={$accessToken}");
-//        $json = json_decode($request['response']);
-//        if (!is_object($json) || (is_object($json) && sizeof($json->data) == 0)) {
-//            if (isset($request['errors']) && is_array($request['errors'])){
-//                foreach ( $request['errors'] as $error ) {
-//                    $error['type'] = 'instagram';
-//                    //TODO $this->filterErrorMessage
-//                    $this->errors[] = $error;
-//                    throw new \Exception();
-//                }
-//            }
-//            else {
-//                $this->errors[] = array('type'=>'instagram', 'message' => 'Bad request, access token issue', 'url' => "https://api.instagram.com/v1/users/search?q={$userId}&access_token={$accessToken}");
-//                throw new \Exception();
-//            }
-//            return $userId;
-//        }
-//        else {
-//            if($json->data){
-//                return $json->data;
-//            }else{
-//                $this->errors[] = array(
-//                    'type' => 'instagram',
-//                    'message' => 'User not found',
-//                    'url' => "https://api.instagram.com/v1/users/{$userId}&access_token={$accessToken}"
-//                );
-//                throw new \Exception();
-//            }
-//        }
-//    }
-
-	/**
-	 * @param $content
-	 * @param $accessToken
-	 *
-	 * @return string
-	 * @throws \Exception
-	 */
-//	private function getUserId($content, $accessToken){
-//		$request = $this->getFeedData("https://api.instagram.com/v1/users/search?q={$content}&access_token={$accessToken}");
-//		$json = json_decode($request['response']);
-//		if (!is_object($json) || (is_object($json) && sizeof($json->data) == 0)) {
-//			if (isset($request['errors']) && is_array($request['errors'])){
-//				foreach ( $request['errors'] as $error ) {
-//					$error['type'] = 'instagram';
-//					//TODO $this->filterErrorMessage
-//					$this->errors[] = $error;
-//					throw new \Exception();
-//				}
-//			}
-//			else {
-//				$this->errors[] = array('type'=>'instagram', 'message' => 'Bad request, access token issue. <a href="http://docs.social-streams.com/article/55-400-bad-request" target="_blank">Troubleshooting</a>.', 'url' => "https://api.instagram.com/v1/users/search?q={$content}&access_token={$accessToken}");
-//				throw new \Exception();
-//			}
-//			return $content;
-//		}
-//		else {
-//            $lowerContent = strtolower($content);
-//			foreach($json->data as $user){
-//				if (strtolower($user->username) == $lowerContent) return $user->id;
-//			}
-//			$this->errors[] = array(
-//				'type' => 'instagram',
-//				'message' => 'Username not found',
-//                'url' => "https://api.instagram.com/v1/users/search?q={$content}&access_token={$accessToken}"
-//			);
-//			throw new \Exception();
-//		}
-//	}
+	}
 
 	/**
 	 * @param $item
@@ -377,7 +347,7 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 
 		$result = [];
 		$objectId = $item;
-		$instagram = new Instagram();
+		$instagram = $this->getApi();
 		$code = $this->getCodeFromId($objectId);
 		$mediaLink = Endpoints::getMediaPageLink($code);
 		$media = $instagram->getMediaByUrl($mediaLink);
@@ -399,42 +369,6 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 			$result[] = $c;
 		}
 		return $result;
-
-//		$accessToken = $this->feed->instagram_access_token;
-//		$url = "https://api.instagram.com/v1/media/{$objectId}/comments?access_token={$accessToken}";
-//		$request = $this->getFeedData($url);
-//		$json = json_decode($request['response']);
-//
-//		if (!is_object($json) || (is_object($json) && sizeof($json->data) == 0)) {
-//			if (isset($request['errors']) && is_array($request['errors'])){
-//				if (!empty($request['errors'])){
-//					foreach ( $request['errors'] as $error ) {
-//						$error['type'] = 'instagram';
-//						//TODO $this->filterErrorMessage
-//						$this->errors[] = $error;
-//						throw new \Exception();
-//					}
-//				}
-//			}
-//			else {
-//				$this->errors[] = array('type'=>'instagram', 'message' => 'Bad request, access token issue. <a href="http://docs.social-streams.com/article/55-400-bad-request" target="_blank">Troubleshooting</a>.', 'url' => $url);
-//				throw new \Exception();
-//			}
-//			return array();
-//		}
-//		else {
-//			if($json->data){
-//				// return first 5 comments
-//				return array_slice($json->data, 0, 5);
-//			}else{
-//				$this->errors[] = array(
-//					'type' => 'instagram',
-//					'message' => 'User not found',
-//					'url' => $url
-//				);
-//				throw new \Exception();
-//			}
-//		}
 	}
 
 	protected function nextPage( $result ) {
@@ -453,6 +387,7 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 
 	private function hashtagLinks($text) {
 		$result = preg_replace('~(\#)([^\s!,. /()"\'?]+)~', '<a href="https://www.instagram.com/explore/tags/$2">#$2</a>', $text);
+		$result = FFFeedUtils::removeEmoji($result);
 		return $result;
 	}
 
@@ -475,15 +410,14 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 	/**
 	 * @param string $username
 	 *
-	 * @return \InstagramScraper\Model\Account
+	 * @return \InstagramAPI\Model\Account
 	 * @throws LASocialException
-	 * @throws \InstagramScraper\Exception\InstagramException
+	 * @throws InstagramException
 	 */
 	private function getAccount($username){
 		if (!array_key_exists($username, $this->accounts)){
-			$i = new Instagram();
 			try {
-				$this->accounts[$username] = $i->getAccount($username);
+				$this->accounts[$username] = $this->getApi()->getAccount($username);
 			} catch ( InstagramNotFoundException $e ) {
 				throw new LASocialException('Username not found', array(), $e);
 			}
@@ -494,15 +428,14 @@ class FFInstagram extends FFBaseFeed implements LAFeedWithComments{
 	/**
 	 * @param string $id
 	 *
-	 * @return \InstagramScraper\Model\Account
+	 * @return \InstagramAPI\Model\Account
 	 * @throws LASocialException
-	 * @throws \InstagramScraper\Exception\InstagramException
+	 * @throws InstagramException
 	 */
 	private function getAccountById($id){
 		if (!array_key_exists($id, $this->accounts)){
-			$i = new Instagram();
 			try {
-				$this->accounts[$id] = $i->getAccountById($id);
+				$this->accounts[$id] = $this->getApi()->getAccountById($id);
 			} catch ( InstagramNotFoundException $e ) {
 				throw new LASocialException('Username not found', array(), $e);
 			}

@@ -71,12 +71,21 @@ $auth['facebook_access_token'] = isset($auth['facebook_access_token']) ? $auth['
         <p class="button-wrapper"><span id="fb-auth-settings-sbmt" class='admin-button green-button submit-button'>Save Changes</span></p>
 
 
-        <h1 class="desc-following ">Instagram auth settings <span id="inst-auth" class='admin-button auth-button blue-button'>Authorize</span></h1>
-        <p class="desc"><a target="_blank" href="http://docs.social-streams.com/article/47-authenticate-with-instagram">Setup guide</a></p>
-        <dl class="section-settings">
-            <dt class="vert-aligned">Access Token</dt>
-            <dd>
+        <h1 class="desc-following insta-fields">Instagram auth settings <span id="inst-auth" class='admin-button auth-button blue-button'>Authorize</span></h1>
+
+        <p class="desc insta-fields guide"><a target="_blank" href="http://docs.social-streams.com/article/47-authenticate-with-instagram">Setup guide</a></p>
+        <dl class="section-settings insta-fields">
+            <dt class="vert-aligned insta-token">Access Token</dt>
+            <dd class="insta-token">
                 <input class="clearcache" type="text" id="instagram_access_token" name="flow_flow_options[instagram_access_token]" placeholder="Copy and paste from Instagram" value="<?php echo isset($options['instagram_access_token']) ? $options['instagram_access_token'] : ''?>"/>
+            </dd>
+            <dt class="vert-aligned">Instagram Login</dt>
+            <dd class="">
+                <input class="clearcache" type="text" id="instagram_login" name="flow_flow_options[instagram_login]" placeholder="Copy and paste from Instagram" value="<?php echo isset($options['instagram_login']) ? $options['instagram_login'] : ''?>"/>
+            </dd>
+            <dt class="">Instagram Password<p class="desc insta-fields"><a target="_blank" href="https://social-streams.com/important-changes-to-instagram-authorization-flow/">Why password is needed here?</a></p></dt>
+            <dd class="">
+                <input class="clearcache" type="password" id="instagram_pass" name="flow_flow_options[instagram_pass]" placeholder="Copy and paste from Instagram" value="<?php echo isset($options['instagram_pass']) ? $options['instagram_pass'] : ''?>"/>
             </dd>
         </dl>
         <p class="button-wrapper"><span id="inst-auth-settings-sbmt" class='admin-button green-button submit-button'>Save Changes</span></p>

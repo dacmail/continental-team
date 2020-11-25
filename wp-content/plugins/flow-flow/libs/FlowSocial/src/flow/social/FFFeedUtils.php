@@ -6,7 +6,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @package   FlowFlow
  * @author    Looks Awesome <email@looks-awesome.com>
  * @link      http://looks-awesome.com
- * @copyright Looks Awesome
+ * @copyright 2014-2016 Looks Awesome
  */
 class FFFeedUtils{
 	private static $USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36';
@@ -107,33 +107,37 @@ class FFFeedUtils{
 		return array('response' => $page, 'errors' => $errors);
     }
 
-    /**
-     * @param string $text
-     * @return mixed
-     */
-    public static function removeEmoji($text) {
-        // Match Emoticons
-        $regexEmoticons = '/[\x{1F600}-\x{1F64F}]/u';
-        $clean_text = preg_replace($regexEmoticons, '', $text);
+	/**
+	 * @param string $text
+	 * @return mixed
+	 */
+	public static function removeEmoji($text) {
+		if (defined('FF_REMOVE_EMOJI') && !FF_REMOVE_EMOJI){
+			return $text;
+		}
 
-        // Match Miscellaneous Symbols and Pictographs
-        $regexSymbols = '/[\x{1F300}-\x{1F5FF}]/u';
-        $clean_text = preg_replace($regexSymbols, '', $clean_text);
+		// Match Emoticons
+		$regexEmoticons = '/[\x{1F600}-\x{1F64F}]/u';
+		$clean_text = preg_replace($regexEmoticons, '', $text);
 
-        // Match Transport And Map Symbols
-        $regexTransport = '/[\x{1F680}-\x{1F6FF}]/u';
-        $clean_text = preg_replace($regexTransport, '', $clean_text);
+		// Match Miscellaneous Symbols and Pictographs
+		$regexSymbols = '/[\x{1F300}-\x{1F5FF}]/u';
+		$clean_text = preg_replace($regexSymbols, '', $clean_text);
 
-        // Match Miscellaneous Symbols
-        $regexMisc = '/[\x{2600}-\x{26FF}]/u';
-        $clean_text = preg_replace($regexMisc, '', $clean_text);
+		// Match Transport And Map Symbols
+		$regexTransport = '/[\x{1F680}-\x{1F6FF}]/u';
+		$clean_text = preg_replace($regexTransport, '', $clean_text);
 
-        // Match Dingbats
-        $regexDingbats = '/[\x{2700}-\x{27BF}]/u';
-        $clean_text = preg_replace($regexDingbats, '', $clean_text);
+		// Match Miscellaneous Symbols
+		$regexMisc = '/[\x{2600}-\x{26FF}]/u';
+		$clean_text = preg_replace($regexMisc, '', $clean_text);
 
-        return $clean_text;
-    }
+		// Match Dingbats
+		$regexDingbats = '/[\x{2700}-\x{27BF}]/u';
+		$clean_text = preg_replace($regexDingbats, '', $clean_text);
+
+		return $clean_text;
+	}
 
 	/**
 	 * @param string $source

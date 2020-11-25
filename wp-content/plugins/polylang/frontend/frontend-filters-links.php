@@ -40,6 +40,8 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			// Rewrites next and previous post links when not automatically done by WordPress
 			add_filter( 'get_pagenum_link', array( $this, 'archive_link' ), 20 );
 
+			add_filter( 'get_shortlink', array( $this, 'shortlink' ), 20, 2 );
+
 			// Rewrites ajax url
 			add_filter( 'admin_url', array( $this, 'admin_url' ), 10, 2 );
 		}
@@ -145,6 +147,20 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			$this->cache->set( $cache_key, $_link );
 		}
 		return $_link;
+	}
+
+	/**
+	 * Modifies the post short link when using one domain or subdomain per language.
+	 *
+	 * @since 2.6.9
+	 *
+	 * @param string $link    Post permalink.
+	 * @param int    $post_id Post id.
+	 * @return Post permalink with the correct domain.
+	 */
+	public function shortlink( $link, $post_id ) {
+		$post_type = get_post_type( $post_id );
+		return $this->model->is_translated_post_type( $post_type ) ? $this->links_model->switch_language_in_link( $link, $this->model->post->get_language( $post_id ) ) : $link;
 	}
 
 	/**
@@ -269,7 +285,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			);
 		}
 
-		$traces = version_compare( PHP_VERSION, '5.2.5', '>=' ) ? debug_backtrace( false ) : debug_backtrace();
+		$traces = version_compare( PHP_VERSION, '5.2.5', '>=' ) ? debug_backtrace( false ) : debug_backtrace(); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
 		unset( $traces[0], $traces[1] ); // We don't need the last 2 calls: this function + call_user_func_array (or apply_filters on PHP7+)
 
 		foreach ( $traces as $trace ) {
@@ -323,7 +339,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 		}
 
 		// Don't redirect mysite.com/?attachment_id= to mysite.com/en/?attachment_id=
-		if ( 1 == $this->options['force_lang'] && is_attachment() && isset( $_GET['attachment_id'] ) ) {
+		if ( 1 == $this->options['force_lang'] && is_attachment() && isset( $_GET['attachment_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 			return;
 		}
 
@@ -334,7 +350,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 		}
 
 		if ( empty( $requested_url ) ) {
-			$requested_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$requested_url = pll_get_requested_url();
 		}
 
 		if ( is_single() || is_page() ) {
@@ -362,11 +378,12 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 		}
 
 		if ( 3 === $this->options['force_lang'] ) {
+			$requested_host = wp_parse_url( $requested_url, PHP_URL_HOST );
 			foreach ( $this->options['domains'] as $lang => $domain ) {
-				$host = parse_url( $domain, PHP_URL_HOST );
-				if ( 'www.' . $_SERVER['HTTP_HOST'] === $host || 'www.' . $host === $_SERVER['HTTP_HOST'] ) {
+				$host = wp_parse_url( $domain, PHP_URL_HOST );
+				if ( 'www.' . $requested_host === $host || 'www.' . $host === $requested_host ) {
 					$language = $this->model->get_language( $lang );
-					$redirect_url = str_replace( '://' . $_SERVER['HTTP_HOST'], '://' . $host, $requested_url );
+					$redirect_url = str_replace( '://' . $requested_host, '://' . $host, $requested_url );
 				}
 			}
 		}
@@ -398,7 +415,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 
 		// The language is not correctly set so let's redirect to the correct url for this object
 		if ( $do_redirect && $redirect_url && $requested_url != $redirect_url ) {
-			wp_redirect( $redirect_url, 301, POLYLANG );
+			wp_safe_redirect( $redirect_url, 301, POLYLANG );
 			exit;
 		}
 

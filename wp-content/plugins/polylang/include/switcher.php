@@ -19,7 +19,7 @@ class PLL_Switcher {
 	 */
 	public static function get_switcher_options( $type = 'widget', $key = 'string' ) {
 		$options = array(
-			'dropdown'               => array( 'string' => __( 'Displays as dropdown', 'polylang' ), 'default' => 0 ),
+			'dropdown'               => array( 'string' => __( 'Displays as a dropdown', 'polylang' ), 'default' => 0 ),
 			'show_names'             => array( 'string' => __( 'Displays language names', 'polylang' ), 'default' => 1 ),
 			'show_flags'             => array( 'string' => __( 'Displays flags', 'polylang' ), 'default' => 0 ),
 			'force_home'             => array( 'string' => __( 'Forces link to front page', 'polylang' ), 'default' => 0 ),
@@ -53,21 +53,15 @@ class PLL_Switcher {
 			$classes = array( 'lang-item', 'lang-item-' . $id, 'lang-item-' . esc_attr( $slug ) );
 			$url = null; // Avoids potential notice
 
-			if ( $first ) {
-				$classes[] = 'lang-item-first';
-				$first = false;
-			}
-
 			if ( $current_lang = $links->curlang->slug == $slug ) {
 				if ( $args['hide_current'] && ! ( $args['dropdown'] && ! $args['raw'] ) ) {
 					continue; // Hide current language except for dropdown
-				}
-				else {
+				} else {
 					$classes[] = 'current-lang';
 				}
 			}
 
-			if ( null !== $args['post_id'] && ( $tr_id = $links->model->post->get( $args['post_id'], $language ) ) && $links->current_user_can_read( $tr_id ) ) {
+			if ( null !== $args['post_id'] && ( $tr_id = $links->model->post->get( $args['post_id'], $language ) ) && $links->model->post->current_user_can_read( $tr_id ) ) {
 				$url = get_permalink( $tr_id );
 			} elseif ( null === $args['post_id'] ) {
 				$url = $links->get_translation_url( $language );
@@ -97,6 +91,11 @@ class PLL_Switcher {
 
 			$name = $args['show_names'] || ! $args['show_flags'] || $args['raw'] ? ( 'slug' == $args['display_names_as'] ? $slug : $language->name ) : '';
 			$flag = $args['raw'] && ! $args['show_flags'] ? $language->flag_url : ( $args['show_flags'] ? $language->flag : '' );
+
+			if ( $first ) {
+				$classes[] = 'lang-item-first';
+				$first = false;
+			}
 
 			$out[ $slug ] = compact( 'id', 'order', 'slug', 'locale', 'name', 'url', 'flag', 'current_lang', 'no_translation', 'classes' );
 		}
@@ -184,7 +183,7 @@ class PLL_Switcher {
 		 * @param string $html html returned/outputted by the template tag
 		 * @param array  $args arguments passed to the template tag
 		 */
-		$out = apply_filters( 'pll_the_languages', $walker->walk( $elements, $args ), $args );
+		$out = apply_filters( 'pll_the_languages', $walker->walk( $elements, -1, $args ), $args );
 
 		// Javascript to switch the language when using a dropdown list
 		if ( $args['dropdown'] ) {
@@ -204,13 +203,13 @@ class PLL_Switcher {
 					//]]>
 				</script>',
 				'urls_' . preg_replace( '#[^a-zA-Z0-9]#', '', $args['dropdown'] ),
-				json_encode( $urls ),
+				wp_json_encode( $urls ),
 				esc_js( $args['name'] )
 			);
 		}
 
 		if ( $args['echo'] ) {
-			echo $out;
+			echo $out; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		return $out;
 	}

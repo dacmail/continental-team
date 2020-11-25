@@ -58,7 +58,7 @@ class FFSnapshotManager {
 
         if (FF_USE_WP) {
             if (!current_user_can('manage_options') && !check_ajax_referer( 'flow_flow_nonce', 'security', false ) ) {
-                die( 'not_allowed' );
+                die( json_encode( array('error' => 'not_allowed') ) );
             }
         }
 

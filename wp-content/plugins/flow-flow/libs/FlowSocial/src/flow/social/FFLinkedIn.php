@@ -7,7 +7,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright Looks Awesome
+ * @copyright 2014-2016 Looks Awesome
  */
 
 class FFLinkedIn extends FFHttpRequestFeed {
@@ -29,6 +29,7 @@ class FFLinkedIn extends FFHttpRequestFeed {
 	 * @param \stdClass $feed
 	 */
 	public function deferredInit( $feed ) {
+
 		$token = $feed->linkedin_access_token;
 		$start = 0;
 		$num = $this->getCount();
@@ -38,9 +39,11 @@ class FFLinkedIn extends FFHttpRequestFeed {
 			$event_type = '&event-type=' . $feed->{'event-type'};
 		}
 		$this->url = "https://api.linkedin.com/v1/companies/{$this->company}/updates?oauth2_access_token={$token}&count={$num}&format=json";
+        $this->url .= $event_type;
 		$this->profileUrl = "https://api.linkedin.com/v1/companies/{$this->company}:(id,name,logo-url,square-logo-url)?oauth2_access_token={$token}&format=json";
 
 		$data = $this->getFeedData($this->profileUrl);
+
 		if ( sizeof( $data['errors'] ) > 0 ) {
 			$this->errors[] = array(
 				'type'    => $this->getType(),
@@ -48,6 +51,7 @@ class FFLinkedIn extends FFHttpRequestFeed {
 				'url' => $this->getUrl()
 			);
 		}
+
 		if (isset($data['response'])){
 			$profile = json_decode($data['response']);
 			if (isset($profile->squareLogoUrl) && !empty($profile->squareLogoUrl)){

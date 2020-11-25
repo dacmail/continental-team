@@ -8,7 +8,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
 
  * @link      http://looks-awesome.com
- * @copyright Looks Awesome
+ * @copyright 2014-2016 Looks Awesome
  *
  * https://www.tumblr.com/docs/en/api/v1
  */
@@ -35,6 +35,14 @@ class FFTumblr extends FFHttpRequestFeed{
 	protected function items( $response ) {
 		$response = trim(preg_replace('/^var tumblr_api_read = /', '', trim($response)), ';');
 		$pxml = json_decode($response);
+		if ($pxml == null){
+			$error = [
+				'type' => $this->getType(),
+				'message' => 'Something went wrong. Please report issue.',
+			];
+			$this->errors[] = $error;
+			return [];
+		}
 		return $pxml->posts;
 	}
 

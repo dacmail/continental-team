@@ -92,15 +92,15 @@ class FFDBManager extends LADBManager{
 			$force_load_cache = true;
 		}
 
-		if (sizeof($old) > 0){
-			if ($general['instagram_access_token'] != $old['instagram_access_token']){
-				$this->cleanByFeedType('instagram');
-				$force_load_cache = true;
-			}
-		} else if (trim($general['instagram_access_token']) == ''){
-			$this->cleanByFeedType('instagram');
-			$force_load_cache = true;
-		}
+//		if (sizeof($old) > 0){
+//			if ($general['instagram_access_token'] != $old['instagram_access_token']){
+//				$this->cleanByFeedType('instagram');
+//				$force_load_cache = true;
+//			}
+//		} else if (trim($general['instagram_access_token']) == ''){
+//			$this->cleanByFeedType('instagram');
+//			$force_load_cache = true;
+//		}
 
 		if (sizeof($old) > 0){
 			if ($general['google_api_key'] != $old['google_api_key']){

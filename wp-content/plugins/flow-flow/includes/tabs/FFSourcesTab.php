@@ -79,6 +79,8 @@ class FFSourcesTab implements LATab {
 								if (isset($feed['timeline-type'])) $settingArr['timeline-type'] = $feed['timeline-type'];
 								if (isset($feed['mod']) && $feed['mod'] !== FFSettingsUtils::NOPE) $settingArr['mod'] = $feed['mod'];
 
+                                $settingArr['id'] = 'ID: ' . $feed['id'];
+
 								foreach ($settingArr  as $key => $value ) {
 									if (!empty($value)) {
 										/*if (isset($_GET['debug'])){
@@ -94,13 +96,13 @@ class FFSourcesTab implements LATab {
 											$v = str_replace('https://', '', $v);
 											$k = str_replace('timeline-', '', $key);
 											$k = str_replace('-', ' ', ucfirst($k));
-											if ($key === 'mod') $v = 'moderated';
+											if ( $key === 'mod' ) $v = 'moderated';
 
 											if ( strlen($v) > 20) {
 												$v = substr( $v , 0, 20 ) . '...';
 											}
 
-											$settings .= '<span><span class="highlight">' . $v . '</span></span>';
+											$settings .= '<span><span class="highlight' . ( $key === 'id' ? ' highlight-id' : '' ) . '">' . $v . '</span></span>';
 //										}
 									}
 								}

@@ -161,7 +161,7 @@ var FlowFlowApp = (function($){
       Controller.makeOverlayTo('show');
 
       $.post( window._ajaxurl, data).done(function( res ){
-        if ( res == 'not_allowed' ) {
+        if ( res.error == 'not_allowed' ) {
             var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
             Controller.makeOverlayTo('hide');
             return;
@@ -182,8 +182,8 @@ var FlowFlowApp = (function($){
         }
         Controller.makeOverlayTo('show');
 
-        $.post( window._ajaxurl, data ).done(function(data){
-          if ( data == 'not_allowed' ) {
+        $.post( window._ajaxurl, data ).done(function( data ){
+          if ( data.error == 'not_allowed' ) {
               var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
               Controller.makeOverlayTo('hide');
               return;
@@ -208,7 +208,7 @@ var FlowFlowApp = (function($){
         Controller.makeOverlayTo('show');
 
         $.post( window._ajaxurl, data ).done(function( res ){
-          if ( res == 'not_allowed' ) {
+          if ( res.error == 'not_allowed' ) {
               var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
               Controller.makeOverlayTo('hide');
               return;
@@ -588,7 +588,7 @@ var FlowFlowApp = (function($){
           console.log('Got this from the server: ' , response )
           var $fb_token, $submitted;
           if ( response == -1 || response.error ) {
-              var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+              var promise = Controller.popup('Yay! Something went wrong, if it repeats please contact support.', false, 'alert');
               Controller.makeOverlayTo('hide');
               return;
           }
@@ -596,8 +596,8 @@ var FlowFlowApp = (function($){
             // Do something on success
             console.log(response.settings)
             if (typeof response === 'string' && response.indexOf('curl')) {
-              alert('Please set DISABLE CURL_FOLLOW_LOCATION setting to YES under General tab');
-              self.makeOverlayTo('hide');
+              var promise = Controller.popup('Please set DISABLE CURL_FOLLOW_LOCATION setting to YES under General tab', false, 'alert');
+              Controller.makeOverlayTo('hide');
               return;
             }
 
@@ -1072,7 +1072,7 @@ var FlowFlowApp = (function($){
 
       return Backbone.sync( 'create', this, $params ).done( function( serverModel ){
         if ( serverModel.error ) {
-          var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+          var promise = Controller.popup( serverModel.error == 'not_allowed' ? 'Yay! You have no permissions to do this, please contact admin.' : 'Yay! Something went wrong, please contact support', false, 'alert');
           Controller.makeOverlayTo('hide');
           return;
         }
@@ -1096,7 +1096,7 @@ var FlowFlowApp = (function($){
       };
       return Backbone.sync( 'read', this, $params ).done(function ( res ) {
          if ( res.error ) {
-             var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+             var promise = Controller.popup( res.error == 'not_allowed' ? 'Yay! You have no permissions to do this, please contact admin.' : 'Yay! Something went wrong, please contact support', false, 'alert');
              setTimeout(function(){Controller.switchToView('list')}, 1000);
              return;
          }
@@ -1114,8 +1114,8 @@ var FlowFlowApp = (function($){
         }
       };
       return Backbone.sync( 'delete', this, $params ).done(function( stream ){
-        if ( stream && stream.error ) {
-          var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+        if ( stream.error ) {
+          var promise = Controller.popup( stream.error == 'not_allowed' ? 'Yay! You have no permissions to do this, please contact admin.' : 'Yay! Something went wrong, please contact support', false, 'alert');
           Controller.makeOverlayTo('hide');
           return;
         }
@@ -1153,8 +1153,8 @@ var FlowFlowApp = (function($){
       };
       ; //
       return Backbone.sync( 'delete', this, $params ).done(function( stream ){
-        if ( stream && stream.error ) {
-            var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+        if ( stream.error ) {
+            var promise = Controller.popup( stream.error == 'not_allowed' ? 'Yay! You have no permissions to do this, please contact admin.' : 'Yay! Something went wrong, please contact support', false, 'alert');
             Controller.makeOverlayTo('hide');
             return;
         }
@@ -1174,7 +1174,7 @@ var FlowFlowApp = (function($){
       };
       return Backbone.sync( 'create', this, $params ).done( function( stream ){
         if ( stream.error ) {
-            var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+            var promise = Controller.popup( stream.error == 'not_allowed' ? 'Yay! You have no permissions to do this, please contact admin.' : 'Yay! Something went wrong, please contact support', false, 'alert');
             Controller.makeOverlayTo('hide');
             return;
         }
@@ -1662,12 +1662,13 @@ var FlowFlowApp = (function($){
 
       var feeds = this.model.get('feeds');
       var $cont = this.$el.find('.stream-feeds__list');
-      var feed, name;
+      var feed, name, fullName;
       var items = '';
       if (!feeds) return;
       for (var i = 0, len = feeds.length; i < len; i++) {
         feed = feeds[i];
         name = feed.content;
+        fullName = name;
 
         if (!name && feed.type === "wordpress") {
           name = feed['category-name'] || feed['wordpress-type'];
@@ -1680,7 +1681,7 @@ var FlowFlowApp = (function($){
         }
 
         if (name.length > 13) name = name.substr(0, 13) + '...';
-        items += '<span data-id="' +  feed.id +'" class="stream-feeds__item stream-feeds__' + feed.type +  (feed.errors && feed.errors.length ? ' stream-feeds__error' : '') + '"><i class="stream-feeds__icon flaticon-' + feed.type + '"></i>' + stripslashes(name) + '</span>';
+        items += '<span data-tooltip="' + capitaliseFirstLetter( feed.type ) + ' - ' + stripslashes( fullName )  + ' - ID: ' + feed.id + '" data-id="' +  feed.id +'" class="stream-feeds__item stream-feeds__' + feed.type +  (feed.errors && feed.errors.length ? ' stream-feeds__error' : '') + '"><i class="stream-feeds__icon flaticon-' + feed.type + '"></i>' + stripslashes( name ) + '</span>';
       }
       $cont.html('').append(items).closest('.stream-feeds').removeClass('stream-feeds--connecting');
     },
@@ -1764,7 +1765,7 @@ var FlowFlowApp = (function($){
         if (!name && feed.type == "wordpress") {
           name = capitaliseFirstLetter(feed['category-name'] || 'Posts');
         }
-        options += '<option value="' + feed.id + '">' + capitaliseFirstLetter(feed.type) + ' - ' + name + '</option>';
+        options += '<option value="' + feed.id + '">' + capitaliseFirstLetter(feed.type) + ' - ' + name + ' - ' + feed.id  + '</option>';
       }
 
       $select.html('').append(options).closest('.stream-feeds').addClass('stream-feeds--connecting');
@@ -2197,8 +2198,8 @@ var FlowFlowApp = (function($){
       /**/
       return Backbone.sync( 'create', this, $params ).done(function( serverModel ){
 
-        if ( serverModel && serverModel.error ) {
-            var promise = Controller.popup('Yay! You have no permissions to do this, please contact admin.', false, 'alert');
+        if ( serverModel.error ) {
+            var promise = Controller.popup( serverModel.error == 'not_allowed' ? 'Yay! You have no permissions to do this, please contact admin.' : 'Yay! Something went wrong, please contact support', false, 'alert');
             Controller.makeOverlayTo('hide');
             return;
         }
@@ -2443,7 +2444,7 @@ var FlowFlowApp = (function($){
           var filters = $holder.val() == "" ? [] : $holder.val().split(',');
 
           filters.forEach(function (item, i) {
-              if(item == content) filters.splice(i, 1);
+              if(item == content.replace(/\\/g, '')) filters.splice(i, 1);
           })
 
           $holder.val(filters.join(','));
@@ -2577,17 +2578,21 @@ var FlowFlowApp = (function($){
           if (feed['timeline-type']) settings['timeline-type'] = feed['timeline-type'];
           if (feed['mod'] === 'yep') settings['mod'] = feed['mod'];
 
-          for (prop in settings) {
+          settings['id'] = 'ID: ' + feed['id'];
+
+          for ( prop in settings ) {
             ikey = capitaliseFirstLetter( prop.replace(' timeline', '').replace('_', ' ').replace('-', ' ').replace('timeline ', '')  );
             ival = stripslashes( settings[prop] );
-            if (prop !== 'content') ival = capitaliseFirstLetter ( ival );
-            if (prop === 'mod') ival = 'moderated';
+            if ( prop !== 'content' ) ival = capitaliseFirstLetter ( ival );
+            if ( prop === 'mod' ) ival = 'moderated';
+
+            if ( !ival ) continue;
 
             ival = ival.replace('_timeline', '').replace('http://', '').replace('https://', '');
             if (ival.length > 20) {
               ival = ival.substring(0, 20) + '...';
             }
-            info = info + '<span><span class="highlight">' + ival + '</span></span>' ;
+            info = info + '<span><span class="highlight' + ( ikey === 'Id' ? ' highlight-id' : '' ) + '">' + ival + '</span></span>' ;
           }
 
           if (feed.cache_lifetime == 5) {

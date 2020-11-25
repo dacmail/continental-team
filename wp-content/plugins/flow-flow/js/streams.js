@@ -326,8 +326,8 @@ var ff_templates = {
                         </dd>\
                     </dl>\
 <dl class="classic-style style-choice section-settings section-compact" style="display:block">\
-    <dt class="hide"><span class="valign">Info style</span></dt>\
-    <dd class="hide">\
+    <dt class="ff-hide"><span class="valign">Info style</span></dt>\
+    <dd class="ff-hide">\
         <div class="select-wrapper">\
             <select name="stream-<%= id %>-gc-style" id="gc-style-<%= id %>">\
                 <option value="style-1" selected>Centered meta, round icon</option>\
@@ -424,7 +424,7 @@ var ff_templates = {
                 </select>\
             </div>\
         </dd>\
-        <dt class="hide">Preview</dt>\
+        <dt class="ff-hide">Preview</dt>\
         <dd class="preview">\
             <h1>Card builder - drag\'n\'drop</h1>\
             <input type="hidden" id="stream-<%= id %>-template" name="stream-<%= id %>-template"/>\
@@ -481,7 +481,7 @@ var ff_templates = {
     <h1>USEFUL LINKS</h1>\
     <a href="http://go.social-streams.com/help">Help Center</a><br>\
     <a href="https://social-streams.com/">Social Stream Apps</a><br>\
-    <a href="http://go.social-streams.com/twitter">Twitter</a><br>\
+    <a href="/wp-content/plugins/flow-flow/flow-flow-debug.log" target="_blank">Debug Log</a><br>\
     <a href="http://go.social-streams.com/facebook">Facebook</a>\
     </div>\
     </div>\
@@ -501,6 +501,8 @@ var ff_templates = {
 <label for="<%= uid %>-search-timeline-type">Tweets by search</label><br><br>\
 <input id="<%= uid %>-list-timeline-type" type="radio" name="<%= uid %>-timeline-type" value="list_timeline"/>\
 <label for="<%= uid %>-list-timeline-type">User list</label><br><br>\
+<input id="<%= uid %>-list-timeline-type" type="radio" name="<%= uid %>-timeline-type" value="collection_timeline"/>\
+<label for="<%= uid %>-list-timeline-type">Tweets collection</label><br><br>\
 <input id="<%= uid %>-fav-timeline-type" type="radio" name="<%= uid %>-timeline-type" value="favorites"/>\
 <label for="<%= uid %>-fav-timeline-type">User\'s likes</label><br><br>\
 </dd>\
@@ -517,6 +519,7 @@ Content to show\
             <li><b>User feed</b> — enter username of any public Twitter account.</li>\
             <li><b>Tweets by search</b> — enter any word or #hashtag. <a href="https://developer.twitter.com/en/docs/api-reference-index" target="_blank">Advanced search terms</a>.</li>\
             <li><b>User list</b> — enter username here and List name in corresponding field below.</li>\
+            <li><b>Tweets collection</b> — enter collection ID (numeric part in collection URL).</li>\
             <li><b>User’s likes</b> —  enter username.</li>\
         </ul>\
     </div>\
@@ -635,9 +638,9 @@ Posts to load during update\
 <dt>FEED TYPE </dt>\
 <dd>\
 <input id="<%= uid %>-page-timeline-type" type="radio" name="<%= uid %>-timeline-type" value="page_timeline" checked />\
-<label for="<%= uid %>-page-timeline-type">Page</label>\
-<input class="hide" id="<%= uid %>-group-timeline-type" type="radio" name="<%= uid %>-timeline-type" value="group" />\
-<label class="hide" for="<%= uid %>-group-timeline-type">Group</label><br><br>\
+<label for="<%= uid %>-page-timeline-type">Page</label><br><br>\
+<input class="" id="<%= uid %>-group-timeline-type" type="radio" name="<%= uid %>-timeline-type" value="feed" />\
+<label class="" for="<%= uid %>-group-timeline-type">Page with restrictions</label><br><br>\
 <input id="<%= uid %>-album-timeline-type" type="radio" name="<%= uid %>-timeline-type" value="album" />\
 <label for="<%= uid %>-album-timeline-type">Album</label>\
 </dd>\
@@ -651,7 +654,7 @@ Content to show\
         <h1>Content to show</h1>\
         <ul>\
             <li><b>Page</b> — enter nickname of any public page or Page ID.</li>\
-            <li class="hide"><b>Group</b> — enter Group ID.</li>\
+            <li><b>Page with restrictions</b> — nickname or ID, try if you have errors with feed above.</li>\
             <li><b>Album</b> — enter Album ID. <a href="http://docs.social-streams.com/article/50-find-facebook-album-id" target="_blank">What is it?</a> </li>\
         </ul><br>\
         Use <a href="http://lookup-id.com" target="_blank">Find my Facebook ID</a> tool to find your Page ID or Group ID.\
@@ -811,8 +814,7 @@ Posts to load during update\
                 <div class="hint hint-pro">\
                     <h1>Content to show</h1>\
                     <ul>\
-                        <li><b>User feed</b> — enter username e.g. <i>elainen</i>.</li>\
-                        <li><b>User board</b> — enter user board slug e.g. <i>elainen/cute-animals</i>.</li>\
+                        <li><b>User board</b> — enter user board slug e.g. <i>elainen/cute-animals</i></li>\
                     </ul>\
                 </div>\
             </div>\
@@ -840,8 +842,8 @@ Posts to load during update\
           <dd>\
           <input id="<%= uid %>-user-timeline-type" checked type="radio" name="<%= uid %>-timeline-type" value="user_timeline"/>\
             <label for="<%= uid %>-user-timeline-type">User feed</label>\
-          <input class="hide" id="<%= uid %>-likes-type"  type="radio" name="<%= uid %>-timeline-type" value="likes"/>\
-            <label class="hide" for="<%= uid %>-likes-type">User\'s likes</label><br><br>\
+          <input class="ff-hide" id="<%= uid %>-likes-type"  type="radio" name="<%= uid %>-timeline-type" value="likes"/>\
+            <label class="ff-hide" for="<%= uid %>-likes-type">User\'s likes</label><br><br>\
           <input id="<%= uid %>-search-timeline-type" type="radio" name="<%= uid %>-timeline-type" value="tag"/>\
             <label for="<%= uid %>-search-timeline-type">Hashtag</label><br><br>\
           <input id="<%= uid %>-location-type" type="radio" name="<%= uid %>-timeline-type" value="location"/>\
@@ -857,7 +859,7 @@ Posts to load during update\
                     <h1>Content to show</h1>\
                     <ul>\
                         <li><b>User feed</b> — enter nickname of any public Instagram account.</li>\
-                        <li class="hide"><b>User\'s likes</b> — enter nickname of your own account.</li>\
+                        <li class="ff-hide"><b>User\'s likes</b> — enter nickname of your own account.</li>\
                         <li><b>Hashtag</b> — enter a hashtag.</li>\
                         <li><b>Location</b> — enter <a href="http://docs.social-streams.com/article/118-find-instagram-location-id" target="_blank">Location ID</a>.</li>\
                     </ul>\
@@ -867,7 +869,7 @@ Posts to load during update\
           <dd>\
               <input type="text" name="<%= uid %>-content"/>\
                       </dd>\
-          <dt class="hide">API METHODS\
+          <dt class="ff-hide">API METHODS\
           <div class="desc hint-block">\
                 <span class="hint-link">\
                     <img src="<%= plugin_url %>/assets/info_icon.svg">\
@@ -882,7 +884,7 @@ Posts to load during update\
                 </div>\
             </div>\
           </dt>\
-          <dd class="hide" style="margin-top: 8px">\
+          <dd class="ff-hide" style="margin-top: 8px">\
           <input id="<%= uid %>-api-official" checked type="radio" name="<%= uid %>-api-type" value="official"/>\
             <label for="<%= uid %>-api-official">Official API</label><br><br>\
           <input id="<%= uid %>-api-json" type="radio" name="<%= uid %>-api-type" value="json"/>\
@@ -893,11 +895,11 @@ Posts to load during update\
                       <dt>Feed updates frequency</dt>\
 <dd>\
 <div class="select-wrapper"> <select name="<%= uid %>-cache_lifetime" id="<%= uid %>-cache_lifetime"><option value="60">Every hour</option> <option value="360">Every 6 hours</option> <option value="1440">Once a day</option></select> </div></dd>\
-<dt class="hide" >\
+<dt class="ff-hide" >\
     Posts to load during update\
     <p class="desc">The first load is always 50. <a href="http://docs.social-streams.com/article/137-managing-feed-updates" target="_blank">Learn more</a>.</p>\
 </dt>\
-<dd class="hide" >\
+<dd class="ff-hide" >\
 <div class="select-wrapper"> <select name="<%= uid %>-posts" id="<%= uid %>-post"><option value="1">1 post</option><option value="5">5 posts</option><option selected value="10">10 posts</option><option value="20">20 posts</option></select></div>\
 </dd>\
 <dt>\

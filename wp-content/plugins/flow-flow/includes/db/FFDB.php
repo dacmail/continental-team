@@ -301,6 +301,7 @@ class FFDB {
 						if (is_array($value) && sizeof($value) == 1){
 							$value = $value[0];
 						}
+						if (!is_array($result)) $result = [];
 						$result[$feed] = $value;
 					}
 

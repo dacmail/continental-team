@@ -1,10 +1,13 @@
 <?php namespace flow\social;
+use Exception;
+use flow\social\timelines\FFCollections;
 use flow\social\timelines\FFFavorites;
 use flow\social\timelines\FFHomeTimeline;
 use flow\social\timelines\FFListTimeline;
 use flow\social\timelines\FFSearch;
 use flow\social\timelines\FFTimeline;
 use flow\social\timelines\FFUserTimeline;
+use stdClass;
 
 if ( ! defined( 'WPINC' ) ) die;
 /**
@@ -13,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @package   FlowFlow
  * @author    Looks Awesome <email@looks-awesome.com>
  * @link      http://looks-awesome.com
- * @copyright Looks Awesome
+ * @copyright 2014-2016 Looks Awesome
  */
 class FFTwitter extends FFBaseFeed{
 	private static $GET = "GET";
@@ -30,11 +33,20 @@ class FFTwitter extends FFBaseFeed{
 		parent::__construct( 'twitter' );
 	}
 
+	/**
+	 * @param stdClass $feed
+	 *
+	 * @throws Exception
+	 */
 	public function deferredInit($feed){
 		$this->restService = new FFTwitterAPIExchange($feed->twitter_access_settings);
 		$this->timeline = $this->getTimeline($feed);
 	}
 
+	/**
+	 * @return array
+	 * @throws Exception
+	 */
 	public function onePagePosts(){
 		$json = json_decode($this->restService
 			->setGetfield($this->timeline->getField())
@@ -49,7 +61,7 @@ class FFTwitter extends FFBaseFeed{
 					'message' => $this->filterErrorMessage($msg),
 					'url' => $this->timeline->getUrl()
 				);
-				throw new \Exception();
+				throw new Exception();
 			}
 			return array();
 		}
@@ -63,24 +75,40 @@ class FFTwitter extends FFBaseFeed{
 		if (isset($json['statuses'])) {
 			$tmp = $json['statuses'];
 		}
+		if (isset($json['objects']['tweets'])){
+			$tmp = $json['objects']['tweets'];
+		}
 		if (isset($tmp) && is_array($tmp)){
 			foreach ($tmp as $t) {
 				$this->image = null;
 				$this->media = null;
 				$this->carousel = array();
-				$tc = new \stdClass();
+				$tc = new stdClass();
 				$tc->feed_id = $this->id();
 				$tc->smart_order = 0;
 				$tc->id = $t['id_str'];
 				$tc->type = $this->getType();
-				$tc->nickname = '@'.$t['user']['screen_name'];
-				$tc->screenname = (string)$t['user']['name'];
-				$tc->userpic = str_replace('.jpg', '_200x200.jpg', str_replace('_normal', '', (string)$t['user']['profile_image_url']));
+				if (isset($t['user']['screen_name'])){
+					$tc->nickname = '@'.$t['user']['screen_name'];
+					$tc->screenname = (string)$t['user']['name'];
+					$tc->userpic = str_replace('.jpg', '_200x200.jpg', str_replace('_normal', '', (string)$t['user']['profile_image_url']));
+					$tc->userlink = 'https://twitter.com/'.$t['user']['screen_name'];
+				}
+				else {
+					$user_id = $t['user']['id'];
+					if (isset($json['objects']['users'][$user_id])){
+						$user = $json['objects']['users'][$user_id];
+						$tc->nickname = '@'.$user['screen_name'];
+						$tc->screenname = (string)$user['name'];
+						$tc->userpic = str_replace('.jpg', '_200x200.jpg', str_replace('_normal', '', (string)$user['profile_image_url']));
+						$tc->userlink = 'https://twitter.com/'.$user['screen_name'];
+					}
+				}
 				$tc->system_timestamp = strtotime($t['created_at']);
 				$tc->text = $this->getText($t);
-				$tc->userlink = 'https://twitter.com/'.$t['user']['screen_name'];
 				$tc->permalink = $tc->userlink . '/status/' . $tc->id;
 				$tc->media = $this->getMedia($t);
+				$tc->header = '';
 
 				if (!is_null($this->image)) {
 					$tc->img = $this->image;
@@ -111,6 +139,9 @@ class FFTwitter extends FFBaseFeed{
 				break;
 			case 'list_timeline':
 				$timeline = new FFListTimeline();
+				break;
+			case 'collection_timeline':
+				$timeline = new FFCollections();
 				break;
 			default:
 				$timeline = new FFSearch();
@@ -205,31 +236,31 @@ class FFTwitter extends FFBaseFeed{
 
 		if (!is_null($entities)){
 			if (isset($entities['media']))
-			foreach ($entities['media'] as $entity) {
-				if (isset($entity['video_info']['variants']) && sizeof($entity['video_info']['variants']) > 0) {
-					if ($entity['type'] == 'video' || $entity['type'] == 'animated_gif') {
-						foreach ( $entity['video_info']['variants'] as $variant ) {
-							if ($variant['content_type'] == 'video/mp4'){
-								$width = $entity['sizes']['large']['w'];
-								$height = $entity['sizes']['large']['h'];
-								if ($width > 600 || FF_FORCE_FIT_MEDIA) {
-									$height = FFFeedUtils::getScaleHeight(600, $width, $height);
-									$width = 600;
+				foreach ($entities['media'] as $entity) {
+					if (isset($entity['video_info']['variants']) && sizeof($entity['video_info']['variants']) > 0) {
+						if ($entity['type'] == 'video' || $entity['type'] == 'animated_gif') {
+							foreach ( $entity['video_info']['variants'] as $variant ) {
+								if ($variant['content_type'] == 'video/mp4'){
+									$width = $entity['sizes']['large']['w'];
+									$height = $entity['sizes']['large']['h'];
+									if ($width > 600) {
+										$height = FFFeedUtils::getScaleHeight(600, $width, $height);
+										$width = 600;
+									}
+									$this->media = $this->createMedia($variant['url'], $width, $height, $variant['content_type']);
 								}
-								$this->media = $this->createMedia($variant['url'], $width, $height, $variant['content_type']);
 							}
 						}
+					}else{
+						$width = $entity['sizes']['large']['w'];
+						$height = $entity['sizes']['large']['h'];
+						if ($width > 600) {
+							$height = FFFeedUtils::getScaleHeight(600, $width, $height);
+							$width = 600;
+						}
+						$this->carousel[] = $this->createMedia($entity['media_url_https'], $width, $height, $entity['type'] == 'photo' ? 'image' : $entity['type']);
 					}
-				}else{
-					$width = $entity['sizes']['large']['w'];
-					$height = $entity['sizes']['large']['h'];
-					if ($width > 600 || FF_FORCE_FIT_MEDIA) {
-						$height = FFFeedUtils::getScaleHeight(600, $width, $height);
-						$width = 600;
-					}
-					$this->carousel[] = $this->createMedia($entity['media_url_https'], $width, $height, $entity['type'] == 'photo' ? 'image' : $entity['type']);
 				}
-			}
 		}
 		return $this->media;
 	}

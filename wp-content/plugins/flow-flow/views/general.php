@@ -117,6 +117,16 @@ $options = $context['options'];
                     <div><div></div></div>
             </dd>
 
+			<dt class="multiline">Alternative way to render shortcode
+			<p class="desc">Check this if nothing is displayed when you add shortcode.</p>
+			</dt>
+			<dd>
+				<label for="general-render-alt">
+					<input id="general-render-alt" class="clearcache switcher" type="checkbox" name="flow_flow_options[general-render-alt]"
+						<?php if (isset($options['general-render-alt']) && $options['general-render-alt'] == 'yep') echo "checked"; ?> value="yep"/>
+					<div><div></div></div>
+			</dd>
+
 			<dt class="multiline">Remove all data when uninstall plugin
 			<p class="desc">Check this if you want to erase all database records that plugin created.</p>
 			</dt>

@@ -19,6 +19,42 @@ class FlowFlowActivator extends LAActivatorBase{
 			register_widget($widget);
 		}
 	}
+
+    public function shutdownAction(){
+
+        $error = error_get_last();
+
+        if( is_null( $error ) ) {
+            return;
+        }
+
+        $fatals = array(
+            E_USER_ERROR => 'Fatal Error',
+            E_ERROR => 'Fatal Error',
+            E_PARSE => 'Parse Error',
+            E_CORE_ERROR => 'Core Error',
+            E_CORE_WARNING => 'Core Warning',
+            E_COMPILE_ERROR => 'Compile Error',
+            E_COMPILE_WARNING => 'Compile Warning'
+        );
+
+        // check if error related to flow-flow
+        if ( strpos( $error['file'], 'flow-flow' ) !== false  && isset( $fatals[ $error['type'] ] ) ) {
+
+            // error_log(print_r(debug_backtrace(), true));
+
+            $msg = $fatals[ $error['type'] ] . ': ' . $error['message'] . ' in ';
+            $msg .= $error['file'] . ' on line ' . $error['line'] . PHP_EOL;
+
+            if (!empty( $msg )) {
+
+                error_log( $msg , 3, FF_LOG_FILE_DEST);
+
+            }
+
+        }
+
+	}
 	
 	/**
 	 * Use this method fpr old php version
@@ -81,7 +117,7 @@ class FlowFlowActivator extends LAActivatorBase{
 				'plugin_url'        => plugin_dir_url(dirname($file).'/'),
 				'admin_url'         => admin_url('admin-ajax.php'),
 				'table_name_prefix' => $wpdb->prefix . 'ff_',
-				'version' 			=> '4.1.5',
+				'version' 			=> '4.1.30',
 				'faq_url' 			=> 'http://docs.social-streams.com/',
 				'count_posts_4init'	=> 30
 		);
@@ -135,7 +171,7 @@ class FlowFlowActivator extends LAActivatorBase{
 		new FlowFlowUpdater($this->context);
 	}
 	
-	protected function registrationCronActions(){
+	protected function registerCronActions(){
 		$this->addCronInterval('minute', array('interval' => MINUTE_IN_SECONDS, 'display' => 'Every Minute'));
 		$this->addCronInterval('six_hours', array('interval' => MINUTE_IN_SECONDS * 60 * 6, 'display' => 'Six hours'));
 		add_filter('cron_schedules', array($this, 'getCronIntervals'));
@@ -158,8 +194,12 @@ class FlowFlowActivator extends LAActivatorBase{
 			wp_schedule_event($time, 'daily', 'flow_flow_email_notification');
 		}
 	}
+
+    protected function registerShutdownActions() {
+        add_action( 'shutdown',  array($this, 'shutdownAction') );
+    }
 	
-	protected function registrationAjaxActions(){
+	protected function registerAjaxActions(){
 		/** @var FFDBManager $dbm */
 		$dbm = $this->context['db_manager'];
 		$slug_down = $this->context['slug_down'];

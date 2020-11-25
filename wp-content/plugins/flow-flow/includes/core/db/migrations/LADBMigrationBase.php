@@ -124,6 +124,7 @@ abstract class LADBMigrationBase implements ILADBMigration{
 				`user_counts_followed_by` INT,
 				`location` TEXT,
 				`carousel_size` INT,
+				`post_content` BLOB DEFAULT NULL,
 				PRIMARY KEY (`post_id`, `post_type`, `feed_id`)
 			) ?p";
 			$conn->query($sql, $table_name, $charset);

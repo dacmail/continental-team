@@ -131,6 +131,8 @@ abstract class LABase {
 	public final function enqueue_scripts() {
 	    // Customization 16.08.18, JS opts added in public.php instead
 //         $this->enqueueScripts();
+        // make sure jQuery is always on page
+        wp_enqueue_script('jquery');
 	}
 	
 	public final function processAjaxRequest() {
@@ -258,16 +260,13 @@ abstract class LABase {
 					$stream->gallery = $stream->preview ? FFSettingsUtils::NOPE : isset($stream->gallery) ? $stream->gallery : FFSettingsUtils::NOPE;
 					$output = $this->renderStream($stream, $this->getPublicContext($stream, $this->context));
 
-                    /* workaround for extra P tags issue and possibly &&, set to true */
-                    $echo = isset($_GET["echo"]);
-
-					if ( $echo ) {
-					    echo $output;
-					    return '';
-                    } else {
-                        return $output;
-                    }
-
+					/* workaround for extra P tags issue and possibly &&, set to true */
+					if (FFSettingsUtils::notYepNope2ClassicStyleSafe(FFGeneralSettings::get()->original(), 'general-render-alt')){
+						return $output;
+					}
+					else {
+						echo $output;
+					}
 				}
 			} else {
 				echo '<p>Flow-Flow message: Stream with specified ID not found or no feeds were added to stream</p>';
@@ -344,8 +343,9 @@ abstract class LABase {
 	protected abstract function getNameJSOptions();
 	
 	protected function prepareProcess($forceLoadCache = false) {
-		$_REQUEST['stream-id'] = @filter_var( trim( $_REQUEST['stream-id'] ), FILTER_SANITIZE_NUMBER_INT);
-		$_REQUEST['action'] = @filter_var( trim( $_REQUEST['action'] ), FILTER_SANITIZE_STRING );
+		if (isset($_REQUEST['stream-id'])) $_REQUEST['stream-id'] = @filter_var( trim( $_REQUEST['stream-id'] ), FILTER_SANITIZE_NUMBER_INT);
+		if (isset($_REQUEST['feed_id'])) $_REQUEST['feed_id'] = @filter_var( trim( $_REQUEST['feed_id'] ), FILTER_SANITIZE_STRING );
+		if (isset($_REQUEST['action'])) $_REQUEST['action'] = @filter_var( trim( $_REQUEST['action'] ), FILTER_SANITIZE_STRING );
 		if (isset($_REQUEST['page'])) $_REQUEST['page'] = filter_var( trim( $_REQUEST['page'] ), FILTER_SANITIZE_NUMBER_INT);
 		if (isset($_REQUEST['countOfPages'])) $_REQUEST['countOfPages'] = filter_var( trim( $_REQUEST['countOfPages'] ), FILTER_SANITIZE_NUMBER_INT);
 		if (isset($_REQUEST['hash']) && !empty($_REQUEST['hash'])){
@@ -505,7 +505,15 @@ abstract class LABase {
 		}
 		return $result;
 	}
-	
+
+	/**
+	 * @param $feed
+	 *
+	 * @return object
+	 * @throws \ReflectionException
+	 *
+	 * @see \flow\social\FFFacebook
+	 */
 	private function createFeedInstance($feed) {
 		$feed = (object)$feed;
 		$wpt = 'type';
@@ -514,11 +522,7 @@ abstract class LABase {
 		}
 		if ($feed->type == 'instagram') {
 			/** @noinspection PhpIncludeInspection */
-			require_once $this->context['root'] . 'libs/InstagramScraper.php';
-			/** @noinspection PhpIncludeInspection */
-			require_once $this->context['root'] . 'libs/Unirest.php';
-			/** @noinspection PhpIncludeInspection */
-			require_once $this->context['root'] . 'libs/phpFastCache.php';
+			require_once $this->context['root'] . 'libs/InstagramAPI.php';
 		}
 		if (FF_USE_WP && $feed->type == 'wordpress'){
 			$wpt = 'wordpress-type';
@@ -556,6 +560,8 @@ abstract class LABase {
 		$feed->foursquare_client_secret = @$original['foursquare_client_secret'];
 		$feed->google_api_key           = @$original['google_api_key'];
 		$feed->instagram_access_token   = @$original['instagram_access_token'];
+		$feed->instagram_login          = @$original['instagram_login'];
+		$feed->instagram_password       = @$original['instagram_pass'];
 		$feed->soundcloud_api_key       = @$original['soundcloud_api_key'];
 		$feed->twitter_access_settings = array(
 			'oauth_access_token' => @$original['oauth_access_token'],

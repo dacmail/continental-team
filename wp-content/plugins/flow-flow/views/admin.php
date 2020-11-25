@@ -15,6 +15,10 @@ $dbm = $context['db_manager'];
 if (!$dbm->canCreateCssFolder()){
 	echo '<p class="ff-error" xmlns="http://www.w3.org/1999/html">Error: Plugin cannot create folder <strong>wp-content/resources/flow-flow/css</strong>, please add permissions or create this folder manually.</p>';
 }
+
+// testing error logging
+// error_log( 'SOME ERROR' . PHP_EOL , 3, FF_LOG_FILE_DEST );
+
 ?>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -62,7 +66,7 @@ if (!$dbm->canCreateCssFolder()){
 			<?php
 				/** @var LATab $tab*/
 				foreach ( $context['tabs'] as $tab ) {
-					echo '<li id="'.$tab->id().'"><i class="'.$tab->flaticon().'"></i> <span>'.$tab->title().'</span></li>';
+					echo '<li id="'.$tab->id().'"><span class="ff-border-anim"></span> <i class="'.$tab->flaticon().'"></i> <span>'.$tab->title().'</span></li>';
 				}
 				if (isset($context['buttons-after-tabs'])) echo $context['buttons-after-tabs'];
 			?>
