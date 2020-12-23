@@ -65,21 +65,24 @@
   .sponsors-block {
     margin: rem(100px) auto;
     &--level1 {
-      color: $white;
-      background: $black;
+      color: $black;
+      background: $white;
+      display: block;
       padding: rem(50px) 0;
       margin-bottom: rem(150px);
       @media (max-width: $sm) {
         margin-bottom: rem(70px);
       }
       &.type-1 {
-        background: url('../images/bg-sponsor-1.jpg') no-repeat center center;
+        background: #006937;
+        color: $white;
         background-size: cover;
         margin-top: 0;
       }
       &.type-0 {
         margin-top: rem(100px);
-        background: url('../images/bg-sponsor-2.jpg') no-repeat center center;
+        color: $white;
+        background: url('../images/bg-sponsor-eolo.svg') #0082ca no-repeat center center;
         background-size: cover;
         margin-bottom: 0;
       }
@@ -95,7 +98,12 @@
         }
       }
       .sponsors-block__item {
-        margin-bottom: rem(65px);
+        margin-bottom: rem(40px);
+      }
+      .sponsors-block__text {
+        font-size: rem(18px);
+        margin-bottom: rem(60px);
+        line-height: 1.78;
       }
       .sponsors-block__social {
         a {
@@ -116,8 +124,22 @@
         }
       }
     }
+    &--gold {
+      padding-bottom: 0;
+      .sponsors-block__social {
+        a {
+          color: $black;
+
+          svg {
+            path {
+              fill: $black;
+            }
+          }
+        }
+      }
+    }
     &--level2 {
-      background-color: $gray;
+      background-color: $white;
       margin-top: 0rem;
       margin-bottom: -10px;
       .container {
