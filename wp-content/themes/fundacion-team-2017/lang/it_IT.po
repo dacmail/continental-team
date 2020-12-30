@@ -1,0 +1,367 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2019-12-26 09:05+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_e;__;_e\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: assets\n"
+"X-Poedit-SearchPathExcluded-1: bower_components\n"
+"X-Poedit-SearchPathExcluded-2: dist\n"
+"X-Poedit-SearchPathExcluded-3: node_modules\n"
+
+#: 404.php:2
+msgid "Página no encontrada"
+msgstr "Pagina non trovata"
+
+#: 404.php:4
+msgid "La página que buscas parece que no existe."
+msgstr "La pagina che stai cercando non sembra esistere."
+
+#: base.php:14
+msgid ""
+"Estás usando una versión antigua del navegador. Por favor <a href=\"http://"
+"browsehappy.com/\">actualizalo</a> para mejroar la experiencia."
+msgstr ""
+"You are using an <strong>outdated</strong> browser. Please <a href=“http://"
+"browsehappy.com/“>upgrade your browser</a> to improve your experience."
+
+#: front-page.php:19
+msgid "En la red"
+msgstr "Sul web"
+
+#: functions.php:24
+#, php-format
+msgid "Error locating %s for inclusion"
+msgstr ""
+
+#: index.php:3 templates/news-home.php:6
+msgid "Actualidad"
+msgstr "Notizie"
+
+#: lib/customizer.php:14
+msgid "Enlaces sociales"
+msgstr "Collegamenti sociali"
+
+#: lib/customizer.php:20
+msgid "Facebook URL"
+msgstr "Facebook URL"
+
+#: lib/customizer.php:28
+msgid "Twitter URL"
+msgstr ""
+
+#: lib/customizer.php:36
+msgid "Youtube URL"
+msgstr ""
+
+#: lib/customizer.php:44
+msgid "Instagram URL"
+msgstr ""
+
+#: lib/customizer.php:52 templates/footer.php:38
+msgid "Aviso legal"
+msgstr ""
+
+#: lib/customizer.php:60
+msgid "Politica de privacidad"
+msgstr ""
+
+#: lib/extras.php:54 templates/content-single-rider.php:93
+msgid "Noticia"
+msgstr "Notizie"
+
+#: lib/extras.php:55
+msgid "Galería"
+msgstr "Galleria"
+
+#: lib/extras.php:56
+msgid "Video"
+msgstr "Video"
+
+#: lib/extras.php:58 lib/extras.php:104
+msgid "Corredor"
+msgstr "Corridoio"
+
+#: lib/extras.php:67
+msgid "Sponsors"
+msgstr ""
+
+#: lib/extras.php:68
+msgid "Sponsor"
+msgstr ""
+
+#: lib/extras.php:69 lib/extras.php:70
+msgid "Añadir Sponsor"
+msgstr ""
+
+#: lib/extras.php:71
+msgid "Editar Sponsor"
+msgstr ""
+
+#: lib/extras.php:72
+msgid "Nuevo Sponsor"
+msgstr ""
+
+#: lib/extras.php:73
+msgid "Ver Sponsors"
+msgstr ""
+
+#: lib/extras.php:74
+msgid "Buscar Sponsors"
+msgstr ""
+
+#: lib/extras.php:75
+msgid "No se han encontrado Sponsors "
+msgstr ""
+
+#: lib/extras.php:76
+msgid "No hay Sponsors en la papelera"
+msgstr ""
+
+#: lib/extras.php:103 lib/extras.php:114 template-history.php:54
+msgid "Corredores"
+msgstr ""
+
+#: lib/extras.php:105
+msgid "Añadir nuevo"
+msgstr ""
+
+#: lib/extras.php:106
+msgid "Añadir nuevo Corredor"
+msgstr ""
+
+#: lib/extras.php:107
+msgid "Editar Corredor"
+msgstr ""
+
+#: lib/extras.php:108
+msgid "Nuevo Corredor"
+msgstr ""
+
+#: lib/extras.php:109
+msgid "Ver Corredor"
+msgstr ""
+
+#: lib/extras.php:110
+msgid "Buscar Corredores"
+msgstr ""
+
+#: lib/extras.php:111
+msgid "No corredores found"
+msgstr ""
+
+#: lib/extras.php:112
+msgid "No corredores found in Trash"
+msgstr ""
+
+#: lib/extras.php:113
+msgid "Corredor padre:"
+msgstr ""
+
+#: lib/setup.php:31
+msgid "Menú principal"
+msgstr ""
+
+#: lib/setup.php:32
+msgid "Menú secundario"
+msgstr ""
+
+#: lib/setup.php:33
+msgid "Menú idiomas"
+msgstr ""
+
+#: lib/setup.php:69
+msgid "Super Menú"
+msgstr ""
+
+#: lib/setup.php:77
+msgid "Banner home"
+msgstr ""
+
+#: lib/setup.php:85
+msgid "Banner home (Sólo móvil)"
+msgstr ""
+
+#: lib/setup.php:93
+msgid "Banner global"
+msgstr ""
+
+#: lib/setup.php:101
+msgid "Banner global (Sólo móvil)"
+msgstr ""
+
+#: lib/titles.php:13
+msgid "Latest Posts"
+msgstr ""
+
+#: lib/titles.php:18
+#, php-format
+msgid "Search Results for %s"
+msgstr ""
+
+#: lib/titles.php:20
+msgid "Not Found"
+msgstr ""
+
+#: search.php:5
+msgid "Sorry, no results were found."
+msgstr ""
+
+#: template-contact.php:54 template-contact.php:55
+msgid "Nombre"
+msgstr "Name"
+
+#: template-contact.php:58 template-contact.php:59
+msgid "e-mail"
+msgstr ""
+
+#: template-contact.php:62
+msgid "Suscribirse"
+msgstr "Abbonarsi"
+
+#: template-history.php:26
+msgid "Temporada"
+msgstr ""
+
+#: template-history.php:66 templates/content-single-rider.php:45
+msgid "Palmarés"
+msgstr "Premi"
+
+#: template-history.php:78
+msgid "Maillot"
+msgstr ""
+
+#: template-sponsors.php:16
+msgid "Title Sponsors"
+msgstr ""
+
+#: template-sponsors.php:50
+msgid "Official Sponsors"
+msgstr ""
+
+#: template-sponsors.php:64
+msgid "Official Suppliers"
+msgstr ""
+
+#: template-team.php:26
+msgid "Staff"
+msgstr ""
+
+#: template-team.php:39
+msgid "Muy pronto"
+msgstr ""
+
+#: template-team.php:40
+msgid ""
+"Estamos ultimando la página web de nuestro equipo para la próxima temporada "
+"y en breve estará completamente disponible"
+msgstr ""
+"We are finalizing our team’s website for the next season and it will soon "
+"be fully available”"
+
+#: templates/comments.php:19
+msgid "&larr; Older comments"
+msgstr ""
+
+#: templates/comments.php:22
+msgid "Newer comments &rarr;"
+msgstr ""
+
+#: templates/comments.php:31
+msgid "Comments are closed."
+msgstr ""
+
+#: templates/content-page.php:6
+msgid "Pages:"
+msgstr ""
+
+#: templates/content-single-rider.php:24
+msgid "Edad"
+msgstr "Età"
+
+#: templates/content-single-rider.php:28
+msgid "Altura (cm)"
+msgstr "Altezza (cm)"
+
+#: templates/content-single-rider.php:32
+msgid "Peso (kg)"
+msgstr "Peso (kg)"
+
+#: templates/content-single-rider.php:41
+msgid "Biografía"
+msgstr "Biografia"
+
+#: templates/content-single-rider.php:88
+msgid "Noticias relacionadas"
+msgstr "Notizie correlate"
+
+#: templates/content-single.php:40
+msgid "Corredores relacionados"
+msgstr "Corridoi correlati"
+
+#: templates/content-single.php:51
+msgid "Etiquetas"
+msgstr "Tags"
+
+#: templates/content-single.php:62
+msgid "Más noticias"
+msgstr "Altre notizie"
+
+#: templates/filter-format.php:6
+msgid "Todo"
+msgstr "Tutti"
+
+#: templates/filter-format.php:7
+msgid "Noticias"
+msgstr "Notizie"
+
+#: templates/filter-format.php:8
+msgid "Galerías"
+msgstr "Gallerie"
+
+#: templates/filter-format.php:9
+msgid "Videos"
+msgstr "Video"
+
+#: templates/footer.php:36
+msgid ""
+"HAYF SPORTS SL. Todos los derechos reservados.\n"
+"      Prohibida su copia o reproducción sin autorización expresa."
+msgstr ""
+"HAYF SPORT SL. Tutti i diritti riservati.\n"
+"     Nessuna copia o riproduzione senza esplicito permesso."
+
+#: templates/footer.php:39
+msgid "Política de privacidad"
+msgstr ""
+
+#: templates/header.php:15
+msgid "Menu"
+msgstr "Menu"
+
+#: templates/header.php:41
+msgid "Síguenos"
+msgstr "Seguiteci"
+
+#: templates/news-home.php:7
+msgid "Ir a noticias"
+msgstr "Vai alle notizie"
+
+#~ msgid "Patrocinadores principales"
+#~ msgstr "Title Sponsors"
+
+#~ msgid "Patrocinadores oficiales"
+#~ msgstr "Official Sponsors:"
+
+#~ msgid "Proveedores oficiales"
+#~ msgstr "Official Suppliers"

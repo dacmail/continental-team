@@ -192,8 +192,76 @@
         },
         {
             "key": "field_5fe3398e454b0",
-            "label": "Descripción",
-            "name": "text",
+            "label": "Descripción Español",
+            "name": "text_es",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a5877e1efe3d",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5a5877e1efe3d",
+                        "operator": "==",
+                        "value": "gold"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_5fec7191548aa",
+            "label": "Descripción Inglés",
+            "name": "text_en",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a5877e1efe3d",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5a5877e1efe3d",
+                        "operator": "==",
+                        "value": "gold"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_5fec71a2548ac",
+            "label": "Descripción Italiano",
+            "name": "text_it",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -256,5 +324,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1608727432
+    "modified": 1609331124
 }

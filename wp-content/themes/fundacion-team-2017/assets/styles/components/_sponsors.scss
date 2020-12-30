@@ -137,6 +137,11 @@
           }
         }
       }
+
+      .sponsors-block__title {
+        background-color: #d4af37;
+        border-color: #d4af37;
+      }
     }
     &--level2 {
       background-color: $white;
@@ -149,19 +154,42 @@
         align-items: center;
         justify-content: center;
         .sponsors-block__item {
-          padding: rem(90px) rem(60px);
+          padding: rem(90px) rem(50px);
           @media (max-width: $sm) {
             padding: rem(30px);
           }
         }
       }
+
+      .sponsors-block__title {
+        background-color: #aaa9ad;
+        border-color: #aaa9ad;
+      }
     }
+
+    &--level23 {
+      .container {
+        .sponsors-block__item {
+          padding: rem(90px) rem(30px);
+
+          @media (max-width: $sm) {
+            padding: rem(30px);
+          }
+        }
+      }
+
+      .sponsors-block__title {
+        background-color: #b08d57;
+        border-color: #b08d57;
+      }
+    }
+
     &--level3 {
       @media (max-width: $sm) {
         justify-content: space-between;
       }
       .sponsors-block__item {
-          padding: rem(50px) rem(60px);
+          padding: rem(50px) rem(30px);
           @media (max-width: $sm) {
             padding: rem(10px);
           }
