@@ -1,15 +1,4 @@
 <?php use Roots\Sage\Extras; ?>
-<?php if (is_active_sidebar('banner-global') && !wp_is_mobile()): ?>
-  <section class="banner banner--global">
-    <?php dynamic_sidebar('banner-global') ?>
-  </section>
-<?php endif ?>
-<?php if (is_active_sidebar('banner-global-mobile') && wp_is_mobile()): ?>
-  <section class="banner banner--global">
-    <?php dynamic_sidebar('banner-global-mobile') ?>
-  </section>
-<?php endif ?>
-
 <header class="header">
   <div class="container">
     <a href="#menu" class="header__menu-toggle"><?php esc_html_e('Menu', 'ungrynerd'); ?></a>

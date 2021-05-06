@@ -135,6 +135,15 @@ img {
 
   &--global {
     margin-bottom: 0;
+
+    .news + &,
+    .page-section--contact + & {
+      margin-top: rem(160px);
+
+      @media (max-width: $sm) {
+        margin-top: rem(30px);
+      }
+    }
   }
 }
 

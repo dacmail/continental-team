@@ -71,6 +71,8 @@
     'home': {
       init: function() {
         // JavaScript to be fired on the home page
+      },
+      finalize: function() {
         $('.carousel').owlCarousel({
           items: 1,
           dots: true,
@@ -79,8 +81,6 @@
           autoplayTimeout: 5000,
           autoplayHoverPause: true
         });
-      },
-      finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
       }
     },

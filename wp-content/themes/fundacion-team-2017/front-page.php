@@ -18,5 +18,5 @@
   <header class="social__header">
     <h2 class="social__header__title"><?php esc_html_e('En la red', 'ungrynerd'); ?></h2>
   </header>
-  <?php echo do_shortcode('[ff id="1"]') ?>
+  <?php echo do_shortcode('[instagram-feed]') ?>
 </section>
