@@ -1,13 +1,16 @@
 <?php
+
 /**
  * Template Name: Contacto
  */
 ?>
-<?php use Roots\Sage\Extras; ?>
+<?php
+
+use Roots\Sage\Extras; ?>
 <?php while (have_posts()) : the_post(); ?>
   <section class="page-section page-section--contact">
     <h1 class="section-title"><?php the_title(); ?></h1>
-    
+
     <div class="contact-wrap">
       <div class="container">
         <div class="block block--email">
@@ -52,7 +55,7 @@
           <form action="<?php the_field('contact_form'); ?>" method="post" target="_blank">
             <p>
               <label for="nombre"><?php esc_html_e('Nombre', 'ungrynerd'); ?></label>
-              <input id="nombre" type="text"  name="FNAME" placeholder="<?php esc_html_e('Nombre', 'ungrynerd'); ?>">
+              <input id="nombre" type="text" name="FNAME" placeholder="<?php esc_html_e('Nombre', 'ungrynerd'); ?>">
             </p>
             <p>
               <label for="email"><?php esc_html_e('e-mail', 'ungrynerd'); ?></label>
@@ -60,8 +63,9 @@
             </p>
             <p>
               <input type="submit" value="<?php esc_html_e('Suscribirse', 'ungrynerd'); ?>">
-            </p>  
-        </form>
+            </p>
+            <p><input type="checkbox" id="accept" required> <?php esc_html_e('He leído y acepto la Política de Privacidad.', 'ungrynerd'); ?></p>
+          </form>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-12-26 09:05+0100\n"
+"POT-Creation-Date: 2021-09-20 16:56+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-KeywordsList: esc_html__;esc_html_e;__;_e\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -40,7 +40,7 @@ msgid "En la red"
 msgstr "Social stream"
 
 #: functions.php:24
-#, php-format
+#, python-format
 msgid "Error locating %s for inclusion"
 msgstr ""
 
@@ -68,15 +68,19 @@ msgstr ""
 msgid "Instagram URL"
 msgstr ""
 
-#: lib/customizer.php:52 templates/footer.php:38
+#: lib/customizer.php:52 templates/footer.php:68
 msgid "Aviso legal"
-msgstr ""
+msgstr "Legal notice"
 
-#: lib/customizer.php:60
+#: lib/customizer.php:60 templates/footer.php:69
+msgid "Política de cookies"
+msgstr "Cookies policy"
+
+#: lib/customizer.php:68
 msgid "Politica de privacidad"
-msgstr ""
+msgstr "Privacy Policy"
 
-#: lib/extras.php:54 templates/content-single-rider.php:93
+#: lib/extras.php:54 templates/content-single-rider.php:105
 msgid "Noticia"
 msgstr "News"
 
@@ -205,7 +209,7 @@ msgid "Latest Posts"
 msgstr ""
 
 #: lib/titles.php:18
-#, php-format
+#, python-format
 msgid "Search Results for %s"
 msgstr ""
 
@@ -217,23 +221,19 @@ msgstr ""
 msgid "Sorry, no results were found."
 msgstr ""
 
-#: template-contact.php:54 template-contact.php:55
+#: template-contact.php:54
 msgid "Nombre"
 msgstr "Name"
 
-#: template-contact.php:58 template-contact.php:59
+#: template-contact.php:58
 msgid "e-mail"
 msgstr ""
-
-#: template-contact.php:62
-msgid "Suscribirse"
-msgstr "Subscribe"
 
 #: template-history.php:26
 msgid "Temporada"
 msgstr ""
 
-#: template-history.php:66 templates/content-single-rider.php:45
+#: template-history.php:66 templates/content-single-rider.php:52
 msgid "Palmarés"
 msgstr "Results"
 
@@ -241,16 +241,20 @@ msgstr "Results"
 msgid "Maillot"
 msgstr ""
 
-#: template-sponsors.php:16
-msgid "Title Sponsors"
+#: template-sponsors.php:57
+msgid "Gold sponsors"
 msgstr ""
 
-#: template-sponsors.php:50
-msgid "Official Sponsors"
+#: template-sponsors.php:97
+msgid "Silver sponsors"
 msgstr ""
 
-#: template-sponsors.php:64
-msgid "Official Suppliers"
+#: template-sponsors.php:112
+msgid "Bronze sponsors"
+msgstr ""
+
+#: template-sponsors.php:126
+msgid "Contributors"
 msgstr ""
 
 #: template-team.php:26
@@ -266,8 +270,8 @@ msgid ""
 "Estamos ultimando la página web de nuestro equipo para la próxima temporada "
 "y en breve estará completamente disponible"
 msgstr ""
-"We are finalizing our team’s website for the next season and it will soon "
-"be fully available”"
+"We are finalizing our team’s website for the next season and it will soon be "
+"fully available”"
 
 #: templates/comments.php:19
 msgid "&larr; Older comments"
@@ -285,23 +289,23 @@ msgstr ""
 msgid "Pages:"
 msgstr ""
 
-#: templates/content-single-rider.php:24
+#: templates/content-single-rider.php:30
 msgid "Edad"
 msgstr "Age"
 
-#: templates/content-single-rider.php:28
+#: templates/content-single-rider.php:34
 msgid "Altura (cm)"
 msgstr "Height (cm)"
 
-#: templates/content-single-rider.php:32
+#: templates/content-single-rider.php:38
 msgid "Peso (kg)"
 msgstr "Weight (kg)"
 
-#: templates/content-single-rider.php:41
+#: templates/content-single-rider.php:47
 msgid "Biografía"
 msgstr "Biography"
 
-#: templates/content-single-rider.php:88
+#: templates/content-single-rider.php:100
 msgid "Noticias relacionadas"
 msgstr "Related news"
 
@@ -333,33 +337,39 @@ msgstr "Galleries"
 msgid "Videos"
 msgstr "Videos"
 
-#: templates/footer.php:36
-#, fuzzy
-#| msgid ""
-#| "HAYF SPORTS SL. Todos los derechos reservados. Prohibida su copia o "
-#| "reproducción sin autorización expresa."
-msgid ""
-"HAYF SPORTS SL. Todos los derechos reservados.\n"
-"      Prohibida su copia o reproducción sin autorización expresa."
-msgstr ""
-"HAYF SPORTS SL. All rights reserved. Any unauthorized copying or "
-"reproduction is strictly prohibited."
+#: templates/footer.php:67
+msgid "HAYF SPORTS SL. Todos los derechos reservados."
+msgstr "HAYF SPORTS SL. All right reserved"
 
-#: templates/footer.php:39
+#: templates/footer.php:70
 msgid "Política de privacidad"
-msgstr ""
+msgstr "Privacy Policy"
 
-#: templates/header.php:15
+#: templates/header.php:4
 msgid "Menu"
 msgstr "Menu"
 
-#: templates/header.php:41
+#: templates/header.php:30
 msgid "Síguenos"
 msgstr "Follow us"
 
 #: templates/news-home.php:7
 msgid "Ir a noticias"
 msgstr "Got to news"
+
+#~ msgid "Suscribirse"
+#~ msgstr "Subscribe"
+
+#, fuzzy
+#~| msgid ""
+#~| "HAYF SPORTS SL. Todos los derechos reservados. Prohibida su copia o "
+#~| "reproducción sin autorización expresa."
+#~ msgid ""
+#~ "HAYF SPORTS SL. Todos los derechos reservados.\n"
+#~ "      Prohibida su copia o reproducción sin autorización expresa."
+#~ msgstr ""
+#~ "HAYF SPORTS SL. All rights reserved. Any unauthorized copying or "
+#~ "reproduction is strictly prohibited."
 
 #~ msgid "Patrocinadores principales"
 #~ msgstr "Title Sponsors"

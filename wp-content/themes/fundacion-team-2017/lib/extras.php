@@ -182,6 +182,8 @@ if (function_exists('pll_register_string')) {
    */
   function ungrynerd_pll_register_string() {
     pll_register_string('ungrynerd_legal', get_theme_mod('ungrynerd_legal'), 'ungrynerd', true);
+    pll_register_string('ungrynerd_cookies', get_theme_mod('ungrynerd_cookies'), 'ungrynerd', true);
+    pll_register_string('ungrynerd_policy', get_theme_mod('ungrynerd_policy'), 'ungrynerd', true);
   }
 
   add_action('after_setup_theme', __NAMESPACE__ . '\ungrynerd_pll_register_string');

@@ -9,7 +9,7 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-KeywordsList: esc_html__;esc_html_e;__;_e\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -28,37 +28,17 @@ msgid ""
 "browsehappy.com/\">actualizalo</a> para mejroar la experiencia."
 msgstr ""
 
-#: front-page.php:14
+#: front-page.php:19
 msgid "En la red"
 msgstr ""
 
-#: front-page.php:15
-msgid "Ir a redes sociales"
-msgstr ""
-
-#: functions.php:23
-#, php-format
+#: functions.php:24
+#, python-format
 msgid "Error locating %s for inclusion"
 msgstr ""
 
 #: index.php:3 templates/news-home.php:6
 msgid "Actualidad"
-msgstr ""
-
-#: index.php:9
-msgid "Todo"
-msgstr ""
-
-#: index.php:10
-msgid "Noticias"
-msgstr ""
-
-#: index.php:11
-msgid "Galerías"
-msgstr ""
-
-#: index.php:12
-msgid "Videos"
 msgstr ""
 
 #: lib/customizer.php:14
@@ -81,7 +61,19 @@ msgstr ""
 msgid "Instagram URL"
 msgstr ""
 
-#: lib/extras.php:54 templates/content-single-rider.php:86
+#: lib/customizer.php:52 templates/footer.php:68
+msgid "Aviso legal"
+msgstr ""
+
+#: lib/customizer.php:60 templates/footer.php:69
+msgid "Política de cookies"
+msgstr ""
+
+#: lib/customizer.php:68
+msgid "Politica de privacidad"
+msgstr ""
+
+#: lib/extras.php:54 templates/content-single-rider.php:105
 msgid "Noticia"
 msgstr ""
 
@@ -133,7 +125,7 @@ msgstr ""
 msgid "No hay Sponsors en la papelera"
 msgstr ""
 
-#: lib/extras.php:103 lib/extras.php:114
+#: lib/extras.php:103 lib/extras.php:114 template-history.php:54
 msgid "Corredores"
 msgstr ""
 
@@ -185,12 +177,24 @@ msgstr ""
 msgid "Menú idiomas"
 msgstr ""
 
-#: lib/setup.php:68
+#: lib/setup.php:69
 msgid "Super Menú"
 msgstr ""
 
-#: lib/setup.php:76
+#: lib/setup.php:77
 msgid "Banner home"
+msgstr ""
+
+#: lib/setup.php:85
+msgid "Banner home (Sólo móvil)"
+msgstr ""
+
+#: lib/setup.php:93
+msgid "Banner global"
+msgstr ""
+
+#: lib/setup.php:101
+msgid "Banner global (Sólo móvil)"
 msgstr ""
 
 #: lib/titles.php:13
@@ -198,7 +202,7 @@ msgid "Latest Posts"
 msgstr ""
 
 #: lib/titles.php:18
-#, php-format
+#, python-format
 msgid "Search Results for %s"
 msgstr ""
 
@@ -206,288 +210,58 @@ msgstr ""
 msgid "Not Found"
 msgstr ""
 
-#: node_modules/ajv/dist/regenerator.min.js:25
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:25
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid " "
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:25
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:25
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "."
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "*"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "import"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "{}"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid ", "
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "this"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "super"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "null"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid ",\n"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid " = "
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "\n"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "debugger;"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid ":"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "empty"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "any"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "mixed"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:174
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:241
-#: node_modules/yargs/lib/usage.js:225
-msgid "boolean"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "interface "
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid " & "
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:246
-#: node_modules/yargs/lib/usage.js:230
-msgid "number"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:176
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:177
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:243
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:244
-#: node_modules/yargs/lib/usage.js:227 node_modules/yargs/lib/usage.js:228
-msgid "string"
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "typeof "
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid " | "
-msgstr ""
-
-#: node_modules/ajv/dist/regenerator.min.js:26
-#: node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js:26
-msgid "void"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/parser.js:239
-#: node_modules/sass-graph/node_modules/yargs-parser/index.js:301
-#: node_modules/yargs-parser/index.js:301
-#, javascript-format
-msgid "Not enough arguments following: %s"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/parser.js:348
-#: node_modules/sass-graph/node_modules/yargs-parser/index.js:449
-#: node_modules/yargs-parser/index.js:449
-#, javascript-format
-msgid "Invalid JSON config file: %s"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:132
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:169
-#: node_modules/yargs/lib/usage.js:158
-msgid "Commands:"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:165
-msgid "Options:"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:175
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:242
-#: node_modules/yargs/lib/usage.js:226
-msgid "count"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:178
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:245
-#: node_modules/yargs/lib/usage.js:229
-msgid "array"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:182
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:250
-#: node_modules/yargs/lib/usage.js:234
-msgid "required"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:183
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:251
-#: node_modules/yargs/lib/usage.js:235
-msgid "choices:"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:202
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:270
-#: node_modules/yargs/lib/usage.js:254
-msgid "Examples:"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:280
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:385
-#: node_modules/yargs/lib/usage.js:354
-msgid "generated-value"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:302
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:177
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:407
-#: node_modules/yargs/lib/usage.js:376
-msgid "default:"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:19
-#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:26
-#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:49
-#: node_modules/yargs/lib/validation.js:22
-#: node_modules/yargs/lib/validation.js:37
-#, javascript-format
-msgid "Not enough non-option arguments: got %s, need at least %s"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:23
-#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:37
-#: node_modules/yargs/lib/validation.js:26
-#, javascript-format
-msgid "Too many non-option arguments: got %s, maximum of %s"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:148
-#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:185
-#: node_modules/yargs/lib/validation.js:171
-msgid "Invalid values:"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:151
-#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:188
-#: node_modules/yargs/lib/validation.js:174
-#, javascript-format
-msgid "Argument: %s, Given: %s, Choices: %s"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:171
-#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:218
-#: node_modules/yargs/lib/validation.js:200
-#, javascript-format
-msgid "Argument check failed: %s"
-msgstr ""
-
-#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:238
-#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:283
-#: node_modules/yargs/lib/validation.js:270
-msgid "Implications failed:"
-msgstr ""
-
-#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:179
-#: node_modules/yargs/lib/usage.js:166
-msgid "aliases:"
-msgstr ""
-
-#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:313
-#, javascript-format
-msgid "Arguments %s and %s are mutually exclusive"
-msgstr ""
-
-#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:332
-#: node_modules/yargs/lib/validation.js:294
-#, javascript-format
-msgid "Did you mean %s?"
-msgstr ""
-
 #: search.php:5
 msgid "Sorry, no results were found."
 msgstr ""
 
-#: template-contact.php:54 template-contact.php:55
+#: template-contact.php:54
 msgid "Nombre"
 msgstr ""
 
-#: template-contact.php:58 template-contact.php:59
+#: template-contact.php:58
 msgid "e-mail"
 msgstr ""
 
-#: template-contact.php:62
-msgid "Suscribirse"
+#: template-history.php:26
+msgid "Temporada"
 msgstr ""
 
-#: template-team.php:25
+#: template-history.php:66 templates/content-single-rider.php:52
+msgid "Palmarés"
+msgstr ""
+
+#: template-history.php:78
+msgid "Maillot"
+msgstr ""
+
+#: template-sponsors.php:57
+msgid "Gold sponsors"
+msgstr ""
+
+#: template-sponsors.php:97
+msgid "Silver sponsors"
+msgstr ""
+
+#: template-sponsors.php:112
+msgid "Bronze sponsors"
+msgstr ""
+
+#: template-sponsors.php:126
+msgid "Contributors"
+msgstr ""
+
+#: template-team.php:26
 msgid "Staff"
+msgstr ""
+
+#: template-team.php:39
+msgid "Muy pronto"
+msgstr ""
+
+#: template-team.php:40
+msgid ""
+"Estamos ultimando la página web de nuestro equipo para la próxima "
+"temporada y en breve estará completamente disponible"
 msgstr ""
 
 #: templates/comments.php:19
@@ -506,24 +280,24 @@ msgstr ""
 msgid "Pages:"
 msgstr ""
 
-#: templates/content-single-rider.php:18
+#: templates/content-single-rider.php:30
 msgid "Edad"
 msgstr ""
 
-#: templates/content-single-rider.php:22
+#: templates/content-single-rider.php:34
 msgid "Altura (cm)"
 msgstr ""
 
-#: templates/content-single-rider.php:26
+#: templates/content-single-rider.php:38
 msgid "Peso (kg)"
 msgstr ""
 
-#: templates/content-single-rider.php:35
+#: templates/content-single-rider.php:47
 msgid "Biografía"
 msgstr ""
 
-#: templates/content-single-rider.php:39
-msgid "Palmarés"
+#: templates/content-single-rider.php:100
+msgid "Noticias relacionadas"
 msgstr ""
 
 #: templates/content-single.php:40
@@ -538,10 +312,28 @@ msgstr ""
 msgid "Más noticias"
 msgstr ""
 
-#: templates/footer.php:34
-msgid ""
-"CLUB DEPORTIVO CICLISTA ALBERTO CONTADOR. Todos los derechos reservados. "
-"Prohibida su copia o reproducción sin autorización expresa."
+#: templates/filter-format.php:6
+msgid "Todo"
+msgstr ""
+
+#: templates/filter-format.php:7
+msgid "Noticias"
+msgstr ""
+
+#: templates/filter-format.php:8
+msgid "Galerías"
+msgstr ""
+
+#: templates/filter-format.php:9
+msgid "Videos"
+msgstr ""
+
+#: templates/footer.php:67
+msgid "HAYF SPORTS SL. Todos los derechos reservados."
+msgstr ""
+
+#: templates/footer.php:70
+msgid "Política de privacidad"
 msgstr ""
 
 #: templates/header.php:4
@@ -554,4 +346,240 @@ msgstr ""
 
 #: templates/news-home.php:7
 msgid "Ir a noticias"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:25
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid " "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:25
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "."
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "*"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "import"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "{}"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid ", "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "this"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "super"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "null"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid ",\n"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid " = "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "\n"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "debugger;"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid ":"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "empty"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "any"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "mixed"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:228
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:241
+#: node_modules/yargs/lib/usage.js:225
+msgid "boolean"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "interface "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid " & "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:233
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:246
+#: node_modules/yargs/lib/usage.js:230
+msgid "number"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:230
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:231
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:243
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:244
+#: node_modules/yargs/lib/usage.js:227 node_modules/yargs/lib/usage.js:228
+msgid "string"
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "typeof "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid " | "
+msgstr ""
+
+#: node_modules/ajv/dist/regenerator.min.js:26
+msgid "void"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:161
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:169
+#: node_modules/yargs/lib/usage.js:158
+msgid "Commands:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:169
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:179
+#: node_modules/yargs/lib/usage.js:166
+msgid "aliases:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:229
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:242
+#: node_modules/yargs/lib/usage.js:226
+msgid "count"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:232
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:245
+#: node_modules/yargs/lib/usage.js:229
+msgid "array"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:237
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:250
+#: node_modules/yargs/lib/usage.js:234
+msgid "required"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:238
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:251
+#: node_modules/yargs/lib/usage.js:235
+msgid "choices:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:257
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:270
+#: node_modules/yargs/lib/usage.js:254
+msgid "Examples:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:358
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:385
+#: node_modules/yargs/lib/usage.js:354
+msgid "generated-value"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/usage.js:380
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:177
+#: node_modules/sass-graph/node_modules/yargs/lib/usage.js:407
+#: node_modules/yargs/lib/usage.js:376
+msgid "default:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:26
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:49
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:26
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:49
+#: node_modules/yargs/lib/validation.js:22
+#: node_modules/yargs/lib/validation.js:37
+#, javascript-format
+msgid "Not enough non-option arguments: got %s, need at least %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:37
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:37
+#: node_modules/yargs/lib/validation.js:26
+#, javascript-format
+msgid "Too many non-option arguments: got %s, maximum of %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:183
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:185
+#: node_modules/yargs/lib/validation.js:171
+msgid "Invalid values:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:186
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:188
+#: node_modules/yargs/lib/validation.js:174
+#, javascript-format
+msgid "Argument: %s, Given: %s, Choices: %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:212
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:218
+#: node_modules/yargs/lib/validation.js:200
+#, javascript-format
+msgid "Argument check failed: %s"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:276
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:283
+#: node_modules/yargs/lib/validation.js:270
+msgid "Implications failed:"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:305
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:313
+#, javascript-format
+msgid "Arguments %s and %s are mutually exclusive"
+msgstr ""
+
+#: node_modules/localtunnel/node_modules/yargs/lib/validation.js:324
+#: node_modules/sass-graph/node_modules/yargs/lib/validation.js:332
+#: node_modules/yargs/lib/validation.js:294
+#, javascript-format
+msgid "Did you mean %s?"
+msgstr ""
+
+#: node_modules/sass-graph/node_modules/yargs-parser/index.js:301
+#: node_modules/yargs-parser/index.js:301
+#, javascript-format
+msgid "Not enough arguments following: %s"
+msgstr ""
+
+#: node_modules/sass-graph/node_modules/yargs-parser/index.js:449
+#: node_modules/yargs-parser/index.js:449
+#, javascript-format
+msgid "Invalid JSON config file: %s"
 msgstr ""

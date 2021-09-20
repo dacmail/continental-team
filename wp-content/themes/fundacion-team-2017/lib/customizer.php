@@ -54,6 +54,14 @@ function customize_register($wp_customize) {
     'settings' => 'ungrynerd_legal'
   )));
 
+  $wp_customize->add_setting('ungrynerd_cookies');
+  $wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'ungrynerd_cookies', array(
+    'type' => 'text',
+    'label' => __('Política de cookies', 'ungrynerd'),
+    'section' => 'ungrynerd_social',
+    'settings' => 'ungrynerd_cookies'
+  )));
+
   $wp_customize->add_setting('ungrynerd_policy');
   $wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'ungrynerd_policy', array(
     'type' => 'text',
