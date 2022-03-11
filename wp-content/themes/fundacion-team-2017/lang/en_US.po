@@ -235,7 +235,7 @@ msgstr "I've read and accept the Privacy Policy"
 
 #: template-history.php:26
 msgid "Temporada"
-msgstr ""
+msgstr "Season"
 
 #: template-history.php:66 templates/content-single-rider.php:52
 msgid "Palmarés"

@@ -235,11 +235,11 @@ msgstr "Ho letto e accetto l'informativa sulla privacy."
 
 #: template-history.php:26
 msgid "Temporada"
-msgstr ""
+msgstr "Stagione"
 
 #: template-history.php:66 templates/content-single-rider.php:52
 msgid "Palmarés"
-msgstr "Premi"
+msgstr "Palmarés"
 
 #: template-history.php:78
 msgid "Maillot"
