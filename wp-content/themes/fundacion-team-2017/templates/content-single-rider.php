@@ -26,7 +26,8 @@ use Roots\Sage\Extras; ?>
           </div>
           <h1 class="rider__name"><?= Extras\ungrynerd_svg('flag-' . get_field('bandera')) ?><?php the_title(); ?></h1>
           <div class="rider__info">
-            <div class="rider__info__box" data-birth="<?php the_field('fecha-nacimiento') ?>">
+            <?php $birth = esc_html__('Nacido el', 'ungrynerd'); ?>
+            <div class="rider__info__box" data-birth="<?php the_field('fecha-nacimiento') ?>" title="<?php echo $birth . ' ' . get_field('fecha-nacimiento') ?>">
               <span><?php esc_html_e('Edad', 'ungrynerd'); ?></span>
               <?= floor((time() - strtotime(str_replace('/', '-', get_field('fecha-nacimiento')))) / (60 * 60 * 24 * 365)) ?>
             </div>

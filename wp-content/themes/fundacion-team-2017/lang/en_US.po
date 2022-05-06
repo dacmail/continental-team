@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-09-20 17:45+0200\n"
+"POT-Creation-Date: 2022-03-16 11:46+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,6 +18,9 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: bower_components\n"
 "X-Poedit-SearchPathExcluded-2: dist\n"
 "X-Poedit-SearchPathExcluded-3: node_modules\n"
+"X-Poedit-SearchPathExcluded-4: vendor\n"
+"X-Poedit-SearchPathExcluded-5: lib/extras.php\n"
+"X-Poedit-SearchPathExcluded-6: functions.php\n"
 
 #: 404.php:2
 msgid "Página no encontrada"
@@ -38,11 +41,6 @@ msgstr ""
 #: front-page.php:19
 msgid "En la red"
 msgstr "Social stream"
-
-#: functions.php:24
-#, python-format
-msgid "Error locating %s for inclusion"
-msgstr ""
 
 #: index.php:3 templates/news-home.php:6
 msgid "Actualidad"
@@ -79,98 +77,6 @@ msgstr "Cookies policy"
 #: lib/customizer.php:68
 msgid "Politica de privacidad"
 msgstr "Privacy Policy"
-
-#: lib/extras.php:54 templates/content-single-rider.php:105
-msgid "Noticia"
-msgstr "News"
-
-#: lib/extras.php:55
-msgid "Galería"
-msgstr "Gallery"
-
-#: lib/extras.php:56
-msgid "Video"
-msgstr "Video"
-
-#: lib/extras.php:58 lib/extras.php:104
-msgid "Corredor"
-msgstr "Rider"
-
-#: lib/extras.php:67
-msgid "Sponsors"
-msgstr ""
-
-#: lib/extras.php:68
-msgid "Sponsor"
-msgstr ""
-
-#: lib/extras.php:69 lib/extras.php:70
-msgid "Añadir Sponsor"
-msgstr ""
-
-#: lib/extras.php:71
-msgid "Editar Sponsor"
-msgstr ""
-
-#: lib/extras.php:72
-msgid "Nuevo Sponsor"
-msgstr ""
-
-#: lib/extras.php:73
-msgid "Ver Sponsors"
-msgstr ""
-
-#: lib/extras.php:74
-msgid "Buscar Sponsors"
-msgstr ""
-
-#: lib/extras.php:75
-msgid "No se han encontrado Sponsors "
-msgstr ""
-
-#: lib/extras.php:76
-msgid "No hay Sponsors en la papelera"
-msgstr ""
-
-#: lib/extras.php:103 lib/extras.php:114 template-history.php:54
-msgid "Corredores"
-msgstr ""
-
-#: lib/extras.php:105
-msgid "Añadir nuevo"
-msgstr ""
-
-#: lib/extras.php:106
-msgid "Añadir nuevo Corredor"
-msgstr ""
-
-#: lib/extras.php:107
-msgid "Editar Corredor"
-msgstr ""
-
-#: lib/extras.php:108
-msgid "Nuevo Corredor"
-msgstr ""
-
-#: lib/extras.php:109
-msgid "Ver Corredor"
-msgstr ""
-
-#: lib/extras.php:110
-msgid "Buscar Corredores"
-msgstr ""
-
-#: lib/extras.php:111
-msgid "No corredores found"
-msgstr ""
-
-#: lib/extras.php:112
-msgid "No corredores found in Trash"
-msgstr ""
-
-#: lib/extras.php:113
-msgid "Corredor padre:"
-msgstr ""
 
 #: lib/setup.php:31
 msgid "Menú principal"
@@ -237,7 +143,11 @@ msgstr "I've read and accept the Privacy Policy"
 msgid "Temporada"
 msgstr "Season"
 
-#: template-history.php:66 templates/content-single-rider.php:52
+#: template-history.php:54
+msgid "Corredores"
+msgstr ""
+
+#: template-history.php:66 templates/content-single-rider.php:53
 msgid "Palmarés"
 msgstr "Results"
 
@@ -293,25 +203,33 @@ msgstr ""
 msgid "Pages:"
 msgstr ""
 
-#: templates/content-single-rider.php:30
+#: templates/content-single-rider.php:29
+msgid "Nacido el"
+msgstr "Brith on"
+
+#: templates/content-single-rider.php:31
 msgid "Edad"
 msgstr "Age"
 
-#: templates/content-single-rider.php:34
+#: templates/content-single-rider.php:35
 msgid "Altura (cm)"
 msgstr "Height (cm)"
 
-#: templates/content-single-rider.php:38
+#: templates/content-single-rider.php:39
 msgid "Peso (kg)"
 msgstr "Weight (kg)"
 
-#: templates/content-single-rider.php:47
+#: templates/content-single-rider.php:48
 msgid "Biografía"
 msgstr "Biography"
 
-#: templates/content-single-rider.php:100
+#: templates/content-single-rider.php:101
 msgid "Noticias relacionadas"
 msgstr "Related news"
+
+#: templates/content-single-rider.php:106
+msgid "Noticia"
+msgstr "News"
 
 #: templates/content-single.php:40
 msgid "Corredores relacionados"
@@ -360,6 +278,15 @@ msgstr "Follow us"
 #: templates/news-home.php:7
 msgid "Ir a noticias"
 msgstr "Got to news"
+
+#~ msgid "Galería"
+#~ msgstr "Gallery"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "Corredor"
+#~ msgstr "Rider"
 
 #~ msgid "Suscribirse"
 #~ msgstr "Subscribe"
