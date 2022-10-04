@@ -4,7 +4,7 @@
     margin: rem(0px) auto;
   }
   &__video {
-    position: relative; 
+    position: relative;
 		padding-bottom: 56.25%;
 		overflow: hidden;
 		max-width: $container-full;
@@ -13,7 +13,7 @@
     background-color: $black;
     iframe,
 	  object,
-	  embed { 
+	  embed {
       position: absolute;
       top: 0;
       left: 0;
@@ -129,7 +129,7 @@
       background-color: $primary;
       margin-right: rem(5px);
       transition: $transition-standard;
-      svg {  
+      svg {
         position: absolute;
         left: 50%;
         top: 50%;
@@ -160,23 +160,26 @@
     @media (max-width: $md) {
       height: rem(500px);
     }
-    .owl-item, .owl-stage, .owl-stage-outer {
-      height: 100%;
-    }
-    .owl-nav {
-      position: absolute;
-      top: rem(10px);
-      right: rem(10px);
-      margin: rem(0px);
-      div {
-        display: inline-block;
-        width: rem(80px);
-        height: rem(80px);
-        font-size: rem(0px);
-        margin: rem(0px) rem(1px);
-        background:url('../images/icon-left-arrow.svg') rgba($black, 0.75) center center no-repeat;
-        &.owl-next {
-          background-image: url('../images/icon-right-arrow.svg');
+    &.owl-carousel {
+      .owl-item, .owl-stage, .owl-stage-outer {
+        height: 100%;
+      }
+      .owl-nav {
+        position: absolute;
+        top: rem(10px);
+        right: rem(10px);
+        margin: rem(0px);
+        button {
+          appearance: none;
+          display: inline-block;
+          width: rem(80px);
+          height: rem(80px);
+          font-size: rem(0px);
+          margin: rem(0px) rem(1px);
+          background:url('../images/icon-left-arrow.svg') rgba($black, 0.75) center center no-repeat;
+          &.owl-next {
+            background-image: url('../images/icon-right-arrow.svg');
+          }
         }
       }
     }
